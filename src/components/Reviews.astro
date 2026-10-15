@@ -1,0 +1,98 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { Star, Quote, ArrowUpRight, HeartPulse } from '@lucide/astro';
+import ReviewCard from './ReviewCard.astro';
+import { site } from '../data/site';
+import { stories, manualReviews, sampleReviews, type Review } from '../data/reviews';
+import { getGoogleReviews } from '../lib/googleReviews';
+
+const google = await getGoogleReviews();
+const realReviews: Review[] = [...manualReviews, ...(google?.reviews ?? [])].filter((r) => r.rating >= 4);
+// Samples only ever render in `astro dev`, so the layout can be previewed before real reviews are added.
+const reviews = realReviews.length > 0 ? realReviews : import.meta.env.DEV ? sampleReviews : [];
+const useMarquee = reviews.length >= 4;
+// Each marquee row is repeated until it is wide enough to fill large screens without a gap.
+const fill = (row: Review[]) => {
+  const out = row.map((review) => ({ review, repeat: false }));
+  while (out.length < 6) out.push(...row.map((review) => ({ review, repeat: true })));
+  return out;
+};
+const rows = useMarquee
+  ? [fill(reviews.filter((_, i) => i % 2 === 0)), fill(reviews.filter((_, i) => i % 2 === 1))]
+  : [reviews.map((review) => ({ review, repeat: false }))];
+
+const formatDuration = (days: number) =>
+  days >= 365 ? `${Math.round(days / 365)}+ years` : `${days} day${days === 1 ? '' : 's'}`;
+const initials = (name: string) =>
+  name
+    .split(/\s+/)
+    .map((p) => p[0])
+    .slice(0, 2)
+    .join('')
+    .toUpperCase();
+---
+
+<section id="reviews" class="overflow-hidden py-16 sm:py-24">
+  <div class="container-x">
+    <SectionHeading
+      eyebrow="Patient Stories"
+      title="Years of discomfort. *Days to recover.*"
+      subtitle="Real stories from patients who finally found relief at GutCare."
+    />
+  </div>
+  {
+    reviews.length > 0 && (
+      <div class:list={['mt-12', useMarquee ? 'space-y-5' : 'container-x grid gap-5 sm:grid-cols-2 lg:grid-cols-3']}>
+        {rows.map((row, r) =>
+          useMarquee ? (
+            <div class="review-marquee group flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+              {[0, 1].map((copy) => (
+                <ul
+                  class:list={['review-track flex shrink-0 gap-5 py-3 pr-5', r === 1 && 'review-track-reverse']}
+                  aria-hidden={copy === 1 ? 'true' : undefined}
+                >
+                  {row.map(({ review, repeat }) => (
+                    <li class="w-80 shrink-0" aria-hidden={repeat && copy === 0 ? 'true' : undefined}>
+                      <ReviewCard review={review} />
+                    </li>
+                  ))}
+                </ul>
+              ))}
+            </div>
+          ) : (
+            row.map(({ review }) => <ReviewCard review={review} />)
+          ),
+        )}
+      </div>
+    )
+  }
+</section>
+
+<style>
+  .story-bar {
+    animation: grow 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation-timeline: view();
+    animation-range: entry 20% cover 45%;
+  }
+  @keyframes grow {
+    from { transform: scaleX(0); }
+  }
+
+  .review-track {
+    animation: marquee 60s linear infinite;
+  }
+  .review-track-reverse {
+    animation-direction: reverse;
+  }
+  .review-marquee:hover .review-track,
+  .review-marquee:focus-within .review-track {
+    animation-play-state: paused;
+  }
+  @keyframes marquee {
+    to { transform: translateX(-100%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .story-bar, .review-track { animation: none; }
+    .review-marquee { overflow-x: auto; }
+  }
+</style>

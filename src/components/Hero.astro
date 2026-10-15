@@ -1,0 +1,123 @@
+---
+import { Image } from 'astro:assets';
+import { Phone, MessageCircle, CalendarCheck, Award, Users, Clock, ShieldCheck, BadgeCheck, Zap } from '@lucide/astro';
+import { site, whatsappLink } from '../data/site';
+import doctor from '../assets/doctors/dr-yuvraj-singh-gehlot-cutout.png';
+
+const trust = [
+  { icon: Award, value: '30 Years', label: 'in healthcare' },
+  { icon: ShieldCheck, value: '25,000+', label: 'surgeries done' },
+  { icon: Users, value: '1 Lakh+', label: 'patients treated' },
+  { icon: Clock, value: '24x7', label: 'emergency care' },
+];
+---
+
+<section id="book" class="relative overflow-hidden bg-gradient-to-br from-brand-50 via-white to-leaf-50/60">
+  <!-- Soft brand shape behind the portrait -->
+  <div class="pointer-events-none absolute -right-48 top-10 hidden h-[44rem] w-[44rem] rounded-full bg-brand-100/70 lg:block" aria-hidden="true"></div>
+
+  <div class="container-x relative grid items-center gap-12 pb-10 pt-10 sm:pt-14 lg:grid-cols-[1.2fr_1fr] lg:gap-16 lg:pb-14 lg:pt-16">
+    <!-- Copy + form -->
+    <div>
+      <span class="eyebrow bg-white">
+        <span class="h-1.5 w-1.5 rounded-full bg-leaf-400"></span>
+        GutCare Clinics · Indiranagar, Bengaluru
+      </span>
+      <h1 class="mt-5 text-3xl font-extrabold leading-[1.12] tracking-tight sm:text-5xl lg:text-[3rem]">
+        Expert <span class="highlight">Colorectal &amp; Laparoscopic</span> Care, Without the Fear of Surgery
+      </h1>
+      <p class="mt-5 max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg">
+        Advanced laser treatment for piles, fistula and fissures, and laparoscopic surgery for hernia, gall bladder and
+        appendix, led by a senior GI &amp; colorectal surgeon.
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <button type="button" class="btn btn-leaf !px-8 !py-4 text-base" data-open-form="hero">
+          <CalendarCheck class="h-5 w-5" /> Book Appointment
+        </button>
+        <a href={site.phoneHref} class="btn btn-ghost !px-6 !py-4 text-base">
+          <Phone class="h-5 w-5 text-brand-500" /> {site.phone}
+        </a>
+      </div>
+
+      <p class="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-slate-500">
+        <span class="inline-flex items-center gap-1.5"><ShieldCheck class="h-4 w-4 text-leaf-500" /> Free first consultation call</span>
+        <a href={whatsappLink()} target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 font-semibold text-leaf-600 hover:underline">
+          <MessageCircle class="h-4 w-4" /> Or WhatsApp us
+        </a>
+      </p>
+    </div>
+
+    <!-- Doctor portrait (background removed), standing on the trust-strip line -->
+    <div class="relative mx-auto w-full max-w-md self-end -mb-10 lg:-mb-14">
+      <div class="absolute bottom-0 left-1/2 aspect-square w-[94%] -translate-x-1/2 rounded-full border border-brand-200/70" aria-hidden="true"></div>
+      <div class="absolute bottom-0 left-1/2 aspect-square w-[82%] -translate-x-1/2 rounded-full bg-gradient-to-br from-brand-400 via-brand-500 to-brand-700" aria-hidden="true"></div>
+
+      <Image
+        src={doctor}
+        alt="Dr. Yuvraj Singh Gehlot, senior GI, laparoscopic and colorectal surgeon at GutCare Clinics"
+        widths={[320, 480, 720]}
+        sizes="(min-width: 1024px) 20rem, 60vw"
+        class="relative mx-auto h-auto max-h-[26rem] w-auto drop-shadow-2xl sm:max-h-[32rem] lg:max-h-[35rem]"
+        loading="eager"
+        fetchpriority="high"
+      />
+
+      <!-- Floating credentials -->
+      <div class="hero-float absolute left-0 top-[24%] flex items-center gap-2.5 rounded-2xl bg-white/95 px-3.5 py-2.5 shadow-xl backdrop-blur sm:-left-6">
+        <Award class="h-7 w-7 text-leaf-500" stroke-width={1.75} />
+        <span class="text-left">
+          <span class="block text-sm font-extrabold text-slate-900">30 Years</span>
+          <span class="block text-[11px] text-slate-500">in healthcare</span>
+        </span>
+      </div>
+      <div class="hero-float absolute right-0 top-[38%] flex items-center gap-2.5 rounded-2xl bg-white/95 px-3.5 py-2.5 shadow-xl backdrop-blur [animation-delay:-2s] sm:-right-6">
+        <BadgeCheck class="h-7 w-7 text-brand-500" stroke-width={1.75} />
+        <span class="text-left">
+          <span class="block text-sm font-extrabold text-slate-900">25,000+</span>
+          <span class="block text-[11px] text-slate-500">procedures</span>
+        </span>
+      </div>
+      <div class="hero-float absolute left-0 top-[56%] flex items-center gap-2 rounded-full bg-brand-950 px-3.5 py-2 text-white shadow-xl [animation-delay:-4s] sm:-left-8">
+        <Zap class="h-4 w-4 text-leaf-300" />
+        <span class="text-xs font-semibold">USFDA-approved laser</span>
+      </div>
+
+      <!-- Name card -->
+      <div class="absolute inset-x-6 bottom-6 rounded-2xl bg-white/95 px-5 py-3 text-center shadow-xl backdrop-blur sm:inset-x-12">
+        <p class="font-extrabold text-slate-900">Dr. Yuvraj Singh Gehlot</p>
+        <p class="text-xs text-brand-600">Senior GI, Laparoscopic &amp; Colorectal Surgeon</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trust strip -->
+  <div class="container-x relative pb-12">
+    <dl class="grid grid-cols-2 gap-y-6 border-t border-slate-200/70 pt-8 lg:grid-cols-4 lg:divide-x lg:divide-slate-200/70">
+      {
+        trust.map(({ icon: Icon, value, label }) => (
+          <div class="flex items-center gap-3 lg:justify-center">
+            <Icon class="h-7 w-7 shrink-0 text-brand-500" stroke-width={1.75} />
+            <div>
+              <dt class="sr-only">{label}</dt>
+              <dd class="text-xl font-extrabold text-slate-900 sm:text-2xl">{value}</dd>
+              <dd class="text-xs text-slate-500 sm:text-sm">{label}</dd>
+            </div>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>
+
+<style>
+  .hero-float {
+    animation: hero-float 6s ease-in-out infinite;
+  }
+  @keyframes hero-float {
+    50% { transform: translateY(-8px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-float { animation: none; }
+  }
+</style>

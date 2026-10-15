@@ -1,0 +1,159 @@
+---
+import { Image } from 'astro:assets';
+import { GraduationCap, ArrowRight, CircleCheck } from '@lucide/astro';
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import { treatments } from '../data/site';
+import doctor from '../assets/doctors/dr-yuvraj-singh-gehlot-cutout.png';
+import bhuta from '../assets/doctors/dr-prajesh-bhuta.webp';
+import jain from '../assets/doctors/dr-paresh-jain.webp';
+import chauhan from '../assets/doctors/dr-shelly-chauhan.webp';
+
+const qualifications = [
+  { title: 'MBBS', text: 'Bachelor of Medicine, Bachelor of Surgery' },
+  { title: 'MS (General Surgery)', text: 'Master of Surgery' },
+  { title: 'F.I.S.C.P.', text: 'Fellow of the Indian Society of Coloproctology' },
+];
+
+const approach = [
+  'Minimally invasive laser and laparoscopic techniques wherever suitable',
+  'Accurate diagnosis before any treatment is recommended',
+  'Personalised, patient-centred treatment plans',
+  'Clear explanations and transparent costs',
+];
+
+const team = [
+  { name: 'Dr. Prajesh Bhuta', creds: 'MBBS, MS (General Surgery), FRCS', photo: bhuta },
+  { name: 'Dr. Paresh A. Jain', creds: 'MBBS, MS, FRCS (Edinburgh, UK)', photo: jain },
+  { name: 'Dr. Shelly Chauhan', creds: 'MBBS, MD', photo: chauhan },
+];
+
+const personLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Physician',
+  name: 'Dr. Yuvraj Singh Gehlot',
+  medicalSpecialty: ['Surgical', 'Gastroenterologic'],
+  description: 'Senior GI, laparoscopic and colorectal surgeon at GutCare Clinics, Bengaluru.',
+  worksFor: { '@type': 'MedicalClinic', name: 'GutCare Clinics' },
+  hasCredential: qualifications.map((q) => q.title),
+};
+---
+
+<Layout
+  title="Dr. Yuvraj Singh Gehlot | GI & Colorectal Surgeon Bangalore"
+  description="Dr. Yuvraj Singh Gehlot, MBBS, MS, F.I.S.C.P. is a senior GI, laparoscopic and colorectal surgeon at GutCare Clinics, Bangalore, with 30 years in healthcare."
+>
+  <PageHero
+    eyebrow="Lead Surgeon"
+    title="Meet *Dr. Yuvraj Singh Gehlot*"
+    subtitle="Senior GI, laparoscopic and colorectal surgeon leading the GutCare team, with 30 years in healthcare and 25 years of surgical practice."
+    breadcrumbs={[{ label: 'Our Doctor' }]}
+    source="doctor-page"
+    image={doctor}
+    imageAlt="Dr. Yuvraj Singh Gehlot"
+    imageStyle="cutout"
+    facts={[
+      { label: 'In healthcare', value: '30 years' },
+      { label: 'Surgical practice', value: '25 years' },
+      { label: 'Procedures', value: '25,000+' },
+      { label: 'Fellowship', value: 'F.I.S.C.P.' },
+    ]}
+  />
+
+  <!-- About + qualifications -->
+  <section class="py-16 sm:py-24">
+    <div class="container-x grid gap-12 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
+      <div>
+        <h2 class="heading-xl">About <span class="highlight">Dr. Gehlot</span></h2>
+        <div class="mt-6 space-y-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          <p>
+            Dr. Yuvraj Singh Gehlot is a senior GI, laparoscopic and colorectal surgeon in Bengaluru and leads the gastro
+            and colorectal team at GutCare Clinics, Indiranagar.
+          </p>
+          <p>
+            Over 30 years in healthcare and 25 years of surgical practice, Dr. Gehlot has performed more than 25,000 procedures,
+            treating conditions such as piles, fissures, fistula, hernia, gallstones, appendicitis and colon cancer.
+          </p>
+          <p>
+            The focus is on advanced, minimally invasive treatment, so patients experience less pain, smaller scars and a
+            quicker return to everyday life.
+          </p>
+        </div>
+
+        <h3 class="heading-md mt-12">Approach to care</h3>
+        <ul class="mt-5 space-y-3">
+          {
+            approach.map((a) => (
+              <li class="flex gap-3 text-slate-700">
+                <CircleCheck class="mt-0.5 h-5 w-5 shrink-0 text-leaf-500" />
+                {a}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="self-start rounded-3xl bg-slate-50 p-6 sm:p-8">
+        <h3 class="heading-md">Qualifications</h3>
+        <ul class="mt-5 divide-y divide-slate-200">
+          {
+            qualifications.map((q) => (
+              <li class="flex gap-4 py-4 first:pt-0 last:pb-0">
+                <GraduationCap class="mt-0.5 h-6 w-6 shrink-0 text-brand-500" stroke-width={1.75} />
+                <div>
+                  <p class="font-bold text-slate-900">{q.title}</p>
+                  <p class="text-sm text-slate-600">{q.text}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Expertise -->
+  <section class="bg-brand-50/50 py-16 sm:py-24">
+    <div class="container-x">
+      <SectionHeading eyebrow="Areas of expertise" title="Conditions *Dr. Gehlot treats*" />
+      <ul class="mx-auto mt-12 grid max-w-5xl gap-x-12 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          treatments.map((t) => (
+            <li class="border-t border-slate-200">
+              <a href={`/${t.slug}/`} class="group flex items-center justify-between gap-3 py-5">
+                <span>
+                  <span class="block font-semibold text-slate-900 group-hover:text-brand-600">{t.name}</span>
+                  <span class="mt-0.5 block text-xs text-slate-500">{t.tags.join(' · ')}</span>
+                </span>
+                <ArrowRight class="h-4 w-4 shrink-0 text-brand-500 transition group-hover:translate-x-1" />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="py-16 sm:py-24">
+    <div class="container-x">
+      <SectionHeading eyebrow="The GutCare team" title="Working *together* on your care" />
+      <ul class="mt-12 grid gap-10 sm:grid-cols-3">
+        {
+          team.map((d) => (
+            <li class="text-center">
+              <Image src={d.photo} alt={d.name} width={240} class="mx-auto h-28 w-28 rounded-full bg-slate-100 object-cover object-top shadow-lg ring-4 ring-white" loading="lazy" />
+              <p class="mt-5 font-bold text-slate-900">{d.name}</p>
+              <p class="mt-1 text-sm text-slate-500">{d.creds}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <CtaBanner />
+  <script type="application/ld+json" set:html={JSON.stringify(personLd)} />
+</Layout>

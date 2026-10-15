@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+  /* Brand colours sampled from the GutCare logo */
+  --color-brand-50: #eef7fd;
+  --color-brand-100: #d6ecfa;
+  --color-brand-200: #aed9f4;
+  --color-brand-300: #7cc0ec;
+  --color-brand-400: #46a5e2;
+  --color-brand-500: #2590d3;
+  --color-brand-600: #1873b4;
+  --color-brand-700: #155c91;
+  --color-brand-800: #154e78;
+  --color-brand-900: #0d2f4a;
+  --color-brand-950: #08203a;
+
+  --color-leaf-50: #f2faea;
+  --color-leaf-100: #e1f4d1;
+  --color-leaf-200: #c4e9a6;
+  --color-leaf-300: #9fd973;
+  --color-leaf-400: #7fc64a;
+  --color-leaf-500: #63ab2e;
+  --color-leaf-600: #4c8a21;
+  --color-leaf-700: #3c6a1e;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-white font-sans text-slate-700 antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply text-slate-900 tracking-tight;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-500;
+  }
+  [id] {
+    scroll-margin-top: 6rem;
+  }
+}
+
+@utility container-x {
+  @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+/* ---- Heading system: every section uses eyebrow → heading (with highlight) → lead ---- */
+@utility eyebrow {
+  @apply inline-flex items-center gap-2 rounded-full bg-brand-50 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-brand-700 ring-1 ring-brand-100;
+}
+
+@utility eyebrow-dark {
+  @apply bg-white/10 text-leaf-300 ring-white/15;
+}
+
+@utility heading-xl {
+  @apply text-3xl font-extrabold leading-[1.15] tracking-tight text-balance sm:text-4xl lg:text-5xl;
+}
+
+@utility heading-md {
+  @apply text-xl font-extrabold tracking-tight sm:text-2xl;
+}
+
+@utility lead {
+  @apply text-base leading-relaxed text-pretty text-slate-600 sm:text-lg;
+}
+
+/* Brand highlight: the emphasised words of a heading in brand blue. */
+@utility highlight {
+  @apply text-brand-500;
+}
+
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition focus-visible:outline-2 disabled:cursor-not-allowed disabled:opacity-60;
+}
+
+@utility btn-primary {
+  @apply bg-brand-500 text-white shadow-lg shadow-brand-500/25 hover:bg-brand-600;
+}
+
+@utility btn-leaf {
+  @apply bg-leaf-500 text-white shadow-lg shadow-leaf-500/25 hover:bg-leaf-600;
+}
+
+@utility btn-ghost {
+  @apply border border-slate-200 bg-white text-slate-800 hover:border-brand-300 hover:text-brand-700;
+}

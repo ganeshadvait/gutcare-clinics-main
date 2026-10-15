@@ -1,0 +1,85 @@
+---
+import { HeartHandshake, Microscope, BadgeIndianRupee, Clock } from '@lucide/astro';
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import WhyUs from '../components/WhyUs.astro';
+import Doctors from '../components/Doctors.astro';
+import Clinic from '../components/Clinic.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import exterior from '../assets/clinic/exterior.png';
+
+const values = [
+  { icon: HeartHandshake, title: 'Patient first', text: 'Care that respects your comfort, privacy and dignity at every step.' },
+  { icon: Microscope, title: 'Accurate diagnosis', text: 'The right treatment starts with understanding the real cause of your problem.' },
+  { icon: BadgeIndianRupee, title: 'Transparent & fair', text: 'Clear advice and cost estimates upfront, with help on insurance.' },
+  { icon: Clock, title: 'Always available', text: 'A 24x7 emergency facility for when you need us most.' },
+];
+---
+
+<Layout
+  title="About GutCare Clinics | Gut & Colorectal Care in Bangalore"
+  description="GutCare Clinics in Indiranagar, Bangalore offers expert colorectal, laser and laparoscopic care for piles, fistula, hernia, gallstones and digestive disorders."
+>
+  <PageHero
+    eyebrow="About GutCare"
+    title="Expert gut care, *close to home*"
+    subtitle="GutCare Clinics brings experienced surgeons, accurate diagnosis and modern minimally invasive treatment together under one roof in Indiranagar, Bengaluru."
+    breadcrumbs={[{ label: 'About' }]}
+    source="about-page"
+    image={exterior}
+    imageAlt="GutCare Clinics building in Indiranagar, Bengaluru"
+    facts={[
+      { label: 'In healthcare', value: '30 years' },
+      { label: 'Surgeries done', value: '25,000+' },
+      { label: 'Patients treated', value: '1 Lakh+' },
+      { label: 'Emergency care', value: '24x7' },
+    ]}
+  />
+
+  <!-- Story -->
+  <section class="py-16 sm:py-24">
+    <div class="container-x grid gap-12 lg:grid-cols-2 lg:gap-16">
+      <div>
+        <h2 class="heading-xl">Who <span class="highlight">we are</span></h2>
+      </div>
+      <div class="space-y-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+        <p>
+          GutCare Clinics is a specialist centre for digestive, colorectal and laparoscopic care, led by senior GI and
+          colorectal surgeon Dr. Yuvraj Singh Gehlot.
+        </p>
+        <p>
+          We treat conditions many people find hard to talk about, such as piles, fissures and fistula, along with hernia,
+          gallstones, appendicitis, acid reflux, constipation and colorectal cancer.
+        </p>
+        <p>
+          Wherever it is right for you, we use advanced laser and laparoscopic techniques, so treatment means less pain,
+          smaller scars and a faster return to everyday life.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="bg-slate-50 py-16 sm:py-24">
+    <div class="container-x">
+      <SectionHeading eyebrow="What we stand for" title="Care built on *trust*" />
+      <ul class="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          values.map(({ icon: Icon, title, text }) => (
+            <li class="text-center">
+              <Icon class="mx-auto h-9 w-9 text-brand-500" stroke-width={1.6} />
+              <h3 class="mt-4 font-bold text-slate-900">{title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-600">{text}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <WhyUs />
+  <Doctors />
+  <Clinic />
+  <CtaBanner />
+</Layout>

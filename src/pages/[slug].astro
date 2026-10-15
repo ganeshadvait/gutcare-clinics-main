@@ -1,0 +1,221 @@
+---
+import { Image } from 'astro:assets';
+import { CircleCheck, TriangleAlert, ArrowRight, CalendarCheck } from '@lucide/astro';
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Faq from '../components/Faq.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import { treatmentPages } from '../data/treatments';
+import { treatments } from '../data/site';
+import type { TreatmentContent } from '../data/treatments/types';
+import doctor from '../assets/doctors/dr-yuvraj-singh-gehlot-cutout.png';
+
+export function getStaticPaths() {
+  return treatmentPages.map((t) => ({ params: { slug: t.slug }, props: { t } }));
+}
+
+const { t } = Astro.props as { t: TreatmentContent };
+const related = t.related.map((s) => treatments.find((x) => x.slug === s)).filter(Boolean) as typeof treatments;
+
+const pageLd = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalWebPage',
+  name: t.metaTitle,
+  description: t.metaDescription,
+  url: new URL(`/${t.slug}/`, Astro.site).toString(),
+  about: { '@type': 'MedicalCondition', name: t.name },
+  reviewedBy: { '@type': 'Physician', name: 'Dr. Yuvraj Singh Gehlot' },
+};
+---
+
+<Layout title={t.metaTitle} description={t.metaDescription}>
+  <PageHero
+    eyebrow={t.name}
+    title={t.heroTitle}
+    subtitle={t.heroSubtitle}
+    breadcrumbs={[{ label: 'Treatments', href: '/#treatments' }, { label: t.name }]}
+    source={`treatment-${t.slug}`}
+    image={doctor}
+    imageAlt="Dr. Yuvraj Singh Gehlot"
+    imageStyle="cutout"
+    facts={t.quickFacts}
+    footnote={t.footnote}
+  />
+
+  <!-- Overview + symptoms -->
+  <section class="py-16 sm:py-24">
+    <div class="container-x grid gap-12 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
+      <div>
+        <h2 class="heading-xl">Understanding <span class="highlight">{t.name}</span></h2>
+        <div class="mt-6 space-y-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+          {t.overview.map((p) => <p>{p}</p>)}
+        </div>
+      </div>
+      <div class="self-start rounded-3xl bg-slate-50 p-6 sm:p-8">
+        <h3 class="heading-md">Common symptoms</h3>
+        <ul class="mt-5 space-y-3">
+          {
+            t.symptoms.map((s) => (
+              <li class="flex gap-3 text-slate-700">
+                <CircleCheck class="mt-0.5 h-5 w-5 shrink-0 text-leaf-500" />
+                {s}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Causes, types, red flags -->
+  <section class="bg-brand-50/50 py-16 sm:py-24">
+    <div class="container-x">
+      <div class="grid gap-12 lg:grid-cols-2 lg:gap-16">
+        <div>
+          <h2 class="heading-md">Causes &amp; risk factors</h2>
+          <ul class="mt-6 divide-y divide-slate-200/80 border-y border-slate-200/80">
+            {t.causes.map((c) => <li class="py-3.5 text-slate-700">{c}</li>)}
+          </ul>
+        </div>
+        <div>
+          <h2 class="heading-md">When to see a doctor promptly</h2>
+          <ul class="mt-6 space-y-3">
+            {
+              t.whenToSeeDoctor.map((w) => (
+                <li class="flex gap-3 text-slate-700">
+                  <TriangleAlert class="mt-0.5 h-5 w-5 shrink-0 text-red-500" />
+                  {w}
+                </li>
+              ))
+            }
+          </ul>
+          <button type="button" class="btn btn-primary mt-8" data-open-form={`treatment-${t.slug}-redflags`}>
+            Talk to a specialist <ArrowRight class="h-4 w-4" />
+          </button>
+        </div>
+      </div>
+
+      {
+        t.types && t.types.length > 0 && (
+          <div class="mt-16 border-t border-slate-200/80 pt-12">
+            <h2 class="heading-md text-center">Types</h2>
+            <ul class="mt-8 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
+              {t.types.map((ty, i) => (
+                <li>
+                  <span class="text-sm font-extrabold text-leaf-600">{String(i + 1).padStart(2, '0')}</span>
+                  <h3 class="mt-2 font-bold text-slate-900">{ty.title}</h3>
+                  <p class="mt-1.5 text-sm leading-relaxed text-slate-600">{ty.text}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
+    </div>
+  </section>
+
+  <!-- Treatment options -->
+  <section class="py-16 sm:py-24">
+    <div class="container-x">
+      <SectionHeading
+        eyebrow="Treatment options"
+        title={`How we treat *${t.name.split(' / ')[0].toLowerCase()}*`}
+        subtitle="Every plan starts with a careful diagnosis. We recommend the least invasive option that will work for you."
+      />
+      <ul class="mx-auto mt-12 grid max-w-5xl gap-x-12 sm:grid-cols-2">
+        {
+          t.treatments.map((tr) => (
+            <li class="border-t border-slate-200 py-6">
+              <div class="flex flex-wrap items-center gap-2">
+                <h3 class="text-lg font-bold text-slate-900">{tr.title}</h3>
+                {tr.tag && <span class="rounded-full bg-leaf-50 px-2.5 py-0.5 text-xs font-semibold text-leaf-700">{tr.tag}</span>}
+              </div>
+              <p class="mt-2 leading-relaxed text-slate-600">{tr.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Procedure steps + recovery -->
+  <section class="bg-brand-950 py-16 text-brand-100 sm:py-24">
+    <div class="container-x">
+      <SectionHeading dark eyebrow="What to expect" title="Your treatment, *step by step*" />
+      <ol class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          t.procedureSteps.map((s, i) => (
+            <li class="border-t-2 border-leaf-400/70 pt-5">
+              <span class="text-sm font-extrabold tracking-widest text-leaf-300">STEP {String(i + 1).padStart(2, '0')}</span>
+              <h3 class="mt-2 text-lg font-bold !text-white">{s.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-brand-200">{s.text}</p>
+            </li>
+          ))
+        }
+      </ol>
+
+      <div class="mt-16 rounded-3xl bg-white/5 p-6 ring-1 ring-white/10 sm:p-10">
+        <h3 class="heading-md !text-white">Recovery timeline</h3>
+        <ul class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {
+            t.recovery.map((r) => (
+              <li>
+                <p class="text-sm font-bold text-leaf-300">{r.when}</p>
+                <p class="mt-1.5 text-sm leading-relaxed text-brand-100">{r.text}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Doctor + related -->
+  <section class="py-16 sm:py-24">
+    <div class="container-x grid gap-12 lg:grid-cols-2 lg:gap-16">
+      <div class="flex flex-col items-start gap-6 sm:flex-row sm:items-center">
+        <div class="relative h-32 w-32 shrink-0 overflow-hidden rounded-full bg-gradient-to-br from-brand-400 to-brand-700">
+          <Image src={doctor} alt="Dr. Yuvraj Singh Gehlot" width={256} class="absolute bottom-0 left-1/2 h-[118%] w-auto max-w-none -translate-x-1/2 object-cover object-top" loading="lazy" />
+        </div>
+        <div>
+          <p class="text-xs font-bold uppercase tracking-[0.14em] text-leaf-600">Your surgeon</p>
+          <h2 class="heading-md mt-1">Dr. Yuvraj Singh Gehlot</h2>
+          <p class="mt-1 text-sm text-slate-600">MBBS, MS (General Surgery), F.I.S.C.P. · 30 years in healthcare · 25,000+ procedures</p>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <button type="button" class="btn btn-primary" data-open-form={`treatment-${t.slug}-doctor`}>
+              <CalendarCheck class="h-4 w-4" /> Book with Dr. Gehlot
+            </button>
+            <a href="/dr-yuvraj-singh-gehlot/" class="btn btn-ghost">View profile</a>
+          </div>
+        </div>
+      </div>
+
+      {
+        related.length > 0 && (
+          <div>
+            <h2 class="heading-md">Related treatments</h2>
+            <ul class="mt-5 divide-y divide-slate-200 border-y border-slate-200">
+              {related.map((r) => (
+                <li>
+                  <a href={`/${r.slug}/`} class="group flex items-center justify-between gap-4 py-4">
+                    <span>
+                      <span class="block font-semibold text-slate-900 group-hover:text-brand-600">{r.name}</span>
+                      <span class="block text-sm text-slate-500">{r.blurb}</span>
+                    </span>
+                    <ArrowRight class="h-4 w-4 shrink-0 text-brand-500 transition group-hover:translate-x-1" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
+    </div>
+  </section>
+
+  <Faq faqs={t.faqs} title={`${t.name}: *your questions answered*`} />
+  <CtaBanner />
+
+  <script type="application/ld+json" set:html={JSON.stringify(pageLd)} />
+</Layout>

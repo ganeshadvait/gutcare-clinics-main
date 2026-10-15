@@ -1,0 +1,30 @@
+---
+import { Home, CalendarCheck } from '@lucide/astro';
+import Layout from '../layouts/Layout.astro';
+import { treatments } from '../data/site';
+---
+
+<Layout title="Page not found | GutCare Clinics" description="The page you were looking for could not be found.">
+  <section class="bg-gradient-to-br from-brand-50 via-white to-leaf-50/60 py-20 sm:py-28">
+    <div class="container-x text-center">
+      <p class="text-7xl font-extrabold text-brand-500 sm:text-8xl">404</p>
+      <h1 class="heading-xl mt-4">This page <span class="highlight">couldn’t be found</span></h1>
+      <p class="lead mx-auto mt-5 max-w-xl">It may have moved. Try one of our treatments below, or book a consultation and we’ll help you directly.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="/" class="btn btn-primary"><Home class="h-4 w-4" /> Back to home</a>
+        <button type="button" class="btn btn-ghost" data-open-form="404"><CalendarCheck class="h-4 w-4" /> Book Appointment</button>
+      </div>
+      <ul class="mx-auto mt-12 flex max-w-3xl flex-wrap justify-center gap-2">
+        {
+          treatments.map((t) => (
+            <li>
+              <a href={`/${t.slug}/`} class="inline-block rounded-full bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm ring-1 ring-slate-200 hover:text-brand-600 hover:ring-brand-200">
+                {t.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</Layout>

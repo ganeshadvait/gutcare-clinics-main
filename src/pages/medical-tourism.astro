@@ -1,0 +1,117 @@
+---
+import { FileText, Stethoscope, Plane, HeartPulse, Video, MessageCircle, Mail, ArrowRight } from '@lucide/astro';
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Faq from '../components/Faq.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import { site, treatments, whatsappLink } from '../data/site';
+import consultation from '../assets/clinic/consultation.png';
+
+const steps = [
+  { icon: FileText, title: 'Share your reports', text: 'Send your medical reports, scans and a short history on WhatsApp or email.' },
+  { icon: Stethoscope, title: 'Specialist review', text: 'Our surgeon reviews your case and suggests a treatment plan with a cost estimate.' },
+  { icon: Plane, title: 'Plan your visit', text: 'We guide you on how long to plan for, the documents you need and where to stay nearby.' },
+  { icon: HeartPulse, title: 'Treatment in Bengaluru', text: 'Consultation, tests and your procedure at our Indiranagar clinic.' },
+  { icon: Video, title: 'Follow-up from home', text: 'Stay in touch with your care team by phone, video or WhatsApp after you return.' },
+];
+
+const reasons = [
+  'Senior GI, laparoscopic and colorectal surgeon with 30 years in healthcare',
+  'Minimally invasive laser and laparoscopic treatment, often with a short stay',
+  'Transparent cost estimates before you travel',
+  '24x7 emergency facility',
+];
+
+const faqs = [
+  {
+    q: 'How do I share my medical reports?',
+    a: `Send your reports, scans and a short summary of your symptoms on WhatsApp or by email to ${site.email}. Our team will get back to you after the surgeon has reviewed them.`,
+  },
+  {
+    q: 'Can I get a cost estimate before I travel?',
+    a: 'Yes. Once your reports have been reviewed we share an estimate for the recommended treatment. The final plan is confirmed after an in-person examination.',
+  },
+  {
+    q: 'How long should I plan to stay in Bengaluru?',
+    a: 'It depends on your condition and procedure. Many laser procedures are day-care, but we usually advise staying a few extra days for a follow-up check before you fly home.',
+  },
+  {
+    q: 'What happens after I return home?',
+    a: 'You can continue follow-up with your care team by phone, video call or WhatsApp, and share any new reports for review.',
+  },
+];
+---
+
+<Layout
+  title="International Patients | GutCare Clinics Bangalore"
+  description="Travelling to Bangalore for piles, fistula, hernia or gallbladder treatment? GutCare Clinics guides international patients from report review to follow-up."
+>
+  <PageHero
+    eyebrow="International Patients"
+    title="Travelling for treatment? *We'll guide you.*"
+    subtitle="Patients from across India and abroad come to GutCare for laser and laparoscopic care. Here is how we help you plan, from your first message to follow-up at home."
+    breadcrumbs={[{ label: 'International Patients' }]}
+    source="international-page"
+    image={consultation}
+    imageAlt="Consultation room at GutCare Clinics"
+  />
+
+  <!-- Process -->
+  <section class="py-16 sm:py-24">
+    <div class="container-x">
+      <SectionHeading eyebrow="How it works" title="Your treatment journey, *made simple*" />
+      <ol class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
+        {
+          steps.map(({ icon: Icon, title, text }, i) => (
+            <li class="border-t-2 border-brand-500/70 pt-5">
+              <div class="flex items-center gap-3">
+                <Icon class="h-6 w-6 text-brand-500" stroke-width={1.75} />
+                <span class="text-sm font-extrabold tracking-widest text-leaf-600">STEP {String(i + 1).padStart(2, '0')}</span>
+              </div>
+              <h3 class="mt-3 font-bold text-slate-900">{title}</h3>
+              <p class="mt-1.5 text-sm leading-relaxed text-slate-600">{text}</p>
+            </li>
+          ))
+        }
+      </ol>
+
+      <div class="mt-12 flex flex-wrap justify-center gap-3">
+        <a href={whatsappLink('Hi GutCare, I am an international patient and would like my reports reviewed.')} target="_blank" rel="noopener" class="btn btn-leaf">
+          <MessageCircle class="h-4 w-4" /> Send reports on WhatsApp
+        </a>
+        <a href={`mailto:${site.email}`} class="btn btn-ghost"><Mail class="h-4 w-4" /> {site.email}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why GutCare + treatments -->
+  <section class="bg-brand-50/50 py-16 sm:py-24">
+    <div class="container-x grid gap-12 lg:grid-cols-2 lg:gap-16">
+      <div>
+        <h2 class="heading-md">Why patients travel to GutCare</h2>
+        <ul class="mt-6 divide-y divide-slate-200/80 border-y border-slate-200/80">
+          {reasons.map((r) => <li class="py-4 text-slate-700">{r}</li>)}
+        </ul>
+      </div>
+      <div>
+        <h2 class="heading-md">Treatments international patients seek</h2>
+        <ul class="mt-6 divide-y divide-slate-200/80 border-y border-slate-200/80">
+          {
+            treatments.map((t) => (
+              <li>
+                <a href={`/${t.slug}/`} class="group flex items-center justify-between gap-3 py-3.5">
+                  <span class="font-semibold text-slate-800 group-hover:text-brand-600">{t.name}</span>
+                  <ArrowRight class="h-4 w-4 text-brand-500 transition group-hover:translate-x-1" />
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <Faq faqs={faqs} title="International patient *questions*" />
+  <CtaBanner />
+</Layout>

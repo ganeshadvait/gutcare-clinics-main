@@ -1,0 +1,156 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { Armchair, Stethoscope, Zap, Ambulance, Building2, MapPin, Phone, Navigation, Clock, Plane, ArrowRight } from '@lucide/astro';
+import { site } from '../data/site';
+
+// Drop clinic photos into src/assets/clinic/ named after a tile slug (e.g. reception.jpg) and they appear automatically.
+const photos = import.meta.glob<{ default: ImageMetadata }>('../assets/clinic/*.{jpg,jpeg,png,webp,avif}', { eager: true });
+const photoFor = (slug: string) => Object.entries(photos).find(([path]) => path.split('/').pop()!.startsWith(`${slug}.`))?.[1].default;
+
+const tiles = [
+  { slug: 'consultation', title: 'Consultation rooms', text: 'Private, unhurried consultations', icon: Stethoscope },
+  { slug: 'procedure', title: 'Procedure & examination room', text: 'Clean, private and well equipped', icon: Zap },
+  { slug: 'reception', title: 'Reception & waiting area', text: 'Bright and welcoming', icon: Armchair },
+  { slug: 'exterior', title: 'GutCare Clinics, Indiranagar', text: 'HAL 2nd Stage, Bengaluru', icon: Building2 },
+  { slug: 'helpdesk', title: 'Patient help desk', text: 'Assistance from arrival to discharge', icon: Ambulance },
+].map((t) => ({ ...t, image: photoFor(t.slug) }));
+
+---
+
+<section id="clinic" class="bg-slate-50 py-16 sm:py-24">
+  <div class="container-x">
+    <SectionHeading
+      eyebrow="Our Clinic"
+      title="Modern facilities in the *heart of Indiranagar*"
+      subtitle="Everything from consultation to day-care procedure and recovery under one roof, designed for comfort and privacy."
+    />
+
+    <div class="mt-14 grid gap-10 lg:grid-cols-[0.8fr_1.6fr] lg:gap-12">
+      <!-- Details -->
+      <div>
+        <div class="flex items-center gap-2">
+          <Building2 class="h-5 w-5 text-brand-500" />
+          <h3 class="heading-md">GutCare Clinics, Indiranagar</h3>
+        </div>
+
+        <dl class="mt-6 grid gap-5 text-sm sm:grid-cols-2">
+          <div class="flex gap-3 sm:col-span-2">
+            <MapPin class="mt-0.5 h-5 w-5 shrink-0 text-leaf-500" />
+            <div>
+              <dt class="font-semibold text-slate-900">Address</dt>
+              <dd class="mt-1 not-italic leading-relaxed text-slate-600">
+                {site.address.line1}, {site.address.line2}, {site.address.city}
+              </dd>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <Clock class="mt-0.5 h-5 w-5 shrink-0 text-leaf-500" />
+            <div>
+              <dt class="font-semibold text-slate-900">Availability</dt>
+              <dd class="mt-1 text-slate-600">By appointment · 24x7 emergency</dd>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <Phone class="mt-0.5 h-5 w-5 shrink-0 text-leaf-500" />
+            <div>
+              <dt class="font-semibold text-slate-900">Call us</dt>
+              <dd class="mt-1"><a href={site.phoneHref} class="font-semibold text-brand-600">{site.phone}</a></dd>
+            </div>
+          </div>
+        </dl>
+
+        <!-- Map -->
+        <a
+          href={site.mapsUrl}
+          target="_blank"
+          rel="noopener"
+          class="group relative isolate mt-6 block h-52 overflow-hidden rounded-3xl bg-brand-50 shadow-lg shadow-brand-900/5 sm:h-60"
+          aria-label="Open GutCare Clinics in Google Maps"
+        >
+          <!-- Fallback shown until (or if) the embedded map loads -->
+          <span class="absolute inset-0 -z-20 opacity-60 [background-image:linear-gradient(var(--color-brand-100)_1px,transparent_1px),linear-gradient(90deg,var(--color-brand-100)_1px,transparent_1px)] [background-size:22px_22px]" aria-hidden="true"></span>
+          <MapPin class="absolute left-1/2 top-[38%] -z-20 h-10 w-10 -translate-x-1/2 -translate-y-1/2 fill-leaf-400 text-white" aria-hidden="true" />
+          <iframe
+            title="Map showing GutCare Clinics, Indiranagar, Bengaluru"
+            src={site.mapEmbed}
+            class="pointer-events-none absolute inset-0 -z-10 h-full w-full border-0"
+            loading="lazy"
+            tabindex="-1"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <span class="absolute inset-x-0 bottom-0 flex items-center justify-between gap-2 bg-gradient-to-t from-brand-950/85 to-transparent p-4 pt-10 text-white">
+            <span>
+              <span class="block text-sm font-bold">Find us on the map</span>
+              <span class="block text-xs text-brand-100">HAL 2nd Stage, Indiranagar</span>
+            </span>
+            <Navigation class="h-5 w-5 shrink-0 transition group-hover:rotate-12" />
+          </span>
+        </a>
+
+        <div class="mt-6 flex flex-wrap gap-3">
+          <button type="button" class="btn btn-primary" data-open-form="clinic">Book a visit</button>
+          <a href={site.mapsUrl} target="_blank" rel="noopener" class="btn btn-ghost">
+            <Navigation class="h-4 w-4" /> Get directions
+          </a>
+        </div>
+
+        <a href="/medical-tourism/" class="group mt-8 flex items-center gap-4 border-t border-slate-200 pt-6">
+          <Plane class="h-7 w-7 shrink-0 text-brand-500" stroke-width={1.75} />
+          <span class="text-sm">
+            <span class="block font-bold text-slate-900">Travelling from another city or country?</span>
+            <span class="text-slate-600">We help with treatment planning, cost estimates and stay.</span>
+          </span>
+          <ArrowRight class="ml-auto h-4 w-4 shrink-0 text-brand-600 transition group-hover:translate-x-1" />
+        </a>
+      </div>
+
+      <!-- Facilities + map, one grid -->
+      <div class="grid auto-rows-[10rem] grid-cols-2 gap-3 sm:auto-rows-[11rem] sm:grid-cols-3 sm:gap-4 lg:auto-rows-fr">
+        {
+          tiles.map((t, i) => (
+            <figure
+              class:list={[
+                'group relative isolate overflow-hidden rounded-3xl',
+                i === 0 && 'col-span-2 row-span-2',
+                i === 3 && 'sm:col-span-2',
+                !t.image && (i % 2 === 0 ? 'bg-gradient-to-br from-brand-500 to-brand-800' : 'bg-gradient-to-br from-brand-100 to-leaf-100'),
+              ]}
+            >
+              {t.image ? (
+                <Image
+                  src={t.image}
+                  alt={t.title}
+                  widths={[480, 960]}
+                  sizes={i === 0 ? '(min-width: 1024px) 40vw, 100vw' : '(min-width: 1024px) 20vw, 50vw'}
+                  class="absolute inset-0 -z-10 h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+              ) : (
+                <t.icon
+                  class:list={[
+                    'absolute -z-10 transition duration-700 group-hover:scale-110 group-hover:-rotate-6',
+                    i === 0 ? 'right-8 top-8 h-28 w-28' : 'right-4 top-4 h-12 w-12',
+                    i % 2 === 0 ? 'text-white/15' : 'text-brand-500/20',
+                  ]}
+                  stroke-width={1.25}
+                />
+              )}
+              <figcaption
+                class:list={[
+                  'absolute inset-x-0 bottom-0 p-4 sm:p-5',
+                  (t.image || i % 2 === 0) && 'bg-gradient-to-t from-brand-950/80 to-transparent pt-12 text-white',
+                ]}
+              >
+                <p class:list={['font-bold leading-snug', i === 0 ? 'text-lg sm:text-2xl' : 'text-sm', !(t.image || i % 2 === 0) && 'text-slate-900']}>
+                  {t.title}
+                </p>
+                <p class:list={['mt-0.5 text-xs', i === 0 && 'sm:text-sm', t.image || i % 2 === 0 ? 'text-brand-100' : 'text-slate-600']}>{t.text}</p>
+              </figcaption>
+            </figure>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

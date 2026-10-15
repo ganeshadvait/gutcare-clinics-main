@@ -1,0 +1,83 @@
+---
+import { Phone, MessageCircle, Mail, MapPin, Clock, Navigation } from '@lucide/astro';
+import Layout from '../layouts/Layout.astro';
+import LeadForm from '../components/LeadForm.astro';
+import { site, whatsappLink } from '../data/site';
+
+const contacts = [
+  { icon: Phone, label: 'Call us', value: site.phone, href: site.phoneHref },
+  { icon: MessageCircle, label: 'WhatsApp', value: 'Chat with our care team', href: whatsappLink(), external: true },
+  { icon: Mail, label: 'Email', value: site.email, href: `mailto:${site.email}` },
+];
+---
+
+<Layout
+  title="Book an Appointment | GutCare Clinics Bangalore"
+  description="Book a consultation at GutCare Clinics, Indiranagar, Bangalore for piles, fistula, fissure, hernia, gallstones and digestive problems. Call +91 84315 50550."
+>
+  <section class="relative overflow-hidden bg-gradient-to-br from-brand-50 via-white to-leaf-50/60 py-12 sm:py-16">
+    <div class="container-x grid items-start gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+      <div>
+        <span class="eyebrow bg-white">
+          <span class="h-1.5 w-1.5 rounded-full bg-leaf-400" aria-hidden="true"></span>
+          Appointment
+        </span>
+        <h1 class="mt-5 text-3xl font-extrabold leading-[1.12] tracking-tight sm:text-5xl">
+          Book your <span class="highlight">consultation</span>
+        </h1>
+        <p class="lead mt-5 max-w-xl">
+          Leave your details and our care coordinator will call you back to fix a convenient time. Prefer to talk now?
+          Reach us directly.
+        </p>
+
+        <ul class="mt-8 divide-y divide-slate-200/80 border-y border-slate-200/80">
+          {
+            contacts.map(({ icon: Icon, label, value, href, external }) => (
+              <li>
+                <a href={href} {...(external ? { target: '_blank', rel: 'noopener' } : {})} class="group flex items-center gap-4 py-4">
+                  <Icon class="h-6 w-6 shrink-0 text-brand-500" stroke-width={1.75} />
+                  <span>
+                    <span class="block text-xs font-semibold uppercase tracking-wider text-slate-500">{label}</span>
+                    <span class="block font-semibold text-slate-900 group-hover:text-brand-600">{value}</span>
+                  </span>
+                </a>
+              </li>
+            ))
+          }
+          <li class="flex items-start gap-4 py-4">
+            <MapPin class="mt-0.5 h-6 w-6 shrink-0 text-brand-500" stroke-width={1.75} />
+            <span>
+              <span class="block text-xs font-semibold uppercase tracking-wider text-slate-500">Address</span>
+              <span class="block text-slate-700">{site.address.line1}, {site.address.line2}, {site.address.city}</span>
+              <a href={site.mapsUrl} target="_blank" rel="noopener" class="mt-1 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600">
+                <Navigation class="h-4 w-4" /> Get directions
+              </a>
+            </span>
+          </li>
+          <li class="flex items-center gap-4 py-4">
+            <Clock class="h-6 w-6 shrink-0 text-brand-500" stroke-width={1.75} />
+            <span>
+              <span class="block text-xs font-semibold uppercase tracking-wider text-slate-500">Availability</span>
+              <span class="block text-slate-700">Consultations by appointment · 24x7 emergency facility</span>
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="lg:sticky lg:top-28">
+        <LeadForm source="appointment-page" withTreatment />
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-16 sm:pb-24">
+    <div class="container-x">
+      <iframe
+        title="Map showing GutCare Clinics, Indiranagar, Bengaluru"
+        src={site.mapEmbed}
+        class="h-80 w-full rounded-3xl border-0 shadow-lg shadow-brand-900/5"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </section>
+</Layout>

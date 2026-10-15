@@ -1,0 +1,76 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { Plus } from '@lucide/astro';
+import { site } from '../data/site';
+
+interface Props {
+  faqs?: { q: string; a: string }[];
+  title?: string;
+  eyebrow?: string;
+}
+
+const defaultFaqs = [
+  {
+    q: 'Why should I choose GutCare Clinics?',
+    a: 'GutCare offers expert digestive and colorectal care with experienced surgeons, accurate diagnosis and personalised treatment in a modern setting, using advanced laser and laparoscopic techniques.',
+  },
+  {
+    q: 'What conditions do you treat?',
+    a: 'We treat piles, anal fistula, anal fissures, hernia, gallstones, appendicitis, acid reflux/GERD, chronic constipation, colorectal cancer and other digestive conditions.',
+  },
+  {
+    q: 'Is laser treatment for piles painful?',
+    a: 'Laser procedures are minimally invasive and done under anaesthesia, so most patients feel little discomfort. Most patients are discharged the same day and resume routine activities within a few days.',
+  },
+  {
+    q: 'How much does treatment cost?',
+    a: `We offer affordable consultation fees and transparent pricing. The final cost depends on your diagnosis and procedure. Call us at ${site.phone} for a personalised estimate.`,
+  },
+  {
+    q: 'Who leads the gastro care team?',
+    a: 'The team is led by Dr. Yuvraj Singh Gehlot, a senior GI, laparoscopic and colorectal surgeon with 30 years in healthcare.',
+  },
+  {
+    q: 'Where is the clinic located?',
+    a: `${site.address.line1}, ${site.address.line2}, ${site.address.city}.`,
+  },
+];
+
+const { faqs = defaultFaqs, title = 'Questions patients *often ask*', eyebrow = 'FAQs' } = Astro.props;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<section id="faq" class="bg-slate-50 py-16 sm:py-24">
+  <div class="container-x">
+    <SectionHeading eyebrow={eyebrow} title={title}>
+      <p class="lead mx-auto mt-5 max-w-2xl">
+        Can't find your answer? Call us at
+        <a href={site.phoneHref} class="font-semibold text-brand-600">{site.phone}</a>.
+      </p>
+    </SectionHeading>
+
+    <div class="mx-auto mt-12 max-w-3xl divide-y divide-slate-200 border-y border-slate-200">
+      {
+        faqs.map((f, i) => (
+          <details class="group" open={i === 0}>
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-base font-semibold text-slate-900 hover:text-brand-600 sm:text-lg [&::-webkit-details-marker]:hidden">
+              {f.q}
+              <Plus class="h-5 w-5 shrink-0 text-brand-500 transition group-open:rotate-45" />
+            </summary>
+            <p class="max-w-2xl pb-6 leading-relaxed text-slate-600">{f.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</section>

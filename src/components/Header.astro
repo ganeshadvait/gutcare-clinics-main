@@ -1,0 +1,141 @@
+---
+import { Phone, MapPin, Clock, ChevronDown, Menu, X, MessageCircle } from '@lucide/astro';
+import Logo from './Logo.astro';
+import { site, nav, treatments, whatsappLink } from '../data/site';
+
+const path = Astro.url.pathname.replace(/\/?$/, '/');
+const isTreatmentPage = treatments.some((t) => path === `/${t.slug}/`);
+const isActive = (href: string, children?: boolean) =>
+  children ? isTreatmentPage : href === '/' ? path === '/' : path.startsWith(href);
+---
+
+<div class="hidden bg-brand-950 text-xs text-brand-100 md:block">
+  <div class="container-x flex h-9 items-center justify-between">
+    <div class="flex items-center gap-6">
+      <a href={site.mapsUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 hover:text-white">
+        <MapPin class="h-3.5 w-3.5" /> Indiranagar, Bengaluru
+      </a>
+      <span class="inline-flex items-center gap-1.5"><Clock class="h-3.5 w-3.5" /> 24x7 emergency facility</span>
+    </div>
+    <div class="flex items-center gap-6">
+      <a href={whatsappLink()} target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 hover:text-white">
+        <MessageCircle class="h-3.5 w-3.5" /> WhatsApp us
+      </a>
+      <a href={site.phoneHref} class="inline-flex items-center gap-1.5 font-semibold text-white">
+        <Phone class="h-3.5 w-3.5" /> {site.phone}
+      </a>
+    </div>
+  </div>
+</div>
+
+<header class="sticky top-0 z-40 border-b border-slate-100 bg-white/90 backdrop-blur">
+  <div class="container-x flex h-18 items-center justify-between gap-4">
+    <a href="/" aria-label="GutCare Clinics home"><Logo /></a>
+
+    <nav class="hidden items-center gap-1 lg:flex" aria-label="Main">
+      {
+        nav.map((item) =>
+          item.children ? (
+            <div class="group relative">
+              <a
+                href={item.href}
+                class="inline-flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium text-slate-700 hover:text-brand-600 aria-[current=page]:text-brand-600"
+                aria-current={isActive(item.href, true) ? 'page' : undefined}
+              >
+                {item.label}
+                <ChevronDown class="h-4 w-4 transition group-focus-within:rotate-180 group-hover:rotate-180" />
+              </a>
+              <div class="invisible absolute left-1/2 top-full w-[34rem] -translate-x-1/2 pt-3 opacity-0 transition group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
+                <ul class="grid grid-cols-2 gap-1 rounded-2xl border border-slate-100 bg-white p-3 shadow-xl shadow-slate-900/10">
+                  {treatments.map((t) => (
+                    <li>
+                      <a
+                        href={`/${t.slug}/`}
+                        class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-700"
+                      >
+                        {t.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ) : (
+            <a
+              href={item.href}
+              class="rounded-full px-3 py-2 text-sm font-medium text-slate-700 hover:text-brand-600 aria-[current=page]:text-brand-600"
+              aria-current={isActive(item.href) ? 'page' : undefined}
+            >
+              {item.label}
+            </a>
+          ),
+        )
+      }
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <a href={site.phoneHref} class="btn btn-ghost hidden xl:inline-flex">
+        <Phone class="h-4 w-4" />
+        {site.phone}
+      </a>
+      <a href="#book" data-open-form="header" class="btn btn-primary hidden sm:inline-flex">Book Appointment</a>
+      <button
+        type="button"
+        class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 lg:hidden"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+        data-menu-toggle
+      >
+        <span class="sr-only">Toggle menu</span>
+        <Menu class="h-5 w-5" data-icon-open />
+        <X class="hidden h-5 w-5" data-icon-close />
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-slate-100 bg-white lg:hidden">
+    <nav class="container-x flex flex-col py-4" aria-label="Mobile">
+      {
+        nav.map((item) =>
+          item.children ? (
+            <details class="group border-b border-slate-100">
+              <summary class="flex cursor-pointer list-none items-center justify-between py-3 font-medium text-slate-800">
+                {item.label}
+                <ChevronDown class="h-4 w-4 transition group-open:rotate-180" />
+              </summary>
+              <ul class="grid grid-cols-1 gap-1 pb-3 sm:grid-cols-2">
+                {treatments.map((t) => (
+                  <li>
+                    <a href={`/${t.slug}/`} class="block rounded-lg px-3 py-2 text-sm text-slate-600 hover:bg-brand-50">
+                      {t.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          ) : (
+            <a href={item.href} class="border-b border-slate-100 py-3 font-medium text-slate-800">
+              {item.label}
+            </a>
+          ),
+        )
+      }
+      <a href={site.phoneHref} class="btn btn-ghost mt-4"><Phone class="h-4 w-4" /> {site.phone}</a>
+      <a href="#book" data-open-form="mobile-menu" class="btn btn-primary mt-3">Book Appointment</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const menu = document.getElementById('mobile-menu');
+  const setOpen = (open: boolean) => {
+    if (!toggle || !menu) return;
+    toggle.setAttribute('aria-expanded', String(open));
+    menu.classList.toggle('hidden', !open);
+    toggle.querySelector('[data-icon-open]')?.classList.toggle('hidden', open);
+    toggle.querySelector('[data-icon-close]')?.classList.toggle('hidden', !open);
+  };
+  toggle?.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+  menu?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+</script>

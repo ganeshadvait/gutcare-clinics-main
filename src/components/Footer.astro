@@ -1,0 +1,103 @@
+---
+import { Phone, MessageCircle, CalendarCheck } from '@lucide/astro';
+import Logo from './Logo.astro';
+import { site, treatments, whatsappLink } from '../data/site';
+
+const quickLinks = [
+  { label: 'About Us', href: '/about-gut-care/' },
+  { label: 'Our Doctor', href: '/dr-yuvraj-singh-gehlot/' },
+  { label: 'International Patients', href: '/medical-tourism/' },
+  { label: 'Blogs', href: '/blog/' },
+  { label: 'Book Appointment', href: '#book', form: true },
+];
+
+const socials = [
+  { label: 'Facebook', href: site.social.facebook, path: 'M14 9h3V5.5h-3c-2.5 0-4 1.6-4 4V12H7.5v3.5H10V22h3.5v-6.5h3l.5-3.5h-3.5V9.8c0-.5.3-.8.5-.8Z' },
+  { label: 'Instagram', href: site.social.instagram, path: 'M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.3-3.3a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z' },
+  { label: 'YouTube', href: site.social.youtube, path: 'M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.8 1.8c1.6.4 7.8.4 7.8.4s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8ZM10 15V9l5.2 3L10 15Z' },
+  { label: 'X', href: site.social.x, path: 'M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.3L5.3 21H2.2l7.2-8.3L2 3h6.4l4.4 5.8L17.8 3Zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5Z' },
+];
+---
+
+<footer class="bg-brand-950 text-sm text-brand-200">
+  <div class="container-x grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
+    <div>
+      <Logo light />
+      <p class="mt-4 max-w-xs leading-relaxed">
+        Advanced laser and laparoscopic care for piles, fistula, fissures, hernia, gall bladder and digestive disorders in
+        Bengaluru.
+      </p>
+      <div class="mt-6 flex gap-3">
+        {
+          socials.map((s) => (
+            <a
+              href={s.href}
+              target="_blank"
+              rel="noopener"
+              aria-label={s.label}
+              class="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-brand-500"
+            >
+              <svg viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor" aria-hidden="true">
+                <path d={s.path} />
+              </svg>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <div>
+      <h3 class="font-bold !text-white">Treatments</h3>
+      <ul class="mt-4 space-y-2.5">
+        {treatments.map((t) => <li><a href={`/${t.slug}/`} class="hover:text-white">{t.name}</a></li>)}
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="font-bold !text-white">Quick Links</h3>
+      <ul class="mt-4 space-y-2.5">
+        {quickLinks.map((l) => <li><a href={l.href} data-open-form={l.form ? 'footer' : undefined} class="hover:text-white">{l.label}</a></li>)}
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="font-bold !text-white">Contact</h3>
+      <address class="mt-4 not-italic leading-relaxed">
+        {site.address.line1}, {site.address.line2}, {site.address.city}
+      </address>
+      <a href={site.phoneHref} class="mt-4 block text-base font-bold text-white">{site.phone}</a>
+      <p class="mt-1 text-xs">24x7 emergency facility</p>
+    </div>
+  </div>
+
+  <div class="border-t border-white/10">
+    <div class="container-x flex flex-col gap-2 py-6 text-xs sm:flex-row sm:items-center sm:justify-between">
+      <p>© {new Date().getFullYear()} GutCare Clinics. All rights reserved.</p>
+      <p>Information on this site is for general awareness and is not a substitute for medical advice.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Mobile sticky action bar -->
+<div class="fixed inset-x-0 bottom-0 z-40 grid grid-cols-3 border-t border-slate-200 bg-white lg:hidden">
+  <a href={site.phoneHref} class="flex flex-col items-center gap-0.5 py-2.5 text-xs font-semibold text-brand-600">
+    <Phone class="h-5 w-5" /> Call
+  </a>
+  <a href={whatsappLink()} target="_blank" rel="noopener" class="flex flex-col items-center gap-0.5 py-2.5 text-xs font-semibold text-leaf-600">
+    <MessageCircle class="h-5 w-5" /> WhatsApp
+  </a>
+  <a href="#book" data-open-form="mobile-bar" class="flex flex-col items-center gap-0.5 bg-brand-500 py-2.5 text-xs font-semibold text-white">
+    <CalendarCheck class="h-5 w-5" /> Book Now
+  </a>
+</div>
+
+<!-- Desktop floating WhatsApp -->
+<a
+  href={whatsappLink()}
+  target="_blank"
+  rel="noopener"
+  aria-label="Chat on WhatsApp"
+  class="fixed bottom-6 right-6 z-40 hidden h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl shadow-black/20 transition hover:scale-105 lg:flex"
+>
+  <MessageCircle class="h-7 w-7" />
+</a>

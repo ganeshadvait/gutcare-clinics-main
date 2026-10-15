@@ -1,0 +1,86 @@
+---
+import SectionHeading from '../../components/SectionHeading.astro';
+import Layout from '../../layouts/Layout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import { articles } from '../../data/blog';
+
+const categories = [...new Set(articles.map((a) => a.category))];
+---
+
+<Layout
+  title="Gut Health Blog | GutCare Clinics Bangalore"
+  description="Doctor-written articles on piles, fistula, fissures, hernia, constipation and colorectal cancer from the specialists at GutCare Clinics, Bangalore."
+>
+  <section class="bg-gradient-to-b from-brand-50 to-white py-14 sm:py-20">
+    <div class="container-x">
+      <SectionHeading
+        as="h1"
+        eyebrow="Gut Health Library"
+        title="Expert answers to the questions *you hesitate to ask*"
+        subtitle="Symptoms, causes and modern treatment options, explained by our colorectal and laparoscopic specialists."
+      />
+    </div>
+  </section>
+
+  <section class="pb-16 sm:pb-24">
+    <div class="container-x">
+      <div
+        class="-mx-4 flex gap-2 overflow-x-auto px-4 pb-2 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:justify-center sm:px-0"
+        role="toolbar"
+        aria-label="Filter articles by topic"
+        data-blog-filters
+      >
+        {
+          ['All', ...categories].map((c, i) => (
+            <button
+              type="button"
+              data-filter={c}
+              aria-pressed={i === 0 ? 'true' : 'false'}
+              class="shrink-0 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 transition hover:border-brand-300 hover:text-brand-700 aria-pressed:border-brand-500 aria-pressed:bg-brand-500 aria-pressed:text-white"
+            >
+              {c}
+            </button>
+          ))
+        }
+      </div>
+
+      <ul class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" data-blog-grid>
+        {
+          articles.map((a) => (
+            <li data-category={a.category}>
+              <BlogCard article={a} />
+            </li>
+          ))
+        }
+      </ul>
+
+      <p class="mt-12 text-center text-sm text-slate-500">
+        Looking for older posts? Browse the
+        <a href="https://www.gutcareclinics.com/blog/" class="font-semibold text-brand-600 hover:underline">full article archive</a>.
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-blog-filters] [data-filter]');
+  const cards = document.querySelectorAll<HTMLElement>('[data-blog-grid] > li');
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  buttons.forEach((btn) =>
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+      buttons.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+      cards.forEach((card) => {
+        const show = filter === 'All' || card.dataset.category === filter;
+        card.hidden = !show;
+        if (show && !reduceMotion) {
+          card.animate([{ opacity: 0, transform: 'translateY(12px)' }, { opacity: 1, transform: 'none' }], {
+            duration: 350,
+            easing: 'ease-out',
+          });
+        }
+      });
+    }),
+  );
+</script>

@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.astro/
+.env
+.env.*
+!.env.example
+.DS_Store
+
+# Design screenshots (large, regenerate when needed)
+design-export/*
+!design-export/README.md
+
+# Standalone HTML export (npm run export:html)
+html-pages/
+gutcare-html-pages.zip

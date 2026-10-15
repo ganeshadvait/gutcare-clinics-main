@@ -1,0 +1,230 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { PhoneCall, Stethoscope, Zap, House, CalendarCheck, Check, ArrowRight, MessageCircle, HeartPulse } from '@lucide/astro';
+
+const stages = [
+  {
+    icon: PhoneCall,
+    when: 'Day 0 · 2 minutes',
+    title: 'Reach out',
+    you: 'Share your name and number, or call / WhatsApp us.',
+    we: ['Coordinator calls you back', 'Appointment at your convenience', 'First questions answered'],
+    message: 'Your consultation is confirmed for tomorrow, 11:00 AM.',
+  },
+  {
+    icon: Stethoscope,
+    when: 'Consultation · 30–45 min',
+    title: 'Meet the specialist',
+    you: 'Talk openly with the doctor. No question is too small.',
+    we: ['Private, detailed examination', 'Tests only when truly needed', 'Written plan & cost estimate'],
+    message: 'Your treatment plan is ready, and we’ve checked your insurance.',
+  },
+  {
+    icon: Zap,
+    when: 'Procedure day · ~30 min',
+    title: 'Day-care procedure',
+    you: 'Arrive, relax and let our team take over.',
+    we: ['Laser / laparoscopic technique', 'Anaesthesia for comfort', 'Same-day discharge for most laser cases'],
+    message: 'All done! You’ll be ready to head home this evening.',
+  },
+  {
+    icon: House,
+    when: 'Next few days',
+    title: 'Recover at home',
+    you: 'Follow a simple diet and medication plan.',
+    we: ['Personalised diet chart', 'Check-in calls from your care team', 'Back to routine in days'],
+    message: 'How are you feeling today? Remember: water and fibre!',
+  },
+  {
+    icon: CalendarCheck,
+    when: 'Week 2 onwards',
+    title: 'Follow-up & prevention',
+    you: 'One review visit to confirm complete healing.',
+    we: ['Follow-up consultation', 'Plan to prevent recurrence', '24x7 support when you need it'],
+    message: 'Your review is on Monday. Message us any time.',
+  },
+];
+---
+
+<section id="journey" class="relative overflow-hidden bg-brand-950 py-16 text-brand-100 sm:py-24" data-journey>
+  <div class="pointer-events-none absolute -left-40 top-20 h-96 w-96 rounded-full bg-brand-500/20 blur-3xl"></div>
+  <div class="pointer-events-none absolute -right-40 bottom-20 h-96 w-96 rounded-full bg-leaf-500/15 blur-3xl"></div>
+
+  <div class="container-x relative">
+    <SectionHeading
+      dark
+      eyebrow="Your Patient Journey"
+      title="Your road back to a *healthy gut*"
+      subtitle="Five simple steps from your first call to full recovery. Follow the path to see what to expect, and everything we take care of."
+    />
+
+    <div class="relative mx-auto mt-14 max-w-5xl" data-track>
+      <svg class="pointer-events-none absolute inset-0 h-full w-full overflow-visible" aria-hidden="true" data-svg>
+        <defs>
+          <linearGradient id="journey-gradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="var(--color-brand-400)"></stop>
+            <stop offset="1" stop-color="var(--color-leaf-400)"></stop>
+          </linearGradient>
+          <filter id="journey-glow" x="-200%" y="-200%" width="500%" height="500%">
+            <feGaussianBlur stdDeviation="6"></feGaussianBlur>
+          </filter>
+        </defs>
+        <path data-path-bg fill="none" stroke="rgb(255 255 255 / 0.08)" stroke-width="18" stroke-linecap="round"></path>
+        <path data-path-bg fill="none" stroke="rgb(255 255 255 / 0.15)" stroke-width="2" stroke-dasharray="2 10" stroke-linecap="round"></path>
+        <path data-path-fg fill="none" stroke="url(#journey-gradient)" stroke-width="6" stroke-linecap="round"></path>
+        <g data-head class="opacity-0">
+          <circle r="16" fill="var(--color-leaf-400)" filter="url(#journey-glow)"></circle>
+          <circle r="7" fill="white"></circle>
+        </g>
+      </svg>
+
+      <ol class="relative space-y-10 lg:space-y-0">
+        {
+          stages.map((s, i) => (
+            <li class="journey-step group grid grid-cols-[3rem_1fr] items-start gap-x-4 lg:grid-cols-[1fr_10rem_1fr] lg:items-center lg:gap-x-0 lg:[&+&]:-mt-28">
+              <span
+                data-node
+                class="relative z-10 col-start-1 row-start-1 flex h-12 w-12 items-center justify-center justify-self-center rounded-full border border-white/20 bg-brand-900 text-brand-200 shadow-lg transition duration-500 group-data-[active]:scale-110 group-data-[active]:border-leaf-300 group-data-[active]:bg-leaf-400 group-data-[active]:text-brand-950 lg:col-start-2"
+              >
+                <s.icon class="h-5 w-5" />
+              </span>
+
+              <article
+                class:list={[
+                  'journey-card col-start-2 row-start-1 rounded-3xl bg-white/[0.06] p-6 ring-1 ring-white/10 backdrop-blur transition duration-700 group-data-[active]:bg-white/[0.09] group-data-[active]:ring-white/20 sm:p-7',
+                  i % 2 === 0 ? 'lg:col-start-1 lg:mr-2' : 'lg:col-start-3 lg:ml-2',
+                ]}
+              >
+                <div class="flex flex-wrap items-center gap-3">
+                  <span class="text-xs font-extrabold tracking-widest text-leaf-300">STEP {String(i + 1).padStart(2, '0')}</span>
+                  <span class="rounded-full bg-white/10 px-2.5 py-0.5 text-[11px] font-semibold text-brand-100">{s.when}</span>
+                </div>
+                <h3 class="mt-3 text-xl font-bold !text-white sm:text-2xl">{s.title}</h3>
+                <p class="mt-2 text-sm text-brand-200">
+                  <span class="font-semibold text-white">Your part: </span>{s.you}
+                </p>
+                <ul class="mt-4 flex flex-wrap gap-2">
+                  {s.we.map((w) => (
+                    <li class="inline-flex items-center gap-1.5 rounded-full bg-leaf-400/10 px-3 py-1 text-xs font-medium text-leaf-200 ring-1 ring-leaf-400/20">
+                      <Check class="h-3.5 w-3.5" /> {w}
+                    </li>
+                  ))}
+                </ul>
+                <div class="journey-message mt-5 flex items-start gap-2.5">
+                  <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-[10px] font-extrabold text-brand-600">GC</span>
+                  <p class="rounded-2xl rounded-tl-sm bg-white px-3.5 py-2.5 text-[13px] leading-snug text-slate-700">
+                    {s.message}
+                  </p>
+                </div>
+              </article>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+
+    <div class="relative mx-auto mt-12 flex max-w-xl flex-col items-center gap-5 text-center">
+      <span class="flex h-14 w-14 items-center justify-center rounded-full bg-leaf-400 text-brand-950 shadow-[0_0_40px] shadow-leaf-400/50"><HeartPulse class="h-6 w-6" /></span>
+      <p class="text-lg font-semibold text-white">Back to living life without the pain.</p>
+      <button type="button" class="btn btn-leaf" data-open-form="journey">
+        Start your journey today <ArrowRight class="h-4 w-4" />
+      </button>
+      <p class="flex items-center gap-1.5 text-xs text-brand-300"><MessageCircle class="h-3.5 w-3.5" /> Messages shown are illustrative.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Pre-reveal states only apply once the script is running, so content is never hidden without JS. */
+  [data-journey][data-ready] .journey-step:not([data-active]) .journey-card {
+    opacity: 0.35;
+    transform: translateY(18px);
+  }
+  [data-journey][data-ready] .journey-step:not([data-active]) .journey-message {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  .journey-message {
+    transition: opacity 0.5s 0.25s, transform 0.5s 0.25s;
+  }
+</style>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-journey]');
+  const track = root?.querySelector<HTMLElement>('[data-track]');
+  if (root && track) {
+    const svg = track.querySelector<SVGSVGElement>('[data-svg]')!;
+    const bgPaths = [...svg.querySelectorAll<SVGPathElement>('[data-path-bg]')];
+    const fg = svg.querySelector<SVGPathElement>('[data-path-fg]')!;
+    const head = svg.querySelector<SVGGElement>('[data-head]')!;
+    const steps = [...track.querySelectorAll<HTMLElement>('.journey-step')];
+    const desktop = matchMedia('(min-width: 1024px)');
+    const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let total = 0;
+    let nodeLengths: number[] = [];
+
+    // Draws a winding, gut-like path through the centre of every stage node.
+    const build = () => {
+      const box = track.getBoundingClientRect();
+      const points = steps.map((s) => {
+        const r = s.querySelector('[data-node]')!.getBoundingClientRect();
+        return { x: r.left + r.width / 2 - box.left, y: r.top + r.height / 2 - box.top };
+      });
+      const bulge = desktop.matches ? 64 : 14;
+      let d = `M ${points[0].x} 0 L ${points[0].x} ${points[0].y}`;
+      for (let i = 0; i < points.length - 1; i++) {
+        const a = points[i];
+        const b = points[i + 1];
+        const dy = b.y - a.y;
+        const side = i % 2 === 0 ? 1 : -1;
+        d += ` C ${a.x + side * bulge * 1.4} ${a.y + dy * 0.2}, ${b.x + side * bulge * 1.4} ${b.y - dy * 0.2}, ${b.x} ${b.y}`;
+      }
+      const last = points[points.length - 1];
+      d += ` L ${last.x} ${box.height}`;
+
+      svg.setAttribute('viewBox', `0 0 ${box.width} ${box.height}`);
+      [...bgPaths, fg].forEach((p) => p.setAttribute('d', d));
+      total = fg.getTotalLength();
+      fg.style.strokeDasharray = `${total}`;
+
+      // Path y increases monotonically, so binary-search the length at which it reaches each node.
+      nodeLengths = points.map(({ y }) => {
+        let lo = 0;
+        let hi = total;
+        for (let k = 0; k < 24; k++) {
+          const mid = (lo + hi) / 2;
+          if (fg.getPointAtLength(mid).y < y) lo = mid;
+          else hi = mid;
+        }
+        return hi;
+      });
+    };
+
+    const update = () => {
+      const r = track.getBoundingClientRect();
+      const progress = reduceMotion ? 1 : Math.min(1, Math.max(0, (innerHeight * 0.6 - r.top) / r.height));
+      const len = total * progress;
+      fg.style.strokeDashoffset = `${total - len}`;
+      const pt = fg.getPointAtLength(len);
+      head.setAttribute('transform', `translate(${pt.x} ${pt.y})`);
+      head.classList.toggle('opacity-0', progress <= 0 || progress >= 1);
+      steps.forEach((s, i) => s.toggleAttribute('data-active', len >= nodeLengths[i] - 2));
+    };
+
+    let frame = 0;
+    const schedule = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(update);
+    };
+
+    build();
+    update();
+    root.setAttribute('data-ready', '');
+    addEventListener('scroll', schedule, { passive: true });
+    new ResizeObserver(() => {
+      build();
+      update();
+    }).observe(track);
+  }
+</script>

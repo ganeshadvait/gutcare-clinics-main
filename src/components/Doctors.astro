@@ -1,0 +1,161 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { Image } from 'astro:assets';
+import { Zap, Target, Microscope, Ambulance, Ribbon, Flame, Phone, ArrowRight, BadgeCheck, CalendarCheck } from '@lucide/astro';
+import { site } from '../data/site';
+import gehlot from '../assets/doctors/dr-yuvraj-singh-gehlot.png';
+import bhuta from '../assets/doctors/dr-prajesh-bhuta.webp';
+import jain from '../assets/doctors/dr-paresh-jain.webp';
+import chauhan from '../assets/doctors/dr-shelly-chauhan.webp';
+
+const stats = [
+  { value: 30, suffix: '', label: 'Years in healthcare' },
+  { value: 25, suffix: '', label: 'Years of surgical practice' },
+  { value: 25000, suffix: '+', label: 'Procedures performed' },
+];
+
+const expertise = [
+  { icon: Zap, label: 'Laser piles, fistula & fissure' },
+  { icon: Target, label: 'Laparoscopic hernia repair' },
+  { icon: Microscope, label: 'Gall bladder surgery' },
+  { icon: Ambulance, label: 'Appendix & emergencies' },
+  { icon: Flame, label: 'Acid reflux / GERD' },
+  { icon: Ribbon, label: 'Colorectal cancer care' },
+];
+
+const team = [
+  { name: 'Dr. Prajesh Bhuta', creds: 'MBBS, MS (General Surgery), FRCS', photo: bhuta },
+  { name: 'Dr. Paresh A. Jain', creds: 'MBBS, MS, FRCS (Edinburgh, UK)', photo: jain },
+  { name: 'Dr. Shelly Chauhan', creds: 'MBBS, MD', photo: chauhan },
+];
+
+const slug = (name: string) => name.toLowerCase().replace(/[^a-z]+/g, '-').replace(/^-|-$/g, '');
+---
+
+<section id="doctor" class="py-16 sm:py-24">
+  <div class="container-x">
+    <SectionHeading
+      eyebrow="Our Doctors"
+      title="Meet the specialists *behind your care*"
+      subtitle="Senior, internationally trained surgeons with decades of experience in gut and colorectal care."
+    />
+
+    <div class="mt-14 grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+      <!-- Portrait with floating credentials -->
+      <div class="relative isolate mx-auto w-full max-w-md">
+        <div class="absolute -inset-4 -z-10 rounded-[2.5rem] bg-gradient-to-br from-leaf-100 to-brand-100" aria-hidden="true"></div>
+        <Image
+          src={gehlot}
+          alt="Dr. Yuvraj Singh Gehlot, Gut Surgeon with 30 years of experience"
+          widths={[400, 600, 900]}
+          sizes="(min-width: 1024px) 28rem, 90vw"
+          class="w-full rounded-[2rem] shadow-2xl shadow-brand-900/15"
+          loading="lazy"
+        />
+        <div class="doctor-float absolute -left-3 top-[42%] flex items-center gap-3 rounded-2xl bg-white/95 p-3 pr-4 shadow-xl backdrop-blur sm:-left-8">
+          <BadgeCheck class="h-8 w-8 text-leaf-500" stroke-width={1.75} />
+          <span>
+            <span class="block text-sm font-extrabold text-slate-900">25,000+</span>
+            <span class="block text-[11px] text-slate-500">procedures performed</span>
+          </span>
+        </div>
+        <div class="doctor-float absolute -left-3 top-6 rounded-2xl bg-brand-600 px-4 py-2.5 text-white shadow-xl [animation-delay:-3s] sm:-left-8">
+          <span class="block text-[11px] text-brand-100">Specialist in</span>
+          <span class="block text-sm font-bold">Laser & Laparoscopy</span>
+        </div>
+      </div>
+
+      <!-- Profile -->
+      <div>
+        <p class="text-xs font-bold uppercase tracking-[0.14em] text-leaf-600">Lead Surgeon</p>
+        <h3 class="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">Dr. Yuvraj Singh Gehlot</h3>
+        <p class="mt-2 text-lg font-semibold text-brand-600">Senior GI, Laparoscopic & Colorectal Surgeon</p>
+        <p class="mt-4 max-w-xl leading-relaxed text-slate-600">
+          Leads the GutCare gastro and colorectal team, bringing three decades of healthcare experience to advanced,
+          minimally invasive treatment that helps patients recover faster with less pain.
+        </p>
+
+        <dl class="mt-8 grid grid-cols-3 divide-x divide-slate-200 border-y border-slate-200 py-5">
+          {
+            stats.map((s, i) => (
+              <div class:list={['px-3 sm:px-5', i === 0 && '!pl-0']}>
+                <dt class="sr-only">{s.label}</dt>
+                <dd class="whitespace-nowrap text-xl font-extrabold tabular-nums text-slate-900 sm:text-3xl">
+                  <span data-count={s.value}>{s.value.toLocaleString('en-IN')}</span>{s.suffix}
+                </dd>
+                <dd class="mt-1 text-[11px] leading-tight text-slate-500 sm:text-sm">{s.label}</dd>
+              </div>
+            ))
+          }
+        </dl>
+
+        <p class="mt-8 text-xs font-bold uppercase tracking-[0.14em] text-slate-400">Areas of expertise</p>
+        <ul class="mt-4 grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2">
+          {
+            expertise.map(({ icon: Icon, label }) => (
+              <li class="flex items-center gap-3 text-sm font-medium text-slate-700">
+                <Icon class="h-5 w-5 shrink-0 text-brand-500" stroke-width={1.75} />
+                {label}
+              </li>
+            ))
+          }
+        </ul>
+
+        <div class="mt-10 flex flex-wrap gap-3">
+          <button type="button" class="btn btn-primary" data-open-form="doctor-gehlot">
+            <CalendarCheck class="h-4 w-4" /> Book with Dr. Gehlot
+          </button>
+          <a href={site.phoneHref} class="btn btn-ghost"><Phone class="h-4 w-4" /> {site.phone}</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Team -->
+    <div class="mt-20 border-t border-slate-200 pt-12">
+      <h3 class="heading-md text-center">The GutCare specialist team</h3>
+      <ul class="mt-10 grid gap-6 sm:grid-cols-3 sm:gap-10">
+        {
+          team.map((d) => (
+            <li class="group flex items-center gap-4 sm:block sm:text-center">
+              <Image
+                src={d.photo}
+                alt={d.name}
+                width={240}
+                class="h-20 w-20 shrink-0 rounded-full sm:mx-auto sm:h-28 sm:w-28 bg-slate-100 object-cover object-top ring-4 ring-white shadow-lg transition group-hover:ring-brand-100"
+                loading="lazy"
+              />
+              <div>
+              <p class="font-bold text-slate-900 sm:mt-5">{d.name}</p>
+              <p class="mt-1 text-sm text-slate-500">{d.creds}</p>
+              <button
+                type="button"
+                class="mt-1.5 inline-flex items-center gap-1 text-sm font-semibold text-brand-600 sm:mt-3"
+                data-open-form={`team-${slug(d.name)}`}
+              >
+                Book appointment <ArrowRight class="h-3.5 w-3.5 transition group-hover:translate-x-1" />
+              </button>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .doctor-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  @keyframes float {
+    50% { transform: translateY(-8px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .doctor-float { animation: none; }
+  }
+</style>
+
+<script>
+  import { countUp } from '../lib/countUp';
+  countUp('#doctor [data-count]');
+</script>

@@ -1,0 +1,29 @@
+---
+/**
+ * The one heading format used by every section.
+ * Wrap the words to emphasise in *asterisks*: title="Learn from *our specialists*".
+ */
+interface Props {
+  eyebrow: string;
+  title: string;
+  subtitle?: string;
+  as?: 'h1' | 'h2';
+  dark?: boolean;
+  class?: string;
+}
+
+const { eyebrow, title, subtitle, as: Tag = 'h2', dark = false, class: className } = Astro.props;
+const parts = title.split('*').map((text, i) => ({ text, highlight: i % 2 === 1 }));
+---
+
+<div class:list={['mx-auto max-w-3xl text-center', className]}>
+  <span class:list={['eyebrow', dark && 'eyebrow-dark']}>
+    <span class="h-1.5 w-1.5 rounded-full bg-leaf-400" aria-hidden="true"></span>
+    {eyebrow}
+  </span>
+  <Tag class:list={['heading-xl mt-5', dark && '!text-white']}>
+    {parts.map((p) => (p.highlight ? <span class:list={['highlight', dark && '!text-brand-300']}>{p.text}</span> : p.text))}
+  </Tag>
+  {subtitle && <p class:list={['lead mx-auto mt-5 max-w-2xl', dark && '!text-brand-200']}>{subtitle}</p>}
+  <slot />
+</div>
