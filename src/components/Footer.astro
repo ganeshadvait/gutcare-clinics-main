@@ -1,5 +1,5 @@
 ---
-import { Phone, MessageCircle, CalendarCheck } from '@lucide/astro';
+import { Phone, MessageCircle, CalendarCheck, MapPin } from '@lucide/astro';
 import Logo from './Logo.astro';
 import { site, treatments, whatsappLink } from '../data/site';
 
@@ -78,26 +78,53 @@ const socials = [
   </div>
 </footer>
 
-<!-- Mobile sticky action bar -->
-<div class="fixed inset-x-0 bottom-0 z-40 grid grid-cols-3 border-t border-slate-200 bg-white lg:hidden">
-  <a href={site.phoneHref} class="flex flex-col items-center gap-0.5 py-2.5 text-xs font-semibold text-brand-600">
+<!-- Mobile floating action bar -->
+<nav
+  aria-label="Quick actions"
+  class="fixed inset-x-3 bottom-3 z-40 grid grid-cols-4 gap-1 rounded-2xl border border-slate-200/80 bg-white/95 p-1.5 shadow-2xl shadow-brand-950/20 backdrop-blur [margin-bottom:env(safe-area-inset-bottom)] lg:hidden"
+>
+  <a href={site.phoneHref} class="flex flex-col items-center gap-1 rounded-xl py-2 text-[11px] font-semibold text-brand-600 active:bg-brand-50">
     <Phone class="h-5 w-5" /> Call
   </a>
-  <a href={whatsappLink()} target="_blank" rel="noopener" class="flex flex-col items-center gap-0.5 py-2.5 text-xs font-semibold text-leaf-600">
+  <a href={whatsappLink()} target="_blank" rel="noopener" class="flex flex-col items-center gap-1 rounded-xl py-2 text-[11px] font-semibold text-[#1da851] active:bg-leaf-50">
     <MessageCircle class="h-5 w-5" /> WhatsApp
   </a>
-  <a href="#book" data-open-form="mobile-bar" class="flex flex-col items-center gap-0.5 bg-brand-500 py-2.5 text-xs font-semibold text-white">
+  <a href={site.mapsUrl} target="_blank" rel="noopener" class="flex flex-col items-center gap-1 rounded-xl py-2 text-[11px] font-semibold text-brand-600 active:bg-brand-50">
+    <MapPin class="h-5 w-5" /> Directions
+  </a>
+  <a href="#book" data-open-form="mobile-bar" class="flex flex-col items-center gap-1 rounded-xl bg-brand-500 py-2 text-[11px] font-semibold text-white shadow-md shadow-brand-500/30 active:bg-brand-600">
     <CalendarCheck class="h-5 w-5" /> Book Now
   </a>
-</div>
+</nav>
 
-<!-- Desktop floating WhatsApp -->
-<a
-  href={whatsappLink()}
-  target="_blank"
-  rel="noopener"
-  aria-label="Chat on WhatsApp"
-  class="fixed bottom-6 right-6 z-40 hidden h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl shadow-black/20 transition hover:scale-105 lg:flex"
->
-  <MessageCircle class="h-7 w-7" />
-</a>
+<!-- Desktop floating actions -->
+<div class="fixed bottom-6 right-6 z-40 hidden flex-col items-end gap-3 lg:flex">
+  <a
+    href={site.mapsUrl}
+    target="_blank"
+    rel="noopener"
+    aria-label="Get directions on Google Maps"
+    class="group flex h-14 min-w-14 items-center justify-center rounded-full bg-white px-4 font-semibold text-brand-600 shadow-xl shadow-black/15 ring-1 ring-slate-200 transition hover:scale-105"
+  >
+    <MapPin class="h-6 w-6" />
+    <span class="max-w-0 overflow-hidden whitespace-nowrap text-sm transition-all duration-300 group-hover:ml-2 group-hover:max-w-32">Directions</span>
+  </a>
+  <a
+    href={site.phoneHref}
+    aria-label={`Call ${site.phone}`}
+    class="group flex h-14 min-w-14 items-center justify-center rounded-full bg-brand-500 px-4 font-semibold text-white shadow-xl shadow-brand-500/30 transition hover:scale-105"
+  >
+    <Phone class="h-6 w-6" />
+    <span class="max-w-0 overflow-hidden whitespace-nowrap text-sm transition-all duration-300 group-hover:ml-2 group-hover:max-w-40">{site.phone}</span>
+  </a>
+  <a
+    href={whatsappLink()}
+    target="_blank"
+    rel="noopener"
+    aria-label="Chat on WhatsApp"
+    class="group flex h-14 min-w-14 items-center justify-center rounded-full bg-[#25D366] px-4 font-semibold text-white shadow-xl shadow-black/20 transition hover:scale-105"
+  >
+    <MessageCircle class="h-6 w-6" />
+    <span class="max-w-0 overflow-hidden whitespace-nowrap text-sm transition-all duration-300 group-hover:ml-2 group-hover:max-w-32">WhatsApp</span>
+  </a>
+</div>
