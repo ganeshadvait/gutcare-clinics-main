@@ -3,7 +3,7 @@ import SectionHeading from './SectionHeading.astro';
 import { Image } from 'astro:assets';
 import { Zap, Target, Microscope, Ambulance, Ribbon, Flame, Phone, ArrowRight, BadgeCheck, CalendarCheck } from '@lucide/astro';
 import { site } from '../data/site';
-import gehlot from '../assets/doctors/dr-yuvraj-singh-gehlot.png';
+import gehlot from '../assets/doctors/dr-yuvraj-singh-gehlot.jpeg';
 import bhuta from '../assets/doctors/dr-prajesh-bhuta.webp';
 import jain from '../assets/doctors/dr-paresh-jain.webp';
 import chauhan from '../assets/doctors/dr-shelly-chauhan.webp';
@@ -49,7 +49,7 @@ const slug = (name: string) => name.toLowerCase().replace(/[^a-z]+/g, '-').repla
           alt="Dr. Yuvraj Singh Gehlot, Gut Surgeon with 30 years of experience"
           widths={[400, 600, 900]}
           sizes="(min-width: 1024px) 28rem, 90vw"
-          class="w-full rounded-[2rem] shadow-2xl shadow-brand-900/15"
+          class="aspect-[4/5] w-full rounded-[2rem] object-cover object-top shadow-2xl shadow-brand-900/15"
           loading="lazy"
         />
         <div class="doctor-float absolute -left-3 top-[42%] flex items-center gap-3 rounded-2xl bg-white/95 p-3 pr-4 shadow-xl backdrop-blur sm:-left-8">
