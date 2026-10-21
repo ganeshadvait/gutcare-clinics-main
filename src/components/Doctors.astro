@@ -1,8 +1,9 @@
 ---
 import SectionHeading from './SectionHeading.astro';
 import { Image } from 'astro:assets';
-import { Zap, Target, Microscope, Ambulance, Ribbon, Flame, Phone, ArrowRight, BadgeCheck, CalendarCheck } from '@lucide/astro';
-import { site } from '../data/site';
+import { Zap, Target, Microscope, Ambulance, Ribbon, Flame, Phone, BadgeCheck, CalendarCheck } from '@lucide/astro';
+import WhatsAppIcon from './WhatsAppIcon.astro';
+import { site, whatsappLink } from '../data/site';
 import gehlot from '../assets/doctors/dr-yuvraj-singh-gehlot.jpeg';
 import bhuta from '../assets/doctors/dr-prajesh-bhuta.webp';
 import jain from '../assets/doctors/dr-paresh-jain.webp';
@@ -28,11 +29,9 @@ const team = [
   { name: 'Dr. Paresh A. Jain', creds: 'MBBS, MS, FRCS (Edinburgh, UK)', photo: jain },
   { name: 'Dr. Shelly Chauhan', creds: 'MBBS, MD', photo: chauhan },
 ];
-
-const slug = (name: string) => name.toLowerCase().replace(/[^a-z]+/g, '-').replace(/^-|-$/g, '');
 ---
 
-<section id="doctor" class="py-16 sm:py-24">
+<section id="doctor" class="py-10 sm:py-14">
   <div class="container-x">
     <SectionHeading
       eyebrow="Our Doctors"
@@ -40,7 +39,7 @@ const slug = (name: string) => name.toLowerCase().replace(/[^a-z]+/g, '-').repla
       subtitle="Senior, internationally trained surgeons with decades of experience in gut and colorectal care."
     />
 
-    <div class="mt-14 grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+    <div class="mt-10 grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
       <!-- Portrait with floating credentials -->
       <div class="relative isolate mx-auto w-full max-w-md">
         <div class="absolute -inset-4 -z-10 rounded-[2.5rem] bg-gradient-to-br from-leaf-100 to-brand-100" aria-hidden="true"></div>
@@ -111,7 +110,7 @@ const slug = (name: string) => name.toLowerCase().replace(/[^a-z]+/g, '-').repla
     </div>
 
     <!-- Team -->
-    <div class="mt-20 border-t border-slate-200 pt-12">
+    <div class="mt-8 border-t border-slate-200 pt-10">
       <h3 class="heading-md text-center">The GutCare specialist team</h3>
       <ul class="mt-10 grid gap-6 sm:grid-cols-3 sm:gap-10">
         {
@@ -127,18 +126,25 @@ const slug = (name: string) => name.toLowerCase().replace(/[^a-z]+/g, '-').repla
               <div>
               <p class="font-bold text-slate-900 sm:mt-5">{d.name}</p>
               <p class="mt-1 text-sm text-slate-500">{d.creds}</p>
-              <button
-                type="button"
-                class="mt-1.5 inline-flex items-center gap-1 text-sm font-semibold text-brand-600 sm:mt-3"
-                data-open-form={`team-${slug(d.name)}`}
-              >
-                Book appointment <ArrowRight class="h-3.5 w-3.5 transition group-hover:translate-x-1" />
-              </button>
               </div>
             </li>
           ))
         }
       </ul>
+
+      <div class="mt-10 flex flex-wrap justify-center gap-3">
+        <button type="button" class="btn btn-primary" data-open-form="team">
+          <CalendarCheck class="h-4 w-4" /> Book Appointment
+        </button>
+        <a
+          href={whatsappLink('Hi GutCare, I would like to book an appointment with your specialist team.')}
+          target="_blank"
+          rel="noopener"
+          class="btn bg-[#25D366] text-white shadow-lg shadow-[#25D366]/25 hover:bg-[#1ebe5b]"
+        >
+          <WhatsAppIcon class="h-4 w-4" /> WhatsApp Us
+        </a>
+      </div>
     </div>
   </div>
 </section>

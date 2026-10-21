@@ -16,7 +16,7 @@ const icons = {
 } as const;
 ---
 
-<section id="treatments" class="py-16 sm:py-24">
+<section id="treatments" class="py-10 sm:py-14">
   <div class="container-x">
     <SectionHeading
       eyebrow="Our Treatments"
@@ -24,7 +24,7 @@ const icons = {
       subtitle="Minimally invasive, evidence-based procedures designed for less pain, smaller scars and a faster return to everyday life."
     />
 
-    <ul class="mt-14 grid gap-x-12 sm:grid-cols-2 lg:grid-cols-3">
+    <ul class="mt-10 grid gap-x-12 sm:grid-cols-2 lg:grid-cols-3">
       {
         treatments.map((t) => {
           const Icon = icons[t.icon as keyof typeof icons];

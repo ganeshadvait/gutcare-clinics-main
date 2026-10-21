@@ -1,5 +1,6 @@
 ---
-import { FileText, Stethoscope, Plane, HeartPulse, Video, MessageCircle, Mail, ArrowRight } from '@lucide/astro';
+import { FileText, Stethoscope, Plane, HeartPulse, Video, Mail, ArrowRight } from '@lucide/astro';
+import WhatsAppIcon from '../components/WhatsAppIcon.astro';
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
@@ -58,10 +59,10 @@ const faqs = [
   />
 
   <!-- Process -->
-  <section class="py-16 sm:py-24">
+  <section class="py-10 sm:py-14">
     <div class="container-x">
       <SectionHeading eyebrow="How it works" title="Your treatment journey, *made simple*" />
-      <ol class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
+      <ol class="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
         {
           steps.map(({ icon: Icon, title, text }, i) => (
             <li class="border-t-2 border-brand-500/70 pt-5">
@@ -76,9 +77,9 @@ const faqs = [
         }
       </ol>
 
-      <div class="mt-12 flex flex-wrap justify-center gap-3">
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
         <a href={whatsappLink('Hi GutCare, I am an international patient and would like my reports reviewed.')} target="_blank" rel="noopener" class="btn btn-leaf">
-          <MessageCircle class="h-4 w-4" /> Send reports on WhatsApp
+          <WhatsAppIcon class="h-4 w-4" /> Send reports on WhatsApp
         </a>
         <a href={`mailto:${site.email}`} class="btn btn-ghost"><Mail class="h-4 w-4" /> {site.email}</a>
       </div>
@@ -86,7 +87,7 @@ const faqs = [
   </section>
 
   <!-- Why GutCare + treatments -->
-  <section class="bg-brand-50/50 py-16 sm:py-24">
+  <section class="bg-brand-50/50 py-10 sm:py-14">
     <div class="container-x grid gap-12 lg:grid-cols-2 lg:gap-16">
       <div>
         <h2 class="heading-md">Why patients travel to GutCare</h2>

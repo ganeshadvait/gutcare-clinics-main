@@ -1,5 +1,6 @@
 ---
-import { Phone, MapPin, Clock, ChevronDown, Menu, X, MessageCircle } from '@lucide/astro';
+import { Phone, MapPin, Clock, ChevronDown, Menu, X } from '@lucide/astro';
+import WhatsAppIcon from './WhatsAppIcon.astro';
 import Logo from './Logo.astro';
 import { site, nav, treatments, whatsappLink } from '../data/site';
 
@@ -19,7 +20,7 @@ const isActive = (href: string, children?: boolean) =>
     </div>
     <div class="flex items-center gap-6">
       <a href={whatsappLink()} target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 hover:text-white">
-        <MessageCircle class="h-3.5 w-3.5" /> WhatsApp us
+        <WhatsAppIcon class="h-3.5 w-3.5" /> WhatsApp us
       </a>
       <a href={site.phoneHref} class="inline-flex items-center gap-1.5 font-semibold text-white">
         <Phone class="h-3.5 w-3.5" /> {site.phone}

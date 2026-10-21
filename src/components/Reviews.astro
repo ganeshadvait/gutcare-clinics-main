@@ -32,7 +32,7 @@ const initials = (name: string) =>
     .toUpperCase();
 ---
 
-<section id="reviews" class="overflow-hidden py-16 sm:py-24">
+<section id="reviews" class="overflow-hidden py-10 sm:py-14">
   <div class="container-x">
     <SectionHeading
       eyebrow="Patient Stories"
@@ -42,7 +42,7 @@ const initials = (name: string) =>
   </div>
   {
     reviews.length > 0 && (
-      <div class:list={['mt-12', useMarquee ? 'space-y-5' : 'container-x grid gap-5 sm:grid-cols-2 lg:grid-cols-3']}>
+      <div class:list={['mt-8', useMarquee ? 'space-y-5' : 'container-x grid gap-5 sm:grid-cols-2 lg:grid-cols-3']}>
         {rows.map((row, r) =>
           useMarquee ? (
             <div class="review-marquee group flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">

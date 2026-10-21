@@ -1,5 +1,6 @@
 ---
-import { Phone, MessageCircle, CalendarCheck, MapPin } from '@lucide/astro';
+import { Phone, CalendarCheck, MapPin } from '@lucide/astro';
+import WhatsAppIcon from './WhatsAppIcon.astro';
 import Logo from './Logo.astro';
 import { site, treatments, whatsappLink } from '../data/site';
 
@@ -87,7 +88,7 @@ const socials = [
     <Phone class="h-5 w-5" /> Call
   </a>
   <a href={whatsappLink()} target="_blank" rel="noopener" class="flex flex-col items-center gap-1 rounded-xl py-2 text-[11px] font-semibold text-[#1da851] active:bg-leaf-50">
-    <MessageCircle class="h-5 w-5" /> WhatsApp
+    <WhatsAppIcon class="h-5 w-5" /> WhatsApp
   </a>
   <a href={site.mapsUrl} target="_blank" rel="noopener" class="flex flex-col items-center gap-1 rounded-xl py-2 text-[11px] font-semibold text-brand-600 active:bg-brand-50">
     <MapPin class="h-5 w-5" /> Directions
@@ -124,7 +125,7 @@ const socials = [
     aria-label="Chat on WhatsApp"
     class="group flex h-14 min-w-14 items-center justify-center rounded-full bg-[#25D366] px-4 font-semibold text-white shadow-xl shadow-black/20 transition hover:scale-105"
   >
-    <MessageCircle class="h-6 w-6" />
+    <WhatsAppIcon class="h-6 w-6" />
     <span class="max-w-0 overflow-hidden whitespace-nowrap text-sm transition-all duration-300 group-hover:ml-2 group-hover:max-w-32">WhatsApp</span>
   </a>
 </div>

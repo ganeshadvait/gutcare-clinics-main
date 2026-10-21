@@ -7,7 +7,7 @@ import { articles } from '../data/blog';
 const latest = articles.slice(0, 3);
 ---
 
-<section id="blog" class="py-16 sm:py-24">
+<section id="blog" class="py-10 sm:py-14">
   <div class="container-x">
     <SectionHeading
       eyebrow="Gut Health Library"
@@ -15,7 +15,7 @@ const latest = articles.slice(0, 3);
       subtitle="Clear, doctor-written guides on symptoms, causes and modern treatment options."
     />
 
-    <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {latest.map((a, i) => <div class:list={[i === 2 && 'md:hidden lg:block']}><BlogCard article={a} /></div>)}
     </div>
 

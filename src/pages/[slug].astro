@@ -44,7 +44,7 @@ const pageLd = {
   />
 
   <!-- Overview + symptoms -->
-  <section class="py-16 sm:py-24">
+  <section class="py-10 sm:py-14">
     <div class="container-x grid gap-12 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
       <div>
         <h2 class="heading-xl">Understanding <span class="highlight">{t.name}</span></h2>
@@ -69,7 +69,7 @@ const pageLd = {
   </section>
 
   <!-- Causes, types, red flags -->
-  <section class="bg-brand-50/50 py-16 sm:py-24">
+  <section class="bg-brand-50/50 py-10 sm:py-14">
     <div class="container-x">
       <div class="grid gap-12 lg:grid-cols-2 lg:gap-16">
         <div>
@@ -98,7 +98,7 @@ const pageLd = {
 
       {
         t.types && t.types.length > 0 && (
-          <div class="mt-16 border-t border-slate-200/80 pt-12">
+          <div class="mt-10 border-t border-slate-200/80 pt-8">
             <h2 class="heading-md text-center">Types</h2>
             <ul class="mt-8 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
               {t.types.map((ty, i) => (
@@ -116,14 +116,14 @@ const pageLd = {
   </section>
 
   <!-- Treatment options -->
-  <section class="py-16 sm:py-24">
+  <section class="py-10 sm:py-14">
     <div class="container-x">
       <SectionHeading
         eyebrow="Treatment options"
         title={`How we treat *${t.name.split(' / ')[0].toLowerCase()}*`}
         subtitle="Every plan starts with a careful diagnosis. We recommend the least invasive option that will work for you."
       />
-      <ul class="mx-auto mt-12 grid max-w-5xl gap-x-12 sm:grid-cols-2">
+      <ul class="mx-auto mt-8 grid max-w-5xl gap-x-12 sm:grid-cols-2">
         {
           t.treatments.map((tr) => (
             <li class="border-t border-slate-200 py-6">
@@ -140,10 +140,10 @@ const pageLd = {
   </section>
 
   <!-- Procedure steps + recovery -->
-  <section class="bg-brand-950 py-16 text-brand-100 sm:py-24">
+  <section class="bg-brand-950 py-10 text-brand-100 sm:py-14">
     <div class="container-x">
       <SectionHeading dark eyebrow="What to expect" title="Your treatment, *step by step*" />
-      <ol class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      <ol class="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
         {
           t.procedureSteps.map((s, i) => (
             <li class="border-t-2 border-leaf-400/70 pt-5">
@@ -155,7 +155,7 @@ const pageLd = {
         }
       </ol>
 
-      <div class="mt-16 rounded-3xl bg-white/5 p-6 ring-1 ring-white/10 sm:p-10">
+      <div class="mt-10 rounded-3xl bg-white/5 p-6 ring-1 ring-white/10 sm:p-10">
         <h3 class="heading-md !text-white">Recovery timeline</h3>
         <ul class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {
@@ -172,7 +172,7 @@ const pageLd = {
   </section>
 
   <!-- Doctor + related -->
-  <section class="py-16 sm:py-24">
+  <section class="py-10 sm:py-14">
     <div class="container-x grid gap-12 lg:grid-cols-2 lg:gap-16">
       <div class="flex flex-col items-start gap-6 sm:flex-row sm:items-center">
         <div class="relative h-32 w-32 shrink-0 overflow-hidden rounded-full bg-gradient-to-br from-brand-400 to-brand-700">
