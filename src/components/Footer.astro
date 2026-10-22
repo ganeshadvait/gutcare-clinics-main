@@ -82,18 +82,18 @@ const socials = [
 <!-- Mobile floating action bar -->
 <nav
   aria-label="Quick actions"
-  class="fixed inset-x-3 bottom-3 z-40 grid grid-cols-4 gap-1 rounded-2xl border border-slate-200/80 bg-white/95 p-1.5 shadow-2xl shadow-brand-950/20 backdrop-blur [margin-bottom:env(safe-area-inset-bottom)] lg:hidden"
+  class="fixed inset-x-3 bottom-3 z-40 grid grid-cols-4 gap-1 rounded-2xl border border-white/60 bg-white/70 p-1.5 shadow-2xl shadow-brand-950/20 backdrop-blur [margin-bottom:env(safe-area-inset-bottom)] lg:hidden"
 >
-  <a href={site.phoneHref} class="flex flex-col items-center gap-1 rounded-xl py-2 text-[11px] font-semibold text-brand-600 active:bg-brand-50">
+  <a href={site.phoneHref} style="--shine-delay: 0s; --shine-spread: 4px; --shine-color: rgb(37 144 211 / 0.35)" class="shine flex flex-col items-center gap-1 rounded-xl bg-brand-50/70 py-2 text-[11px] font-semibold text-brand-600 ring-1 ring-brand-100/80 active:bg-brand-100">
     <Phone class="h-5 w-5" /> Call
   </a>
-  <a href={whatsappLink()} target="_blank" rel="noopener" class="flex flex-col items-center gap-1 rounded-xl py-2 text-[11px] font-semibold text-[#1da851] active:bg-leaf-50">
+  <a href={whatsappLink()} target="_blank" rel="noopener" style="--shine-delay: 0.7s; --shine-spread: 4px; --shine-color: rgb(37 211 102 / 0.4)" class="shine flex flex-col items-center gap-1 rounded-xl bg-[#25D366]/10 py-2 text-[11px] font-semibold text-[#1da851] ring-1 ring-[#25D366]/20 active:bg-[#25D366]/20">
     <WhatsAppIcon class="h-5 w-5" /> WhatsApp
   </a>
-  <a href={site.mapsUrl} target="_blank" rel="noopener" class="flex flex-col items-center gap-1 rounded-xl py-2 text-[11px] font-semibold text-brand-600 active:bg-brand-50">
+  <a href={site.mapsUrl} target="_blank" rel="noopener" style="--shine-delay: 1.4s; --shine-spread: 4px; --shine-color: rgb(37 144 211 / 0.35)" class="shine flex flex-col items-center gap-1 rounded-xl bg-brand-50/70 py-2 text-[11px] font-semibold text-brand-600 ring-1 ring-brand-100/80 active:bg-brand-100">
     <MapPin class="h-5 w-5" /> Directions
   </a>
-  <a href="#book" data-open-form="mobile-bar" class="flex flex-col items-center gap-1 rounded-xl bg-brand-500 py-2 text-[11px] font-semibold text-white shadow-md shadow-brand-500/30 active:bg-brand-600">
+  <a href="#book" data-open-form="mobile-bar" style="--shine-delay: 2.1s; --shine-spread: 4px; --shine-color: rgb(37 144 211 / 0.5)" class="shine flex flex-col items-center gap-1 rounded-xl bg-brand-500 py-2 text-[11px] font-semibold text-white shadow-md shadow-brand-500/30 active:bg-brand-600">
     <CalendarCheck class="h-5 w-5" /> Book Now
   </a>
 </nav>
@@ -105,7 +105,7 @@ const socials = [
     target="_blank"
     rel="noopener"
     aria-label="Get directions on Google Maps"
-    class="group flex h-14 min-w-14 items-center justify-center rounded-full bg-white px-4 font-semibold text-brand-600 shadow-xl shadow-black/15 ring-1 ring-slate-200 transition hover:scale-105"
+    style="--shine-delay: 0s; --shine-color: rgb(37 144 211 / 0.3)" class="shine group flex h-14 min-w-14 items-center justify-center rounded-full bg-white/80 backdrop-blur px-4 font-semibold text-brand-600 shadow-xl shadow-black/15 ring-1 ring-slate-200 transition hover:scale-105"
   >
     <MapPin class="h-6 w-6" />
     <span class="max-w-0 overflow-hidden whitespace-nowrap text-sm transition-all duration-300 group-hover:ml-2 group-hover:max-w-32">Directions</span>
@@ -113,7 +113,7 @@ const socials = [
   <a
     href={site.phoneHref}
     aria-label={`Call ${site.phone}`}
-    class="group flex h-14 min-w-14 items-center justify-center rounded-full bg-brand-500 px-4 font-semibold text-white shadow-xl shadow-brand-500/30 transition hover:scale-105"
+    style="--shine-delay: 0.9s; --shine-color: rgb(37 144 211 / 0.45)" class="shine group flex h-14 min-w-14 items-center justify-center rounded-full bg-brand-500 px-4 font-semibold text-white shadow-xl shadow-brand-500/30 transition hover:scale-105"
   >
     <Phone class="h-6 w-6" />
     <span class="max-w-0 overflow-hidden whitespace-nowrap text-sm transition-all duration-300 group-hover:ml-2 group-hover:max-w-40">{site.phone}</span>
@@ -123,7 +123,7 @@ const socials = [
     target="_blank"
     rel="noopener"
     aria-label="Chat on WhatsApp"
-    class="group flex h-14 min-w-14 items-center justify-center rounded-full bg-[#25D366] px-4 font-semibold text-white shadow-xl shadow-black/20 transition hover:scale-105"
+    style="--shine-delay: 1.8s; --shine-color: rgb(37 211 102 / 0.45)" class="shine group flex h-14 min-w-14 items-center justify-center rounded-full bg-[#25D366] px-4 font-semibold text-white shadow-xl shadow-black/20 transition hover:scale-105"
   >
     <WhatsAppIcon class="h-6 w-6" />
     <span class="max-w-0 overflow-hidden whitespace-nowrap text-sm transition-all duration-300 group-hover:ml-2 group-hover:max-w-32">WhatsApp</span>

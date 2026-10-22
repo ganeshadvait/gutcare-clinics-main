@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import { Phone, CalendarCheck, Award, Users, Clock, ShieldCheck, BadgeCheck, Zap, CircleAlert, Wind, Droplets, Hourglass, Flame, Waves, ArrowRight } from '@lucide/astro';
+import { Phone, CalendarCheck, Award, Users, Clock, ShieldCheck, BadgeCheck, Zap } from '@lucide/astro';
 import WhatsAppIcon from './WhatsAppIcon.astro';
 import { site, whatsappLink } from '../data/site';
 import doctor from '../assets/doctors/dr-yuvraj-singh-gehlot-cutout.png';
@@ -10,15 +10,6 @@ const trust = [
   { icon: ShieldCheck, value: '25,000+', label: 'surgeries done' },
   { icon: Users, value: '1 Lakh+', label: 'patients treated' },
   { icon: Clock, value: '24x7', label: 'emergency care' },
-];
-
-const symptoms = [
-  { icon: CircleAlert, label: 'Abdominal pain' },
-  { icon: Wind, label: 'Bloating' },
-  { icon: Droplets, label: 'Loose stools' },
-  { icon: Hourglass, label: 'Constipation' },
-  { icon: Flame, label: 'Anus discomfort' },
-  { icon: Waves, label: 'Nausea or vomiting' },
 ];
 ---
 
@@ -117,34 +108,6 @@ const symptoms = [
         ))
       }
     </dl>
-
-    <!-- Symptom check -->
-    <div class="mt-10 grid gap-6 rounded-3xl bg-white p-5 shadow-xl shadow-brand-900/5 ring-1 ring-slate-200/70 sm:p-7 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-10">
-      <div>
-        <p class="text-lg font-extrabold text-slate-900">Facing any of these symptoms?</p>
-        <p class="mt-1 text-sm text-slate-500">Don’t ignore them. Early care makes treatment simpler.</p>
-        <ul class="mt-5 grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-6">
-          {
-            symptoms.map(({ icon: Icon, label }) => (
-              <li class="flex flex-col items-center gap-2 rounded-2xl bg-brand-50/70 px-2 py-3.5 text-center ring-1 ring-brand-100">
-                <span class="flex h-9 w-9 items-center justify-center rounded-full bg-white text-brand-500 shadow-sm">
-                  <Icon class="h-[18px] w-[18px]" stroke-width={2} />
-                </span>
-                <span class="text-xs font-semibold leading-tight text-slate-700 sm:text-[13px]">{label}</span>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-      <div class="flex flex-col gap-3 sm:flex-row lg:flex-col lg:border-l lg:border-slate-200 lg:pl-10">
-        <button type="button" class="btn btn-primary !py-3.5" data-open-form="hero-symptoms">
-          <CalendarCheck class="h-5 w-5" /> Book Appointment <ArrowRight class="h-4 w-4" />
-        </button>
-        <a href={site.phoneHref} class="btn btn-ghost !py-3.5">
-          <Phone class="h-5 w-5 text-brand-500" /> {site.phone}
-        </a>
-      </div>
-    </div>
   </div>
 </section>
 

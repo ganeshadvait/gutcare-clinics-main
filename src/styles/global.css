@@ -90,3 +90,39 @@
 @utility btn-ghost {
   @apply border border-slate-200 bg-white text-slate-800 hover:border-brand-300 hover:text-brand-700;
 }
+
+/* ---- Glassy finish + soft glow pulse for sticky CTAs ---- */
+.shine {
+  position: relative;
+  isolation: isolate;
+}
+.shine::before {
+  /* glass highlight on the top half */
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(to bottom, rgb(255 255 255 / 0.32), rgb(255 255 255 / 0) 50%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.6), inset 0 0 0 1px rgb(255 255 255 / 0.18);
+  pointer-events: none;
+}
+.shine::after {
+  /* soft halo that breathes out in the button's own colour */
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  border-radius: inherit;
+  box-shadow: 0 0 0 0 var(--shine-color, rgb(37 144 211 / 0.45));
+  animation: shine-glow 2.8s ease-out infinite;
+  animation-delay: var(--shine-delay, 0s);
+  pointer-events: none;
+}
+@keyframes shine-glow {
+  0% { box-shadow: 0 0 0 0 var(--shine-color, rgb(37 144 211 / 0.45)); }
+  70%, 100% { box-shadow: 0 0 0 var(--shine-spread, 10px) transparent; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .shine::after { animation: none; }
+}
