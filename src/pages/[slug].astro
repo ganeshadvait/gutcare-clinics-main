@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
-import { CircleCheck, TriangleAlert, ArrowRight, CalendarCheck } from '@lucide/astro';
+import type { ImageMetadata } from 'astro';
+import { CircleCheck, TriangleAlert, ArrowRight, CalendarCheck, Droplet, Zap, Sparkles, Target, Microscope, Ambulance, Flame, HeartPulse, Ribbon, Salad, Pill, Scissors, Clock, ClipboardCheck, Bath, CircleDot, Activity, Dna, Syringe, Stethoscope } from '@lucide/astro';
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
@@ -16,6 +17,35 @@ export function getStaticPaths() {
 }
 
 const { t } = Astro.props as { t: TreatmentContent };
+const info = treatments.find((x) => x.slug === t.slug);
+
+// Condition image: drop a file into src/assets/treatments/ named after the page slug
+// (e.g. best-piles-treatment-bangalore.jpg) and it replaces the illustrated card automatically.
+const images = import.meta.glob<{ default: ImageMetadata }>('../assets/treatments/*.{jpg,jpeg,png,webp,avif}', { eager: true });
+const conditionImage = Object.entries(images).find(([path]) => path.split('/').pop()!.startsWith(`${t.slug}.`))?.[1].default;
+const icons = { piles: Droplet, fistula: Zap, fissure: Sparkles, hernia: Target, gallbladder: Microscope, appendix: Ambulance, reflux: Flame, constipation: HeartPulse, cancer: Ribbon } as const;
+const ConditionIcon = icons[(info?.icon ?? 'constipation') as keyof typeof icons] ?? HeartPulse;
+
+// Icon for each treatment option, picked from keywords in its title.
+const optionIcon = (title: string) => {
+  const x = title.toLowerCase();
+  if (/laser|filac/.test(x)) return Zap;
+  if (/laparoscop|keyhole/.test(x)) return Microscope;
+  if (/diet|lifestyle|fluid/.test(x)) return Salad;
+  if (/medic|pain relief|antibiotic/.test(x)) return Pill;
+  if (/wait/.test(x)) return Clock;
+  if (/test|screen/.test(x)) return ClipboardCheck;
+  if (/sitz/.test(x)) return Bath;
+  if (/band|seton|ligation|lift/.test(x)) return CircleDot;
+  if (/therapy|biofeedback/.test(x)) return Activity;
+  if (/genetic/.test(x)) return Dna;
+  if (/chemo|radio/.test(x)) return Syringe;
+  if (/drain/.test(x)) return Droplet;
+  if (/open|surgery|ectomy|otomy|stapler/.test(x)) return Scissors;
+  return Stethoscope;
+};
+const optionCols = ({ 3: 'lg:grid-cols-3', 4: 'lg:grid-cols-4', 5: 'lg:grid-cols-5' } as Record<number, string>)[t.treatments.length] ?? 'lg:grid-cols-4';
+
 const related = t.related.map((s) => treatments.find((x) => x.slug === s)).filter(Boolean) as typeof treatments;
 
 const pageLd = {
@@ -43,75 +73,86 @@ const pageLd = {
     footnote={t.footnote}
   />
 
-  <!-- Overview + symptoms -->
+  <!-- Introduction + condition image -->
   <section class="py-10 sm:py-14">
-    <div class="container-x grid gap-12 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
+    <div class="container-x grid items-center gap-10 lg:grid-cols-[1.15fr_1fr] lg:gap-14">
       <div>
         <h2 class="heading-xl">Understanding <span class="highlight">{t.name}</span></h2>
-        <div class="mt-6 space-y-4 text-base leading-relaxed text-slate-600 sm:text-lg">
-          {t.overview.map((p) => <p>{p}</p>)}
-        </div>
-      </div>
-      <div class="self-start rounded-3xl bg-slate-50 p-6 sm:p-8">
-        <h3 class="heading-md">Common symptoms</h3>
-        <ul class="mt-5 space-y-3">
+        <p class="mt-5 text-base leading-relaxed text-slate-600 sm:text-lg">{t.overview[0]}</p>
+        <p class="mt-6 text-xs font-bold uppercase tracking-widest text-slate-400">Common symptoms</p>
+        <ul class="mt-3 grid gap-x-6 gap-y-2.5 sm:grid-cols-2">
           {
-            t.symptoms.map((s) => (
-              <li class="flex gap-3 text-slate-700">
-                <CircleCheck class="mt-0.5 h-5 w-5 shrink-0 text-leaf-500" />
-                {s}
+            t.symptoms.slice(0, 6).map((sym) => (
+              <li class="flex gap-2.5 text-sm text-slate-700">
+                <CircleCheck class="mt-0.5 h-4 w-4 shrink-0 text-leaf-500" />
+                {sym}
               </li>
             ))
           }
         </ul>
       </div>
-    </div>
-  </section>
-
-  <!-- Causes, types, red flags -->
-  <section class="bg-brand-50/50 py-10 sm:py-14">
-    <div class="container-x">
-      <div class="grid gap-12 lg:grid-cols-2 lg:gap-16">
-        <div>
-          <h2 class="heading-md">Causes &amp; risk factors</h2>
-          <ul class="mt-6 divide-y divide-slate-200/80 border-y border-slate-200/80">
-            {t.causes.map((c) => <li class="py-3.5 text-slate-700">{c}</li>)}
-          </ul>
-        </div>
-        <div>
-          <h2 class="heading-md">When to see a doctor promptly</h2>
-          <ul class="mt-6 space-y-3">
-            {
-              t.whenToSeeDoctor.map((w) => (
-                <li class="flex gap-3 text-slate-700">
-                  <TriangleAlert class="mt-0.5 h-5 w-5 shrink-0 text-red-500" />
-                  {w}
-                </li>
-              ))
-            }
-          </ul>
-          <button type="button" class="btn btn-primary mt-8" data-open-form={`treatment-${t.slug}-redflags`}>
-            Talk to a specialist <ArrowRight class="h-4 w-4" />
-          </button>
-        </div>
-      </div>
 
       {
-        t.types && t.types.length > 0 && (
-          <div class="mt-10 border-t border-slate-200/80 pt-8">
-            <h2 class="heading-md text-center">Types</h2>
-            <ul class="mt-8 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
-              {t.types.map((ty, i) => (
-                <li>
-                  <span class="text-sm font-extrabold text-leaf-600">{String(i + 1).padStart(2, '0')}</span>
-                  <h3 class="mt-2 font-bold text-slate-900">{ty.title}</h3>
-                  <p class="mt-1.5 text-sm leading-relaxed text-slate-600">{ty.text}</p>
-                </li>
-              ))}
-            </ul>
+        conditionImage ? (
+          <Image
+            src={conditionImage}
+            alt={t.name}
+            widths={[400, 640, 900]}
+            sizes="(min-width: 1024px) 32rem, 90vw"
+            class="aspect-[4/3] w-full rounded-3xl object-cover shadow-xl shadow-brand-900/10"
+            loading="lazy"
+          />
+        ) : (
+          <div class="relative isolate flex aspect-[4/3] w-full flex-col justify-end overflow-hidden rounded-3xl bg-gradient-to-br from-brand-500 via-brand-600 to-brand-800 p-7 text-white shadow-xl shadow-brand-900/15">
+            <div class="absolute -right-16 -top-16 -z-10 h-72 w-72 rounded-full bg-white/10" aria-hidden="true" />
+            <div class="absolute right-10 top-10 -z-10 h-40 w-40 rounded-full bg-leaf-400/25 blur-2xl" aria-hidden="true" />
+            <ConditionIcon class="absolute right-8 top-8 h-24 w-24 text-white/85" stroke-width={1.25} />
+            <p class="text-xs font-bold uppercase tracking-widest text-brand-100">GutCare Clinics</p>
+            <p class="mt-1 text-2xl font-extrabold sm:text-3xl">{t.name}</p>
+            {info?.blurb && <p class="mt-2 max-w-sm text-sm text-brand-100">{info.blurb}</p>}
+            {info?.tags && (
+              <div class="mt-4 flex flex-wrap gap-2">
+                {info.tags.map((tag) => <span class="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold ring-1 ring-white/20">{tag}</span>)}
+              </div>
+            )}
           </div>
         )
       }
+    </div>
+  </section>
+
+  <!-- Causes + red flags -->
+  <section class="bg-slate-50 py-10 sm:py-14">
+    <div class="container-x grid gap-10 md:grid-cols-2 md:gap-0 md:divide-x md:divide-slate-200">
+      <div class="md:pr-12">
+        <h2 class="heading-md">Common causes</h2>
+        <ul class="mt-5 space-y-3.5">
+          {
+            t.causes.slice(0, 5).map((c) => (
+              <li class="flex gap-3 text-slate-700">
+                <CircleCheck class="mt-0.5 h-5 w-5 shrink-0 text-leaf-500" />
+                {c}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div class="md:pl-12">
+        <h2 class="heading-md">When to see a doctor</h2>
+        <ul class="mt-5 space-y-3.5">
+          {
+            t.whenToSeeDoctor.slice(0, 4).map((w) => (
+              <li class="flex gap-3 text-slate-700">
+                <TriangleAlert class="mt-0.5 h-5 w-5 shrink-0 text-red-500" />
+                {w}
+              </li>
+            ))
+          }
+        </ul>
+        <button type="button" class="mt-6 inline-flex items-center gap-1.5 font-semibold text-brand-600 hover:underline" data-open-form={`treatment-${t.slug}-redflags`}>
+          Talk to a specialist <ArrowRight class="h-4 w-4" />
+        </button>
+      </div>
     </div>
   </section>
 
@@ -121,58 +162,86 @@ const pageLd = {
       <SectionHeading
         eyebrow="Treatment options"
         title={`How we treat *${t.name.split(' / ')[0].toLowerCase()}*`}
-        subtitle="Every plan starts with a careful diagnosis. We recommend the least invasive option that will work for you."
+        subtitle="We always start with the gentlest option that will work for you."
       />
-      <ul class="mx-auto mt-8 grid max-w-5xl gap-x-12 sm:grid-cols-2">
+
+      <!-- Gentle → advanced scale -->
+      <div class="mt-8 hidden items-center gap-3 text-[11px] font-bold uppercase tracking-widest text-slate-400 md:flex">
+        <span>Gentlest</span>
+        <span class="h-1 flex-1 rounded-full bg-gradient-to-r from-leaf-300 via-brand-300 to-brand-600"></span>
+        <span>Advanced</span>
+      </div>
+
+      <ol class:list={['mt-8 grid gap-4 sm:grid-cols-2 md:mt-5', optionCols]}>
         {
-          t.treatments.map((tr) => (
-            <li class="border-t border-slate-200 py-6">
-              <div class="flex flex-wrap items-center gap-2">
-                <h3 class="text-lg font-bold text-slate-900">{tr.title}</h3>
-                {tr.tag && <span class="rounded-full bg-leaf-50 px-2.5 py-0.5 text-xs font-semibold text-leaf-700">{tr.tag}</span>}
-              </div>
-              <p class="mt-2 leading-relaxed text-slate-600">{tr.text}</p>
-            </li>
-          ))
+          t.treatments.map((tr, i) => {
+            const Icon = optionIcon(tr.title);
+            return (
+              <li class="flex flex-col rounded-2xl bg-white p-5 ring-1 ring-slate-200 transition hover:shadow-lg hover:shadow-brand-900/5">
+                <div class="flex items-center justify-between">
+                  <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+                    <Icon class="h-5 w-5" stroke-width={1.75} />
+                  </span>
+                  <span class="text-xs font-extrabold tabular-nums text-slate-300">{String(i + 1).padStart(2, '0')}</span>
+                </div>
+                <h3 class="mt-4 font-bold leading-snug text-slate-900">{tr.title}</h3>
+                <p class="mt-2 line-clamp-3 text-sm leading-relaxed text-slate-600">{tr.text}</p>
+                {tr.tag && <span class="mt-4 self-start rounded-full bg-leaf-50 px-2.5 py-0.5 text-[11px] font-semibold text-leaf-700">{tr.tag}</span>}
+              </li>
+            );
+          })
         }
-      </ul>
+      </ol>
+
+      <div class="mt-8 flex flex-col items-center gap-3 rounded-2xl bg-brand-50/70 p-5 text-center sm:flex-row sm:justify-between sm:text-left">
+        <p class="text-sm text-slate-700">
+          <span class="font-semibold text-slate-900">Not sure which option suits you?</span> Our surgeon will examine you and explain every choice.
+        </p>
+        <button type="button" class="btn btn-primary shrink-0" data-open-form={`treatment-${t.slug}-options`}>
+          <CalendarCheck class="h-4 w-4" /> Book a consultation
+        </button>
+      </div>
     </div>
   </section>
 
-  <!-- Procedure steps + recovery -->
+  <!-- What to expect -->
   <section class="bg-brand-950 py-10 text-brand-100 sm:py-14">
     <div class="container-x">
       <SectionHeading dark eyebrow="What to expect" title="Your treatment, *step by step*" />
-      <ol class="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+
+      <ol class="relative mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+        <div class="absolute inset-x-[12%] top-5 hidden h-px bg-gradient-to-r from-brand-400/50 via-leaf-400/50 to-leaf-400/50 lg:block" aria-hidden="true" />
         {
-          t.procedureSteps.map((s, i) => (
-            <li class="border-t-2 border-leaf-400/70 pt-5">
-              <span class="text-sm font-extrabold tracking-widest text-leaf-300">STEP {String(i + 1).padStart(2, '0')}</span>
-              <h3 class="mt-2 text-lg font-bold !text-white">{s.title}</h3>
-              <p class="mt-2 text-sm leading-relaxed text-brand-200">{s.text}</p>
+          t.procedureSteps.map((st, i) => (
+            <li class="relative flex gap-4 lg:flex-col lg:items-center lg:text-center">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-leaf-400 text-sm font-extrabold text-brand-950 ring-4 ring-brand-950">{i + 1}</span>
+              <div>
+                <h3 class="font-bold !text-white">{st.title}</h3>
+                <p class="mt-1 line-clamp-2 text-sm leading-relaxed text-brand-200">{st.text}</p>
+              </div>
             </li>
           ))
         }
       </ol>
 
-      <div class="mt-10 rounded-3xl bg-white/5 p-6 ring-1 ring-white/10 sm:p-10">
-        <h3 class="heading-md !text-white">Recovery timeline</h3>
-        <ul class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="mt-10 rounded-2xl bg-white/5 p-5 ring-1 ring-white/10 sm:p-6">
+        <p class="text-xs font-bold uppercase tracking-widest text-leaf-300">Recovery</p>
+        <ol class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {
             t.recovery.map((r) => (
-              <li>
-                <p class="text-sm font-bold text-leaf-300">{r.when}</p>
-                <p class="mt-1.5 text-sm leading-relaxed text-brand-100">{r.text}</p>
+              <li class="border-l-2 border-leaf-400/60 pl-3">
+                <p class="text-sm font-bold text-white">{r.when}</p>
+                <p class="mt-0.5 line-clamp-2 text-xs leading-relaxed text-brand-200">{r.text}</p>
               </li>
             ))
           }
-        </ul>
+        </ol>
       </div>
     </div>
   </section>
 
   <!-- Doctor + related -->
-  <section class="py-10 sm:py-14">
+  <!-- <section class="py-10 sm:py-14">
     <div class="container-x grid gap-12 lg:grid-cols-2 lg:gap-16">
       <div class="flex flex-col items-start gap-6 sm:flex-row sm:items-center">
         <div class="relative h-32 w-32 shrink-0 overflow-hidden rounded-full bg-gradient-to-br from-brand-400 to-brand-700">
@@ -212,10 +281,10 @@ const pageLd = {
         )
       }
     </div>
-  </section>
+  </section> -->
 
   <Faq faqs={t.faqs} title={`${t.name}: *your questions answered*`} />
-  <CtaBanner />
+  <!-- <CtaBanner /> -->
 
   <script type="application/ld+json" set:html={JSON.stringify(pageLd)} />
 </Layout>
