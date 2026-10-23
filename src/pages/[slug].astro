@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
-import { CircleCheck, TriangleAlert, ArrowRight, CalendarCheck, Droplet, Zap, Sparkles, Target, Microscope, Ambulance, Flame, HeartPulse, Ribbon, Salad, Pill, Scissors, Clock, ClipboardCheck, Bath, CircleDot, Activity, Dna, Syringe, Stethoscope } from '@lucide/astro';
+import { CircleCheck, TriangleAlert, ArrowRight, CalendarCheck, Droplet, Zap, Microscope, Image as ImageIcon, Salad, Pill, Scissors, Clock, ClipboardCheck, Bath, CircleDot, Activity, Dna, Syringe, Stethoscope } from '@lucide/astro';
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
@@ -23,8 +23,6 @@ const info = treatments.find((x) => x.slug === t.slug);
 // (e.g. best-piles-treatment-bangalore.jpg) and it replaces the illustrated card automatically.
 const images = import.meta.glob<{ default: ImageMetadata }>('../assets/treatments/*.{jpg,jpeg,png,webp,avif}', { eager: true });
 const conditionImage = Object.entries(images).find(([path]) => path.split('/').pop()!.startsWith(`${t.slug}.`))?.[1].default;
-const icons = { piles: Droplet, fistula: Zap, fissure: Sparkles, hernia: Target, gallbladder: Microscope, appendix: Ambulance, reflux: Flame, constipation: HeartPulse, cancer: Ribbon } as const;
-const ConditionIcon = icons[(info?.icon ?? 'constipation') as keyof typeof icons] ?? HeartPulse;
 
 // Icon for each treatment option, picked from keywords in its title.
 const optionIcon = (title: string) => {
@@ -103,16 +101,14 @@ const pageLd = {
             loading="lazy"
           />
         ) : (
-          <div class="relative isolate flex aspect-[4/3] w-full flex-col justify-end overflow-hidden rounded-3xl bg-gradient-to-br from-brand-500 via-brand-600 to-brand-800 p-7 text-white shadow-xl shadow-brand-900/15">
-            <div class="absolute -right-16 -top-16 -z-10 h-72 w-72 rounded-full bg-white/10" aria-hidden="true" />
-            <div class="absolute right-10 top-10 -z-10 h-40 w-40 rounded-full bg-leaf-400/25 blur-2xl" aria-hidden="true" />
-            <ConditionIcon class="absolute right-8 top-8 h-24 w-24 text-white/85" stroke-width={1.25} />
-            <p class="text-xs font-bold uppercase tracking-widest text-brand-100">GutCare Clinics</p>
-            <p class="mt-1 text-2xl font-extrabold sm:text-3xl">{t.name}</p>
-            {info?.blurb && <p class="mt-2 max-w-sm text-sm text-brand-100">{info.blurb}</p>}
+          <div class="relative flex aspect-[4/3] w-full flex-col justify-end overflow-hidden rounded-3xl bg-slate-100 p-7 ring-1 ring-slate-200">
+            <ImageIcon class="absolute left-1/2 top-[38%] h-12 w-12 -translate-x-1/2 -translate-y-1/2 text-slate-300" stroke-width={1.25} aria-hidden="true" />
+            <p class="text-xs font-bold uppercase tracking-widest text-slate-400">GutCare Clinics</p>
+            <p class="mt-1 text-2xl font-extrabold text-slate-900 sm:text-3xl">{t.name}</p>
+            {info?.blurb && <p class="mt-2 max-w-sm text-sm text-slate-600">{info.blurb}</p>}
             {info?.tags && (
               <div class="mt-4 flex flex-wrap gap-2">
-                {info.tags.map((tag) => <span class="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold ring-1 ring-white/20">{tag}</span>)}
+                {info.tags.map((tag) => <span class="rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-200">{tag}</span>)}
               </div>
             )}
           </div>
