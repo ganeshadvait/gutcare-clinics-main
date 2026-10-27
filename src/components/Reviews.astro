@@ -39,6 +39,55 @@ const initials = (name: string) =>
       title="Years of discomfort. *Days to recover.*"
       subtitle="Real stories from patients who found relief after treatments at GutCare Clinics, Bangalore."
     />
+
+    {
+      stories.length > 0 && (
+        <ul class="mx-auto mt-10 grid max-w-5xl gap-5">
+          {stories.map((s) => (
+            <li class="grid gap-8 rounded-3xl bg-gradient-to-br from-brand-50 to-leaf-50/60 p-6 ring-2 ring-brand-200 sm:p-10 lg:grid-cols-[1.3fr_1fr] lg:items-center lg:gap-12">
+              <figure>
+                <Quote class="h-9 w-9 text-brand-300" />
+                <blockquote class="mt-4 text-lg font-medium leading-relaxed text-slate-800 sm:text-xl">“{s.quote}”</blockquote>
+                <figcaption class="mt-6 flex items-center gap-3">
+                  <span class="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-brand-400 to-brand-600 text-sm font-bold text-white">
+                    {initials(s.name)}
+                  </span>
+                  <span>
+                    <span class="block font-bold text-slate-900">{s.name}</span>
+                    <span class="block text-sm text-leaf-700">{s.condition}</span>
+                  </span>
+                </figcaption>
+              </figure>
+
+              <dl class="space-y-6 rounded-2xl bg-white p-6 shadow-lg shadow-brand-900/5">
+                <div>
+                  <dt class="flex items-baseline justify-between gap-3 text-sm text-slate-500">
+                    {s.before.label}
+                    <span class="text-xl font-extrabold text-slate-400">{formatDuration(s.before.days)}</span>
+                  </dt>
+                  <dd class="mt-2 h-3 overflow-hidden rounded-full bg-slate-100">
+                    <span class="story-bar block h-full w-full rounded-full bg-slate-300" />
+                  </dd>
+                </div>
+                <div>
+                  <dt class="flex items-baseline justify-between gap-3 text-sm font-semibold text-slate-900">
+                    <span class="inline-flex items-center gap-1.5"><HeartPulse class="h-4 w-4 text-leaf-500" /> {s.after.label}</span>
+                    <span class="text-xl font-extrabold text-leaf-600">{formatDuration(s.after.days)}</span>
+                  </dt>
+                  <dd class="mt-2 h-3 overflow-hidden rounded-full bg-slate-100">
+                    {/* Kept visible even when the true ratio would round to nothing. */}
+                    <span
+                      class="story-bar block h-full rounded-full bg-leaf-500"
+                      style={`width: ${Math.max(4, (s.after.days / s.before.days) * 100)}%`}
+                    />
+                  </dd>
+                </div>
+              </dl>
+            </li>
+          ))}
+        </ul>
+      )
+    }
   </div>
   {
     reviews.length > 0 && (
@@ -70,6 +119,7 @@ const initials = (name: string) =>
 
 <style>
   .story-bar {
+    transform-origin: left;
     animation: grow 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) both;
     animation-timeline: view();
     animation-range: entry 20% cover 45%;
