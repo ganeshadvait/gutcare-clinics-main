@@ -15,13 +15,7 @@ const initials = r.name
   .toUpperCase();
 ---
 
-<figure
-  class:list={[
-    'relative flex h-full flex-col rounded-3xl bg-white p-6 ring-1 ring-slate-100 transition hover:-translate-y-1 hover:shadow-xl hover:shadow-brand-900/5 hover:ring-brand-200',
-    r.sample && 'outline-2 outline-dashed outline-amber-300',
-  ]}
->
-  {r.sample && <span class="absolute -top-2.5 right-4 rounded-full bg-amber-300 px-2 py-0.5 text-[10px] font-extrabold uppercase text-amber-950">Sample · dev only</span>}
+<figure class="relative flex h-full flex-col rounded-3xl bg-white p-6 ring-2 ring-brand-200 transition hover:-translate-y-1 hover:shadow-xl hover:shadow-brand-900/5 hover:ring-brand-400">
   <div class="flex items-center justify-between gap-3">
     <div class="flex gap-0.5 text-amber-400" aria-label={`${r.rating} out of 5 stars`}>
       {Array.from({ length: 5 }, (_, i) => <Star class:list={['h-4 w-4', i < r.rating && 'fill-current']} />)}

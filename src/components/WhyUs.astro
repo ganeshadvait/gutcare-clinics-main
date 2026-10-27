@@ -1,6 +1,6 @@
 ---
 import SectionHeading from './SectionHeading.astro';
-import { X, Check, Zap, Ambulance, BadgeIndianRupee, Plane, HeartHandshake, ArrowRight } from '@lucide/astro';
+import { X, Check, ArrowRight } from '@lucide/astro';
 
 // Typical differences; individual results vary with the condition and procedure.
 const comparison = [
@@ -12,11 +12,11 @@ const comparison = [
 ];
 
 const reasons = [
-  { icon: Zap, title: 'USFDA-approved laser', text: 'Precise treatment with minimal bleeding.' },
-  { icon: Ambulance, title: '24x7 emergency', text: 'Round-the-clock support when you need it.' },
-  { icon: BadgeIndianRupee, title: 'Transparent pricing', text: 'Clear estimates and insurance help.' },
-  { icon: HeartHandshake, title: 'Personalised care', text: 'A plan built around your diagnosis.' },
-  { icon: Plane, title: 'Global patients', text: 'Trusted by patients from across India and abroad.' },
+  { icon: 'laser', title: 'USFDA-approved laser', text: 'Precise treatment with minimal bleeding.' },
+  { icon: 'emergency', title: '24x7 emergency', text: 'Round-the-clock support when you need it.' },
+  { icon: 'pricing', title: 'Transparent pricing', text: 'Clear estimates and insurance help.' },
+  { icon: 'personalised-care', title: 'Personalised care', text: 'A plan built around your diagnosis.' },
+  { icon: 'global-patients', title: 'Global patients', text: 'Trusted by patients from across India and abroad.' },
 ];
 ---
 
@@ -63,9 +63,17 @@ const reasons = [
     <!-- Reasons -->
     <ul class="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 border-t border-slate-200/80 pt-8 lg:grid-cols-5 lg:gap-6">
       {
-        reasons.map(({ icon: Icon, title, text }) => (
+        reasons.map(({ icon, title, text }) => (
           <li class="text-center last:col-span-2 lg:last:col-span-1">
-            <Icon class="mx-auto h-8 w-8 text-brand-500" stroke-width={1.6} />
+            <img
+              src={`/images/why-gutcare/${icon}.webp`}
+              alt=""
+              width="56"
+              height="56"
+              loading="lazy"
+              decoding="async"
+              class="mx-auto h-14 w-14 object-contain"
+            />
             <h3 class="mt-4 font-bold text-slate-900">{title}</h3>
             <p class="mt-1.5 text-sm leading-relaxed text-slate-600">{text}</p>
           </li>

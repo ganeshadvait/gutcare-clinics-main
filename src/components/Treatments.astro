@@ -1,37 +1,31 @@
 ---
 import SectionHeading from './SectionHeading.astro';
-import { Droplet, Zap, Sparkles, Target, Microscope, Ambulance, Flame, HeartPulse, Ribbon, ArrowRight } from '@lucide/astro';
+import { ArrowRight } from '@lucide/astro';
 import { treatments } from '../data/site';
-
-const icons = {
-  piles: Droplet,
-  fistula: Zap,
-  fissure: Sparkles,
-  hernia: Target,
-  gallbladder: Microscope,
-  appendix: Ambulance,
-  reflux: Flame,
-  constipation: HeartPulse,
-  cancer: Ribbon,
-} as const;
 ---
 
 <section id="treatments" class="py-10 sm:py-14">
   <div class="container-x">
     <SectionHeading
       eyebrow="Our Treatments"
-      title="Specialised care for every *gut & colorectal* concern"
-      subtitle="Minimally invasive, evidence-based procedures designed for less pain, smaller scars and a faster return to everyday life."
+      title="Expert care for *gut & colorectal* conditions"
+      subtitle="At GutCare Clinics, we assess your symptoms, explain your diagnosis and discuss suitable treatment options. Our services include non-surgical care, laser procedures and laparoscopic surgery, with guidance on preparation, recovery and follow-up."
     />
 
     <ul class="mt-10 grid gap-x-12 sm:grid-cols-2 lg:grid-cols-3">
       {
-        treatments.map((t) => {
-          const Icon = icons[t.icon as keyof typeof icons];
-          return (
+        treatments.map((t) => (
             <li class="border-t border-slate-200">
               <a href={`/${t.slug}/`} class="group flex gap-5 py-7">
-                <Icon class="mt-1 h-7 w-7 shrink-0 text-brand-500 transition group-hover:text-leaf-500" stroke-width={1.75} />
+                <img
+                  src={`/images/treatments/${t.icon}.webp`}
+                  alt=""
+                  width="48"
+                  height="48"
+                  loading="lazy"
+                  decoding="async"
+                  class="h-12 w-12 shrink-0 object-contain transition group-hover:scale-105"
+                />
                 <span class="flex-1">
                   <span class="flex items-center justify-between gap-3">
                     <span class="text-lg font-bold text-slate-900 transition group-hover:text-brand-600">{t.name}</span>
@@ -42,8 +36,7 @@ const icons = {
                 </span>
               </a>
             </li>
-          );
-        })
+        ))
       }
     </ul>
   </div>

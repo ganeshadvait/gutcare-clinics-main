@@ -94,10 +94,10 @@ const pageLd = {
         conditionImage ? (
           <Image
             src={conditionImage}
-            alt={t.name}
+            alt={`Illustration of ${t.name}`}
             widths={[400, 640, 900]}
-            sizes="(min-width: 1024px) 32rem, 90vw"
-            class="aspect-[4/3] w-full rounded-3xl object-cover shadow-xl shadow-brand-900/10"
+            sizes="(min-width: 1024px) 28rem, 90vw"
+            class="mx-auto aspect-square w-full max-w-md rounded-3xl object-cover ring-1 ring-slate-200"
             loading="lazy"
           />
         ) : (

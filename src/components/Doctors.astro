@@ -1,7 +1,7 @@
 ---
 import SectionHeading from './SectionHeading.astro';
 import { Image } from 'astro:assets';
-import { Zap, Target, Microscope, Ambulance, Ribbon, Flame, Phone, BadgeCheck, CalendarCheck } from '@lucide/astro';
+import { BadgeCheck, CalendarCheck, ArrowRight } from '@lucide/astro';
 import WhatsAppIcon from './WhatsAppIcon.astro';
 import { site, whatsappLink } from '../data/site';
 import gehlot from '../assets/doctors/dr-yuvraj-singh-gehlot.jpeg';
@@ -16,12 +16,12 @@ const stats = [
 ];
 
 const expertise = [
-  { icon: Zap, label: 'Laser piles, fistula & fissure' },
-  { icon: Target, label: 'Laparoscopic hernia repair' },
-  { icon: Microscope, label: 'Gall bladder surgery' },
-  { icon: Ambulance, label: 'Appendix & emergencies' },
-  { icon: Flame, label: 'Acid reflux / GERD' },
-  { icon: Ribbon, label: 'Colorectal cancer care' },
+  { icon: 'laser', label: 'Laser piles, fistula & fissure treatment' },
+  { icon: 'hernia', label: 'Laparoscopic hernia surgery' },
+  { icon: 'gallbladder', label: 'Gallbladder stone surgery' },
+  { icon: 'appendix', label: 'Appendicitis & emergency surgery' },
+  { icon: 'reflux', label: 'Acid reflux (GERD) treatment' },
+  { icon: 'cancer', label: 'Colorectal cancer surgery' },
 ];
 
 const team = [
@@ -35,8 +35,8 @@ const team = [
   <div class="container-x">
     <SectionHeading
       eyebrow="Our Doctors"
-      title="Meet the specialists *behind your care*"
-      subtitle="Senior, internationally trained surgeons with decades of experience in gut and colorectal care."
+      title="Meet our *colorectal & laparoscopic surgeons* in Bangalore"
+      subtitle="Senior surgeons with decades of experience in laser piles treatment, fistula and fissure care, and laparoscopic surgery for hernia, gallstones and appendicitis."
     />
 
     <div class="mt-10 grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
@@ -67,11 +67,12 @@ const team = [
       <!-- Profile -->
       <div>
         <p class="text-xs font-bold uppercase tracking-[0.14em] text-leaf-600">Lead Surgeon</p>
-        <h3 class="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">Dr. Yuvraj Singh Gehlot</h3>
-        <p class="mt-2 text-lg font-semibold text-brand-600">Senior GI, Laparoscopic & Colorectal Surgeon</p>
+        <h3 class="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">Meet Dr. Yuvraj Singh Gehlot</h3>
+        <p class="mt-2 text-lg font-semibold text-brand-600">Senior GI, Laparoscopic & Colorectal Surgeon in Bangalore</p>
         <p class="mt-4 max-w-xl leading-relaxed text-slate-600">
-          Leads the GutCare gastro and colorectal team, bringing three decades of healthcare experience to advanced,
-          minimally invasive treatment that helps patients recover faster with less pain.
+          Dr. Yuvraj Singh Gehlot leads the GutCare colorectal and laparoscopic team in Indiranagar, Bangalore. With three
+          decades of healthcare experience, he performs laser treatment for piles, fistula and fissures and laparoscopic
+          surgery for hernia, gallstones and appendicitis, helping patients recover faster with less pain.
         </p>
 
         <dl class="mt-8 grid grid-cols-3 divide-x divide-slate-200 border-y border-slate-200 py-5">
@@ -91,9 +92,17 @@ const team = [
         <p class="mt-8 text-xs font-bold uppercase tracking-[0.14em] text-slate-400">Areas of expertise</p>
         <ul class="mt-4 grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2">
           {
-            expertise.map(({ icon: Icon, label }) => (
+            expertise.map(({ icon, label }) => (
               <li class="flex items-center gap-3 text-sm font-medium text-slate-700">
-                <Icon class="h-5 w-5 shrink-0 text-brand-500" stroke-width={1.75} />
+                <img
+                  src={`/images/expertise/${icon}.webp`}
+                  alt=""
+                  width="20"
+                  height="20"
+                  loading="lazy"
+                  decoding="async"
+                  class="h-5 w-5 shrink-0 object-contain"
+                />
                 {label}
               </li>
             ))
@@ -104,7 +113,7 @@ const team = [
           <button type="button" class="btn btn-primary" data-open-form="doctor-gehlot">
             <CalendarCheck class="h-4 w-4" /> Book with Dr. Gehlot
           </button>
-          <a href={site.phoneHref} class="btn btn-ghost"><Phone class="h-4 w-4" /> {site.phone}</a>
+          <a href="/dr-yuvraj-singh-gehlot/" class="btn btn-ghost">View Doctor Profile <ArrowRight class="h-4 w-4" /></a>
         </div>
       </div>
     </div>
