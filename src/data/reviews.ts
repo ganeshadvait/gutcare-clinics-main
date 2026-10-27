@@ -15,7 +15,7 @@ export type Review = {
   url?: string;
   condition?: string;
   source?: string;
-  /** Placeholder shown only in local development. */
+  /** Placeholder shown until real reviews are added. */
   sample?: boolean;
 };
 
@@ -36,8 +36,8 @@ export const stories: Story[] = [
 // Business Profile) to show them in the review wall as well.
 export const manualReviews: Review[] = [];
 
-// Placeholder reviews so the review wall can be previewed during local development (`npm run dev`).
-// They are never included in production builds. Replace by adding real reviews above or configuring Google.
+// Placeholder reviews shown (including in production) until a real review is added above or Google is
+// configured; the first real review replaces all of them.
 export const sampleReviews: Review[] = [
   ['Piles / Hemorrhoids', 'Sample review text. The procedure was quick and the team explained every step clearly. I went home the same day.'],
   ['Anal Fistula', 'Sample review text. After years of discomfort the laser treatment finally gave me relief. Follow-up calls were very reassuring.'],
