@@ -7,6 +7,7 @@ import WhyUs from '../components/WhyUs.astro';
 import Doctors from '../components/Doctors.astro';
 import Clinic from '../components/Clinic.astro';
 import CtaBanner from '../components/CtaBanner.astro';
+import Faq from '../components/Faq.astro';
 import exterior from '../assets/clinic/exterior.png';
 
 const values = [
@@ -15,16 +16,39 @@ const values = [
   { icon: BadgeIndianRupee, title: 'Transparent & fair', text: 'Clear advice and cost estimates upfront, with help on insurance.' },
   { icon: Clock, title: 'Always available', text: 'A 24x7 emergency facility for when you need us most.' },
 ];
+
+const faqs = [
+  {
+    q: 'Where is GutCare Clinics located in Bangalore?',
+    a: 'GutCare Clinics is on 13th ‘H’ Main, HAL 2nd Stage, Indiranagar, Bengaluru 560008. It is easy to reach from nearby areas such as Domlur, Old Airport Road, CMH Road and Koramangala.',
+  },
+  {
+    q: 'What conditions do you treat?',
+    a: 'We treat piles, anal fissures, anal fistula, hernia, gallstones, appendicitis, acid reflux (GERD), constipation and colorectal cancer.',
+  },
+  {
+    q: 'Do you provide emergency care?',
+    a: 'Yes. GutCare has a 24x7 emergency facility.',
+  },
+  {
+    q: 'Do you help with insurance and cost estimates?',
+    a: 'Yes. We share clear cost estimates upfront and assist with insurance.',
+  },
+  {
+    q: 'Do you treat international patients?',
+    a: 'Yes. We help with treatment planning, cost estimates and stay for patients from other cities and countries.',
+  },
+];
 ---
 
 <Layout
-  title="About GutCare Clinics | Gut & Colorectal Care in Bangalore"
-  description="GutCare Clinics in Indiranagar, Bangalore offers expert colorectal, laser and laparoscopic care for piles, fistula, hernia, gallstones and digestive disorders."
+  title="About GutCare Clinics | Colorectal & Laser Surgery Bangalore"
+  description="Trusted colorectal & laparoscopic clinic in Indiranagar, Bangalore. 25,000+ surgeries, laser care for piles, fistula, hernia. 24x7 emergency."
 >
   <PageHero
     eyebrow="About GutCare"
-    title="Expert gut care, *close to home*"
-    subtitle="GutCare Clinics brings experienced surgeons, accurate diagnosis and modern minimally invasive treatment together under one roof in Indiranagar, Bengaluru."
+    title="About GutCare Clinics: *Expert Gut & Colorectal Care* in Bangalore"
+    subtitle="GutCare Clinics is a trusted colorectal and laparoscopic surgery hospital in Indiranagar, Bangalore. Our experienced surgeons combine accurate diagnosis with modern minimally invasive treatment under one roof, with comfort, privacy and dignity at every step."
     breadcrumbs={[{ label: 'About' }]}
     source="about-page"
     image={exterior}
@@ -45,16 +69,14 @@ const values = [
       </div>
       <div class="space-y-4 text-base leading-relaxed text-slate-600 sm:text-lg">
         <p>
-          GutCare Clinics is a specialist centre for digestive, colorectal and laparoscopic care, led by senior GI and
-          colorectal surgeon Dr. Yuvraj Singh Gehlot.
+          GutCare Clinics is a colorectal hospital in Indiranagar, Bangalore, providing advanced laser treatment for piles,
+          fistula, fissures, hernia and gallbladder stones, and for laparoscopic surgeries. We also treat acid reflux,
+          constipation and other digestive disorders.
         </p>
         <p>
-          We treat conditions many people find hard to talk about, such as piles, fissures and fistula, along with hernia,
-          gallstones, appendicitis, acid reflux, constipation and colorectal cancer.
-        </p>
-        <p>
-          Wherever it is right for you, we use advanced laser and laparoscopic techniques, so treatment means less pain,
-          smaller scars and a faster return to everyday life.
+          Almost everyone has digestive problems at some point. We provide expert care across digestive disorders, from
+          diagnosis to treatment, with a 24x7 emergency facility. Our doctors have international experience, and we have
+          treated patients from different countries.
         </p>
       </div>
     </div>
@@ -81,5 +103,6 @@ const values = [
   <WhyUs />
   <Doctors />
   <Clinic />
+  <Faq faqs={faqs} />
   <CtaBanner />
 </Layout>

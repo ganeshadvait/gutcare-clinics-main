@@ -24,6 +24,20 @@ const approach = [
   'Clear explanations and transparent costs',
 ];
 
+// Doctor-page wording for each condition; links and order come from the shared treatments list.
+const conditionText: Record<string, { name: string; text: string }> = {
+  piles: { name: 'Piles (hemorrhoids)', text: 'Laser treatment, same-day discharge' },
+  fistula: { name: 'Anal fistula', text: 'Laser treatment with USFDA-approved laser' },
+  fissure: { name: 'Anal fissures', text: 'Laser treatment with minimal discomfort' },
+  hernia: { name: 'Hernia', text: 'Laparoscopic surgery, faster recovery' },
+  gallbladder: { name: 'Gallstones', text: 'Laparoscopic surgery' },
+  appendix: { name: 'Appendicitis', text: 'Laparoscopic surgery and 24x7 emergency care' },
+  reflux: { name: 'Acid reflux (GERD)', text: 'Diagnosis, with surgery if needed' },
+  constipation: { name: 'Constipation', text: 'Personalised care' },
+  cancer: { name: 'Colorectal cancer', text: 'Surgery and treatment planning' },
+};
+const conditions = treatments.map((t) => ({ slug: t.slug, ...conditionText[t.icon] }));
+
 const team = [
   { name: 'Dr. Prajesh Bhuta', creds: 'MBBS, MS (General Surgery), FRCS', photo: bhuta },
   { name: 'Dr. Paresh A. Jain', creds: 'MBBS, MS, FRCS (Edinburgh, UK)', photo: jain },
@@ -35,7 +49,7 @@ const personLd = {
   '@type': 'Physician',
   name: 'Dr. Yuvraj Singh Gehlot',
   medicalSpecialty: ['Surgical', 'Gastroenterologic'],
-  description: 'Senior GI, laparoscopic and colorectal surgeon at GutCare Clinics, Bengaluru.',
+  description: 'Senior GI, laparoscopic and colorectal surgeon at GutCare Clinics, Indiranagar, Bangalore.',
   worksFor: { '@type': 'MedicalClinic', name: 'GutCare Clinics' },
   hasCredential: qualifications.map((q) => q.title),
 };
@@ -43,12 +57,12 @@ const personLd = {
 
 <Layout
   title="Dr. Yuvraj Singh Gehlot | GI & Colorectal Surgeon Bangalore"
-  description="Dr. Yuvraj Singh Gehlot, MBBS, MS, F.I.S.C.P. is a senior GI, laparoscopic and colorectal surgeon at GutCare Clinics, Bangalore, with 30 years in healthcare."
+  description="Dr. Yuvraj Singh Gehlot, MBBS, MS, F.I.S.C.P., is a senior colorectal & laparoscopic surgeon in Indiranagar, Bangalore. 25,000+ procedures."
 >
   <PageHero
     eyebrow="Lead Surgeon"
-    title="Meet *Dr. Yuvraj Singh Gehlot*"
-    subtitle="Senior GI, laparoscopic and colorectal surgeon leading the GutCare team, with 30 years in healthcare and 25 years of surgical practice."
+    title="*Dr. Yuvraj Singh Gehlot:* Senior GI, Laparoscopic & Colorectal Surgeon in Bangalore"
+    subtitle="Senior surgeon leading the GutCare team in Bangalore, with 30 years in healthcare and 25 years of surgical practice in GI, laparoscopic and colorectal care."
     breadcrumbs={[{ label: 'Our Doctor' }]}
     source="doctor-page"
     image={doctor}
@@ -69,16 +83,17 @@ const personLd = {
         <h2 class="heading-xl">About <span class="highlight">Dr. Gehlot</span></h2>
         <div class="mt-6 space-y-4 text-base leading-relaxed text-slate-600 sm:text-lg">
           <p>
-            Dr. Yuvraj Singh Gehlot is a senior GI, laparoscopic and colorectal surgeon in Bengaluru and leads the gastro
-            and colorectal team at GutCare Clinics, Indiranagar.
+            Dr. Yuvraj Singh Gehlot is a senior GI, laparoscopic and colorectal surgeon in Bangalore. He leads the gastro
+            and colorectal team at GutCare Clinics, Bangalore.
           </p>
           <p>
-            Over 30 years in healthcare and 25 years of surgical practice, Dr. Gehlot has performed more than 25,000 procedures,
-            treating conditions such as piles, fissures, fistula, hernia, gallstones, appendicitis and colon cancer.
+            Over 30 years in healthcare, including 25 years of surgical practice, he has performed more than 25,000
+            procedures. These include treatment for piles, fissures, fistula, hernia, gallstones, appendicitis and
+            colorectal cancer.
           </p>
           <p>
-            The focus is on advanced, minimally invasive treatment, so patients experience less pain, smaller scars and a
-            quicker return to everyday life.
+            His focus is advanced, minimally invasive treatment, so patients have less pain, smaller scars and a quicker
+            return to everyday life.
           </p>
         </div>
 
@@ -117,15 +132,15 @@ const personLd = {
   <!-- Expertise -->
   <section class="bg-brand-50/50 py-10 sm:py-14">
     <div class="container-x">
-      <SectionHeading eyebrow="Areas of expertise" title="Conditions *Dr. Gehlot treats*" />
+      <SectionHeading eyebrow="Areas of expertise" title="Conditions *Dr. Gehlot treats* in Bangalore" />
       <ul class="mx-auto mt-8 grid max-w-5xl gap-x-12 sm:grid-cols-2 lg:grid-cols-3">
         {
-          treatments.map((t) => (
+          conditions.map((t) => (
             <li class="border-t border-slate-200">
               <a href={`/${t.slug}/`} class="group flex items-center justify-between gap-3 py-5">
                 <span>
                   <span class="block font-semibold text-slate-900 group-hover:text-brand-600">{t.name}</span>
-                  <span class="mt-0.5 block text-xs text-slate-500">{t.tags.join(' · ')}</span>
+                  <span class="mt-0.5 block text-xs text-slate-500">{t.text}</span>
                 </span>
                 <ArrowRight class="h-4 w-4 shrink-0 text-brand-500 transition group-hover:translate-x-1" />
               </a>
