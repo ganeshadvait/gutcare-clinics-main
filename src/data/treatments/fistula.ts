@@ -3,7 +3,7 @@ import type { TreatmentContent } from './types';
 export const content: TreatmentContent = {
   slug: 'fistula-treatment-in-bangalore',
   name: 'Anal Fistula',
-  metaTitle: 'Anal Fistula Treatment in Bangalore | GutCare Clinics',
+  metaTitle: 'Anal Fistula Treatment in Bangalore',
   metaDescription:
     'Anal fistula treatment in Indiranagar, Bangalore: laser (FiLaC), LIFT, seton and fistulotomy, chosen to protect bowel control. Most laser cases are day care.',
   heroTitle: 'Sphincter-saving *laser fistula treatment* in Bangalore',
@@ -17,6 +17,18 @@ export const content: TreatmentContent = {
   ],
   footnote:
     '*For most laser procedures on simple fistulas. Complex fistulas may need staged treatment, a longer stay or a longer recovery, and your surgeon will discuss this with you.',
+  imageAlt: 'Illustration of an anal fistula, a tunnel between the anal canal and the skin near the anus',
+  headings: {
+    heroEyebrow: 'Anal fistula treatment · Bangalore',
+    understanding: 'What is an *anal fistula*?',
+    symptoms: 'Anal fistula symptoms',
+    causes: 'What causes an anal fistula?',
+    whenToSeeDoctor: 'When to see a fistula doctor',
+    optionsEyebrow: 'Anal fistula treatment options',
+    options: 'How we treat *anal fistula*',
+    recovery: 'Recovery after fistula treatment',
+    faq: 'Anal fistula treatment in Bangalore: *your questions answered*',
+  },
   overview: [
     'An anal fistula is a small tunnel that forms between the inside of the anal canal and the skin near the anus. It usually develops after an anal abscess, a pus-filled infection of the glands inside the anus, has burst or been drained.',
     'A fistula often causes a recurring cycle of pain, swelling and discharge. Antibiotics may calm an infection, but they do not close the tunnel, so most fistulas need a procedure to heal.',
@@ -33,7 +45,7 @@ export const content: TreatmentContent = {
   causes: [
     'A previous anal abscess, which is the most common cause',
     'Blocked and infected anal glands',
-    "Crohn's disease or other inflammatory bowel disease",
+    'Crohn\'s disease or other inflammatory bowel disease',
     'Tuberculosis or other infections',
     'Previous surgery or injury in the anal area',
   ],
@@ -58,65 +70,47 @@ export const content: TreatmentContent = {
   treatments: [
     {
       title: 'Abscess drainage and medication',
-      text: 'If there is an active abscess, it is drained first and antibiotics, pain relief and warm sitz baths help settle the infection. This prepares the area for definitive treatment.',
+      text: 'An active abscess is drained first, with antibiotics and sitz baths.',
       tag: 'First step',
     },
     {
       title: 'Laser fistula closure (FiLaC)',
-      text: 'A thin laser fibre is passed into the tract to seal it from the inside, without cutting the sphincter muscle. Most patients go home the same day and have relatively little pain.',
+      text: 'A laser fibre seals the tract from inside without cutting the sphincter muscle.',
       tag: 'Minimally invasive',
     },
     {
       title: 'LIFT procedure',
-      text: 'Ligation of the intersphincteric fistula tract (LIFT) closes the tunnel through a small cut between the sphincter muscles, leaving them intact. It is often used for complex fistulas and may be combined with laser.',
+      text: 'Closes the tract between the sphincter muscles and leaves them intact.',
       tag: 'Sphincter-saving',
     },
     {
       title: 'Seton treatment',
-      text: 'A soft surgical thread is placed through the tract to let it drain and to control infection over several weeks. It is often a first stage before final repair of a complex fistula.',
+      text: 'A soft thread drains the tract and controls infection before final repair.',
       tag: 'Staged',
     },
     {
       title: 'Fistulotomy or fistulectomy',
-      text: 'The tract is opened up or removed so it can heal from the base. This is mainly suitable for simple, low fistulas where very little muscle is involved.',
+      text: 'The tract is opened or removed. Suited to simple, low fistulas.',
       tag: 'Surgical',
     },
   ],
   procedureSteps: [
-    {
-      title: 'Consultation and mapping',
-      text: 'Your surgeon examines the area and, where needed, arranges an MRI or ultrasound scan to see the exact path of the fistula.',
-    },
+    { title: 'Consultation and mapping', text: 'Your surgeon examines you and may arrange an MRI to map the fistula.' },
     {
       title: 'Choosing the approach',
-      text: 'Based on the type of fistula, your surgeon explains which procedure is suitable, whether it can be done in one stage and what recovery to expect.',
+      text: 'You are told which procedure suits your fistula and what recovery to expect.',
     },
-    {
-      title: 'The procedure',
-      text: 'Under anaesthesia, the tract is cleaned and treated with laser, LIFT, a seton or another technique. Laser procedures usually take under an hour.',
-    },
+    { title: 'The procedure', text: 'Under anaesthesia: laser, LIFT or a seton. Laser usually takes under an hour.' },
     {
       title: 'Discharge and follow-up',
-      text: 'Most patients having laser treatment go home the same day with wound-care instructions. Regular follow-up visits check that the tract is healing well.',
+      text: 'Most laser patients go home the same day. Follow-up visits check healing.',
     },
   ],
   recovery: [
-    {
-      when: 'First few days',
-      text: 'Some discomfort and light discharge are expected. Pain relief, warm sitz baths and keeping the area clean help.',
-    },
-    {
-      when: '1–2 weeks',
-      text: 'Most people return to desk work and light daily activities within this period after laser treatment.',
-    },
-    {
-      when: '4–8 weeks',
-      text: 'The tract usually heals over several weeks. Discharge should gradually reduce, and your surgeon will check progress at follow-up.',
-    },
-    {
-      when: 'If a seton is placed',
-      text: 'The thread stays in for some weeks and is usually comfortable. A second procedure is planned once the infection has settled.',
-    },
+    { when: 'First few days', text: 'Some discomfort and light discharge are expected. Sitz baths help.' },
+    { when: '1–2 weeks', text: 'Most return to desk work after laser treatment.' },
+    { when: '4–8 weeks', text: 'The tract heals over weeks and discharge gradually reduces.' },
+    { when: 'If a seton is placed', text: 'The thread stays for some weeks. A final repair is planned later.' },
   ],
   whenToSeeDoctor: [
     'Severe, throbbing pain and swelling near the anus',
@@ -149,6 +143,10 @@ export const content: TreatmentContent = {
     {
       q: 'What is a seton and how long does it stay?',
       a: 'A seton is a soft thread placed through the fistula to keep it draining. It usually stays for several weeks until the infection settles, after which a final repair is planned.',
+    },
+    {
+      q: 'How much does fistula treatment cost in Bangalore?',
+      a: 'The cost depends on the type of fistula, the procedure advised and your insurance cover. We give a written estimate after consultation and help with insurance. Call +91 84315 50550 for a personalised estimate.',
     },
   ],
   related: ['best-piles-treatment-bangalore', 'anal-fissures-surgery-treatment', 'colorectal-cancer-treatment'],

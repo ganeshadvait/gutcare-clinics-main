@@ -3,10 +3,10 @@ import type { TreatmentContent } from './types';
 export const content: TreatmentContent = {
   slug: 'hernia-treatment-hospital-in-bangalore',
   name: 'Hernia',
-  metaTitle: 'Laparoscopic Hernia Surgery in Bangalore | GutCare Clinics',
+  metaTitle: 'Laparoscopic Hernia Surgery in Bangalore',
   metaDescription:
     'Hernia treatment in Indiranagar, Bangalore. Keyhole (laparoscopic) and open repair for inguinal, umbilical, incisional and other hernias at GutCare Clinics.',
-  heroTitle: 'Expert *laparoscopic hernia* repair in Bangalore',
+  heroTitle: 'Expert *laparoscopic hernia surgery* in Bangalore',
   heroSubtitle:
     'A hernia rarely goes away by itself. Our surgical team assesses your hernia carefully and recommends the safest repair for you, most often through small keyhole incisions.',
   quickFacts: [
@@ -17,6 +17,18 @@ export const content: TreatmentContent = {
   ],
   footnote:
     '*Typical for an uncomplicated, planned repair. The type of anaesthesia, length of stay and recovery depend on the kind and size of hernia, the approach used and your overall health. Your surgeon will discuss what to expect in your case.',
+  imageAlt: 'Illustration of a hernia pushing through a weak spot in the abdominal wall',
+  headings: {
+    heroEyebrow: 'Hernia surgery · Bangalore',
+    understanding: 'What is a *hernia*?',
+    symptoms: 'Hernia symptoms',
+    causes: 'What causes a hernia?',
+    whenToSeeDoctor: 'When to see a hernia doctor',
+    optionsEyebrow: 'Hernia treatment options',
+    options: 'How we treat *hernia*',
+    recovery: 'Recovery after hernia surgery',
+    faq: 'Hernia surgery in Bangalore: *your questions answered*',
+  },
   overview: [
     'A hernia happens when part of an organ or fatty tissue pushes through a weak spot in the muscle wall that normally holds it in place. It usually shows up as a soft bulge, most often in the groin or around the belly button, that may be more noticeable when you stand, cough or strain.',
     'Hernias do not heal on their own, and medicines or exercises cannot close the weak spot. Many slowly get bigger over time, and some can become trapped (incarcerated) or lose their blood supply (strangulated), which is an emergency. For this reason, most hernias are best treated with a planned surgical repair.',
@@ -67,58 +79,40 @@ export const content: TreatmentContent = {
   treatments: [
     {
       title: 'Watchful waiting',
-      text: 'For a small hernia that causes no symptoms, especially in someone with high surgical risk, your surgeon may advise regular review instead of immediate surgery. You will be told which warning signs need urgent attention.',
+      text: 'Small, painless hernias may be watched, with warning signs explained.',
       tag: 'Selected cases',
     },
     {
-      title: 'Laparoscopic (keyhole) hernia repair',
-      text: 'The hernia is repaired through a few small cuts using a camera and fine instruments. The weak area is usually reinforced with a mesh. Most patients have less pain, small scars and a faster recovery.',
+      title: 'Laparoscopic hernia repair',
+      text: 'Keyhole repair, usually with a mesh: small scars and faster recovery.',
       tag: 'Most common',
     },
-    {
-      title: 'Open hernia repair',
-      text: 'The hernia is repaired through a single cut over the bulge, and the weak area is closed and strengthened, often with a mesh. It may be preferred for certain hernias or when keyhole surgery is not suitable.',
-    },
+    { title: 'Open hernia repair', text: 'Repair through one cut over the bulge, often with a mesh.' },
     {
       title: 'Emergency hernia surgery',
-      text: 'If a hernia becomes trapped or strangulated, it needs urgent surgery to release it and protect the bowel. Our 24x7 emergency facility can assess and treat such cases promptly.',
+      text: 'A trapped hernia needs urgent surgery. Our 24x7 facility can treat it promptly.',
       tag: 'Urgent',
     },
   ],
   procedureSteps: [
     {
       title: 'Assessment and planning',
-      text: 'Your surgeon examines the hernia, may arrange an ultrasound or other scan, and runs routine pre-operative tests. You will discuss the approach, the anaesthesia and how to prepare, including fasting instructions.',
+      text: 'Examination, an ultrasound if needed, and routine pre-operative tests.',
     },
     {
       title: 'Anaesthesia',
-      text: 'On the day, you meet the anaesthesia team. Laparoscopic repair is usually done under general anaesthesia, so you are asleep and comfortable throughout. Some open repairs can be done under spinal or local anaesthesia.',
+      text: 'Keyhole repair is usually under general anaesthesia. Some open repairs use spinal.',
     },
-    {
-      title: 'The repair',
-      text: 'The surgeon gently returns the bulging tissue to its place and closes and strengthens the weak spot, usually with a mesh. Most planned repairs take around one to two hours, depending on the type and size of the hernia.',
-    },
-    {
-      title: 'Recovery and discharge',
-      text: 'You are monitored as you wake up, given pain relief and encouraged to walk soon after. Many patients go home the same day or the next day with clear instructions on wound care and activity.',
-    },
+    { title: 'The repair', text: 'The tissue is returned and the weak spot strengthened, usually with a mesh.' },
+    { title: 'Recovery and discharge', text: 'Many go home the same or next day with wound-care advice.' },
   ],
   recovery: [
-    {
-      when: 'First few days',
-      text: 'Some soreness and swelling around the cuts is normal and is usually well controlled with prescribed pain relief. Short, gentle walks help recovery.',
-    },
-    {
-      when: '1–2 weeks',
-      text: 'Most people return to light daily activities and desk work. Avoid lifting anything heavy and follow your wound-care advice.',
-    },
-    {
-      when: '4–6 weeks',
-      text: 'Most patients can gradually return to heavier lifting, the gym and sports, as advised by your surgeon at follow-up.',
-    },
+    { when: 'First few days', text: 'Soreness and swelling near the cuts is normal. Short walks help.' },
+    { when: '1–2 weeks', text: 'Most return to desk work. Avoid lifting anything heavy.' },
+    { when: '4–6 weeks', text: 'Most return to heavier lifting and sports, as advised at follow-up.' },
     {
       when: 'Long term',
-      text: 'Keeping a healthy weight, treating constipation or a persistent cough, and lifting correctly help lower the chance of a hernia coming back.',
+      text: 'A healthy weight and treating constipation or a cough lower the chance of recurrence.',
     },
   ],
   whenToSeeDoctor: [
@@ -152,6 +146,10 @@ export const content: TreatmentContent = {
     {
       q: 'Is hernia surgery covered by insurance?',
       a: 'Hernia repair is commonly covered by health insurance policies, subject to your policy terms. Our team provides transparent pricing and helps you with the insurance paperwork before your procedure.',
+    },
+    {
+      q: 'How much does hernia surgery cost in Bangalore?',
+      a: 'The cost depends on the type and size of the hernia, the approach used and your insurance cover. We give a written estimate after consultation and help with insurance. Call +91 84315 50550 for a personalised estimate.',
     },
   ],
   related: ['gallstones', 'appendix', 'acid-reflux-gerd-treatment'],

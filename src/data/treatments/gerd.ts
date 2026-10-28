@@ -3,22 +3,36 @@ import type { TreatmentContent } from './types';
 export const content: TreatmentContent = {
   slug: 'acid-reflux-gerd-treatment',
   name: 'Acid Reflux / GERD',
-  metaTitle: 'Acid Reflux & GERD Treatment in Bangalore | GutCare',
+  metaTitle: 'Acid Reflux & GERD Treatment in Bangalore',
   metaDescription:
     'Persistent heartburn or acid reflux? GutCare Clinics, Indiranagar, offers GERD tests, lifestyle and medical care, and laparoscopic surgery for selected cases.',
-  heroTitle: 'Lasting relief from *acid reflux and heartburn*',
+  heroTitle: 'Lasting relief from *acid reflux and heartburn* in Bangalore',
   heroSubtitle:
-    'Most people with GERD improve with simple lifestyle changes and the right medicines. When they do not, we investigate carefully and discuss every option, including keyhole surgery for selected patients.',
+    'Most people with GERD improve with lifestyle changes and the right medicines. When they do not, we investigate carefully and discuss every option, including keyhole surgery for selected patients.',
   quickFacts: [
     { label: 'First step', value: 'Lifestyle changes & medicines' },
     { label: 'Tests', value: 'Endoscopy, pH study if needed' },
     { label: 'Surgery if needed', value: 'Laparoscopic fundoplication' },
     { label: 'Recovery after surgery', value: 'Usually 1–2 weeks*' },
   ],
+  footnote:
+    '*Recovery time applies to patients who need laparoscopic surgery and varies from person to person. Most patients with GERD are treated without surgery.',
+  imageAlt: 'Illustration of acid reflux (GERD), with stomach acid flowing back into the food pipe',
+  headings: {
+    heroEyebrow: 'Acid reflux & GERD treatment · Bangalore',
+    understanding: 'What is *acid reflux (GERD)*?',
+    symptoms: 'GERD symptoms',
+    causes: 'What causes acid reflux?',
+    whenToSeeDoctor: 'When to see a doctor for GERD',
+    optionsEyebrow: 'GERD treatment options',
+    options: 'How we treat *acid reflux and GERD*',
+    recovery: 'Recovery and outlook',
+    faq: 'GERD and acid reflux treatment in Bangalore: *your questions answered*',
+  },
   overview: [
-    "Gastroesophageal reflux disease (GERD) happens when acid and stomach contents flow back up into the food pipe (oesophagus). The valve at the lower end of the food pipe, called the lower oesophageal sphincter, normally stops this, but in GERD it relaxes at the wrong time or becomes weak.",
-    "Occasional heartburn after a heavy meal is very common and is not usually a concern. Reflux that happens about twice a week or more, or that is troublesome enough to affect your sleep, eating or work, is generally called GERD and is worth having checked.",
-    "The good news is that most people get good control with changes to eating habits and medicines that reduce acid. Tests are used to confirm the diagnosis and check for complications, and surgery is considered only for selected patients whose symptoms persist despite proper treatment.",
+    'Gastroesophageal reflux disease (GERD) happens when acid and stomach contents flow back up into the food pipe (oesophagus). The valve at the lower end of the food pipe, called the lower oesophageal sphincter, normally stops this, but in GERD it relaxes at the wrong time or becomes weak.',
+    'Occasional heartburn after a heavy meal is very common and is not usually a concern. Reflux that happens about twice a week or more, or that is troublesome enough to affect your sleep, eating or work, is generally called GERD and is worth having checked.',
+    'The good news is that most people get good control with changes to eating habits and medicines that reduce acid. Tests are used to confirm the diagnosis and check for complications, and surgery is considered only for selected patients whose symptoms persist despite proper treatment.',
   ],
   symptoms: [
     'A burning feeling in the chest (heartburn), often after meals or when lying down',
@@ -54,59 +68,38 @@ export const content: TreatmentContent = {
   treatments: [
     {
       title: 'Lifestyle and diet changes',
-      text: 'Smaller meals, avoiding food two to three hours before bed, raising the head end of the bed, reducing weight if needed, and cutting down on smoking, alcohol and personal trigger foods. These steps help many patients significantly.',
+      text: 'Smaller meals, no food before bed, a raised bed head and fewer trigger foods.',
       tag: 'First step',
     },
     {
       title: 'Medicines',
-      text: 'Acid-reducing medicines such as proton pump inhibitors (PPIs) and H2 blockers, along with antacids or other medicines when appropriate. Your doctor will guide the dose and duration and review whether long-term use is needed.',
+      text: 'Acid-reducing medicines such as PPIs and H2 blockers, reviewed regularly.',
       tag: 'Most patients',
     },
-    {
-      title: 'Tests to confirm and assess',
-      text: 'If symptoms persist, or there are warning signs, an upper GI endoscopy is usually advised. A 24-hour pH/impedance study or oesophageal manometry may be used to confirm reflux and check how the food pipe works, particularly before any surgery.',
-    },
+    { title: 'Tests to confirm and assess', text: 'Endoscopy, and a pH study or manometry if needed, confirm reflux.' },
     {
       title: 'Laparoscopic fundoplication',
-      text: 'For selected patients whose reflux is confirmed on tests and is not controlled by medicines, or who have a large hiatus hernia, the top of the stomach can be wrapped around the lower food pipe to strengthen the valve. This is done through small keyhole cuts under general anaesthesia.',
+      text: 'For selected patients: the top of the stomach is wrapped around the lower food pipe.',
       tag: 'Selected cases',
     },
   ],
   procedureSteps: [
-    {
-      title: 'Consultation',
-      text: 'We listen to your symptoms, review your diet, habits and medicines, and check for any warning signs that need prompt investigation.',
-    },
-    {
-      title: 'Tests',
-      text: 'Depending on your symptoms, you may be advised an upper GI endoscopy and, in some cases, pH monitoring or manometry to confirm the diagnosis.',
-    },
+    { title: 'Consultation', text: 'We review your symptoms, diet and medicines and check for warning signs.' },
+    { title: 'Tests', text: 'An endoscopy and, in some cases, pH monitoring or manometry confirm GERD.' },
     {
       title: 'Personalised plan',
-      text: 'Most patients start with lifestyle changes and medicines. If surgery is worth considering, the benefits, risks and alternatives are explained clearly so you can decide with confidence.',
+      text: 'Most start with lifestyle changes and medicines. Surgery is explained clearly.',
     },
-    {
-      title: 'Follow-up',
-      text: 'We review how you are doing, adjust or step down medicines where possible, and plan further care if symptoms continue.',
-    },
+    { title: 'Follow-up', text: 'We review progress and step-down medicines where possible.' },
   ],
   recovery: [
     {
       when: 'First 2–4 weeks of treatment',
-      text: 'With lifestyle changes and medicines, many patients notice their heartburn easing within a few weeks.',
+      text: 'With lifestyle changes and medicines, heartburn often eases within weeks.',
     },
-    {
-      when: 'After surgery: first few days',
-      text: 'Most patients go home within one to two days. A liquid and then soft diet is usually advised for the first couple of weeks while swallowing settles.',
-    },
-    {
-      when: 'After surgery: 1–2 weeks',
-      text: 'Most people return to desk work and light daily activities, avoiding heavy lifting for a few weeks.',
-    },
-    {
-      when: 'Long term',
-      text: 'Keeping healthy eating habits and a healthy weight helps keep reflux under control. Regular follow-up is advised if you have Barrett’s oesophagus or other complications.',
-    },
+    { when: 'After surgery: first few days', text: 'Most go home in one to two days on a liquid, then soft diet.' },
+    { when: 'After surgery: 1–2 weeks', text: 'Most return to desk work. Avoid heavy lifting for a few weeks.' },
+    { when: 'Long term', text: 'Healthy eating habits and a healthy weight keep reflux under control.' },
   ],
   whenToSeeDoctor: [
     'Difficulty or pain when swallowing, or food getting stuck',
@@ -140,8 +133,10 @@ export const content: TreatmentContent = {
       q: 'What is recovery like after laparoscopic fundoplication?',
       a: 'Most patients stay in hospital for one to two days and follow a soft diet for a few weeks. Temporary difficulty swallowing or bloating is common early on and usually settles with time.',
     },
+    {
+      q: 'How much does GERD treatment cost in Bangalore?',
+      a: 'The cost depends on the tests needed, whether you need medicines alone or surgery, and your insurance cover. We give a written estimate after consultation and help with insurance. Call +91 84315 50550 for a personalised estimate.',
+    },
   ],
   related: ['hernia-treatment-hospital-in-bangalore', 'gallstones', 'treatment-for-constipation'],
-  footnote:
-    '*Recovery time applies to patients who need laparoscopic surgery and varies from person to person. Most patients with GERD are treated without surgery.',
 };

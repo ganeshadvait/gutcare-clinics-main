@@ -3,10 +3,10 @@ import type { TreatmentContent } from './types';
 export const content: TreatmentContent = {
   slug: 'treatment-for-constipation',
   name: 'Constipation',
-  metaTitle: 'Constipation Treatment in Bangalore | GutCare Clinics',
+  metaTitle: 'Constipation Treatment in Bangalore',
   metaDescription:
     'Long-term constipation or straining? GutCare Clinics, Indiranagar, finds the cause and offers diet, medical and pelvic floor care, with surgery if needed.',
-  heroTitle: 'Gentle, effective care for *long-term constipation*',
+  heroTitle: 'Gentle, *effective constipation treatment* in Bangalore',
   heroSubtitle:
     'Constipation is common and very treatable. We look for the cause behind your symptoms and start with simple, practical steps, keeping procedures for the few patients who truly need them.',
   quickFacts: [
@@ -15,6 +15,20 @@ export const content: TreatmentContent = {
     { label: 'Medicines', value: 'Short, guided courses' },
     { label: 'Surgery', value: 'Rarely needed*' },
   ],
+  footnote:
+    '*Surgery is considered only for specific conditions, such as rectocele, rectal prolapse or severe slow-transit constipation, after other treatments and tests. Most patients improve without it.',
+  imageAlt: 'Illustration of constipation in the large bowel and rectum',
+  headings: {
+    heroEyebrow: 'Constipation treatment · Bangalore',
+    understanding: 'What is *constipation*?',
+    symptoms: 'Constipation symptoms',
+    causes: 'What causes constipation?',
+    whenToSeeDoctor: 'When to see a doctor for constipation',
+    optionsEyebrow: 'Constipation treatment options',
+    options: 'How we treat *constipation*',
+    recovery: 'Recovery and outlook',
+    faq: 'Constipation treatment in Bangalore: *your questions answered*',
+  },
   overview: [
     'Constipation means passing stools less often than usual, or having hard, dry stools that are difficult or painful to pass. Many people also feel they have not fully emptied their bowels, or need to strain a lot.',
     'Short spells of constipation are common and usually settle with more fibre, water and activity. When it lasts for several weeks or months, it is called chronic constipation and deserves a proper assessment, because it can lead to piles, fissures and a lot of daily discomfort.',
@@ -53,63 +67,42 @@ export const content: TreatmentContent = {
   treatments: [
     {
       title: 'Diet, fluids and bowel routine',
-      text: 'Gradually increasing fibre from fruit, vegetables, whole grains and pulses, drinking enough water, staying active and setting aside unhurried time to use the toilet. A footstool to raise the knees can make passing stool easier.',
+      text: 'More fibre and water, activity and unhurried toilet time. A footstool helps.',
       tag: 'First step',
     },
     {
       title: 'Medicines',
-      text: 'Fibre supplements, stool softeners or laxatives may be advised for a period. Your doctor will choose the right type and dose and guide you on how long to use them, rather than relying on them indefinitely.',
+      text: 'Fibre, stool softeners or laxatives for a period guided by your doctor.',
       tag: 'Most patients',
     },
     {
       title: 'Pelvic floor therapy (biofeedback)',
-      text: 'For obstructed defecation caused by poor coordination of the pelvic floor muscles, guided exercises and biofeedback can retrain the muscles to relax at the right time.',
+      text: 'Guided exercises retrain the pelvic muscles to relax at the right time.',
     },
     {
       title: 'Treating related conditions',
-      text: 'Piles and anal fissures often go hand in hand with constipation. Treating them, alongside the constipation itself, helps break the cycle of pain and straining.',
+      text: 'Treating piles and fissures helps break the cycle of pain and straining.',
     },
     {
       title: 'Surgery for selected cases',
-      text: 'A small number of patients with a significant rectocele, rectal prolapse or severe slow-transit constipation that has not responded to other treatment may benefit from surgery, often done laparoscopically. This is considered only after careful testing.',
+      text: 'Only for rectocele, rectal prolapse or severe slow transit, after testing.',
       tag: 'Selected cases',
     },
   ],
   procedureSteps: [
-    {
-      title: 'Consultation',
-      text: 'We ask about your bowel habits, diet, medicines and any other health conditions, and carry out a gentle examination to look for causes such as piles, fissures or a rectocele.',
-    },
+    { title: 'Consultation', text: 'We ask about your habits, diet and medicines, and examine you gently.' },
     {
       title: 'Tests if needed',
-      text: 'Many patients need no tests. If there are warning signs or symptoms persist, blood tests, a colonoscopy, a transit study or tests of pelvic floor function may be advised.',
+      text: 'Many patients need none. Colonoscopy or other tests only if there are warning signs.',
     },
-    {
-      title: 'Personalised plan',
-      text: 'Your plan usually begins with diet and routine changes, with medicines or pelvic floor therapy added as needed. If a procedure may help, we explain the options, benefits and risks clearly.',
-    },
-    {
-      title: 'Follow-up',
-      text: 'We review your progress, adjust treatment and help you taper off medicines where possible, so that improvements last.',
-    },
+    { title: 'Personalised plan', text: 'Diet and routine first, with medicines or therapy added as needed.' },
+    { title: 'Follow-up', text: 'We review progress and help you taper off medicines where possible.' },
   ],
   recovery: [
-    {
-      when: 'First 1–2 weeks',
-      text: 'With more fibre, fluids and a regular routine, many people notice softer stools and less straining. Some bloating is common at first as the body adjusts to extra fibre.',
-    },
-    {
-      when: '4–6 weeks',
-      text: 'Most patients have a clearer picture of how well the plan is working, and treatment can be adjusted or further tests arranged if needed.',
-    },
-    {
-      when: 'Pelvic floor therapy',
-      text: 'Biofeedback usually involves several sessions over a few weeks, with exercises to continue at home.',
-    },
-    {
-      when: 'Long term',
-      text: 'Keeping up good eating, drinking and toilet habits helps most people stay regular and prevents problems such as piles and fissures from returning.',
-    },
+    { when: 'First 1–2 weeks', text: 'Softer stools and less straining. Some bloating at first is common.' },
+    { when: '4–6 weeks', text: 'The plan is reviewed and adjusted, or further tests are arranged.' },
+    { when: 'Pelvic floor therapy', text: 'Several sessions over a few weeks, with exercises to continue at home.' },
+    { when: 'Long term', text: 'Good eating, drinking and toilet habits help you stay regular.' },
   ],
   whenToSeeDoctor: [
     'Blood in the stool or bleeding from the back passage',
@@ -143,8 +136,10 @@ export const content: TreatmentContent = {
       q: 'Will I need surgery for constipation?',
       a: 'Very few patients do. Most improve with diet, lifestyle changes and medicines. Surgery is considered only for specific problems, such as a significant rectocele, rectal prolapse or severe slow-transit constipation, after careful testing.',
     },
+    {
+      q: 'How much does constipation treatment cost in Bangalore?',
+      a: 'Most patients need a consultation and simple measures. If tests or a procedure is advised, the cost depends on what is needed and your insurance cover. We give a written estimate first. Call +91 84315 50550.',
+    },
   ],
   related: ['best-piles-treatment-bangalore', 'anal-fissures-surgery-treatment', 'colorectal-cancer-treatment'],
-  footnote:
-    '*Surgery is considered only for specific conditions, such as rectocele, rectal prolapse or severe slow-transit constipation, after other treatments and tests. Most patients improve without it.',
 };

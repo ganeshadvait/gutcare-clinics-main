@@ -44,6 +44,12 @@ const optionIcon = (title: string) => {
 };
 const optionCols = ({ 3: 'lg:grid-cols-3', 4: 'lg:grid-cols-4', 5: 'lg:grid-cols-5' } as Record<number, string>)[t.treatments.length] ?? 'lg:grid-cols-4';
 
+const h = t.headings ?? {};
+// Splits a heading on *asterisks* into plain and highlighted parts, as SectionHeading does.
+const highlightParts = (title: string) => title.split('*').map((text, i) => ({ text, highlight: i % 2 === 1 }));
+const understandingTitle = highlightParts(h.understanding ?? `Understanding *${t.name}*`);
+const recoveryCols = t.recovery.length === 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-4';
+
 const related = t.related.map((s) => treatments.find((x) => x.slug === s)).filter(Boolean) as typeof treatments;
 
 const pageLd = {
@@ -59,7 +65,7 @@ const pageLd = {
 
 <Layout title={t.metaTitle} description={t.metaDescription}>
   <PageHero
-    eyebrow={t.name}
+    eyebrow={h.heroEyebrow ?? t.name}
     title={t.heroTitle}
     subtitle={t.heroSubtitle}
     breadcrumbs={[{ label: 'Treatments', href: '/#treatments' }, { label: t.name }]}
@@ -75,9 +81,9 @@ const pageLd = {
   <section class="py-10 sm:py-14">
     <div class="container-x grid items-center gap-10 lg:grid-cols-[1.15fr_1fr] lg:gap-14">
       <div>
-        <h2 class="heading-xl">Understanding <span class="highlight">{t.name}</span></h2>
+        <h2 class="heading-xl">{understandingTitle.map((p) => (p.highlight ? <span class="highlight">{p.text}</span> : p.text))}</h2>
         <p class="mt-5 text-base leading-relaxed text-slate-600 sm:text-lg">{t.overview[0]}</p>
-        <p class="mt-6 text-xs font-bold uppercase tracking-widest text-slate-400">Common symptoms</p>
+        <h3 class="mt-6 text-xs font-bold uppercase tracking-widest text-slate-400">{h.symptoms ?? 'Common symptoms'}</h3>
         <ul class="mt-3 grid gap-x-6 gap-y-2.5 sm:grid-cols-2">
           {
             t.symptoms.slice(0, 6).map((sym) => (
@@ -94,7 +100,7 @@ const pageLd = {
         conditionImage ? (
           <Image
             src={conditionImage}
-            alt={`Illustration of ${t.name}`}
+            alt={t.imageAlt ?? `Illustration of ${t.name}`}
             widths={[400, 640, 900]}
             sizes="(min-width: 1024px) 28rem, 90vw"
             class="mx-auto aspect-square w-full max-w-md rounded-3xl object-cover ring-1 ring-slate-200"
@@ -121,10 +127,10 @@ const pageLd = {
   <section class="bg-slate-50 py-10 sm:py-14">
     <div class="container-x grid gap-10 md:grid-cols-2 md:gap-0 md:divide-x md:divide-slate-200">
       <div class="md:pr-12">
-        <h2 class="heading-md">Common causes</h2>
+        <h2 class="heading-md">{h.causes ?? 'Common causes'}</h2>
         <ul class="mt-5 space-y-3.5">
           {
-            t.causes.slice(0, 5).map((c) => (
+            t.causes.slice(0, 6).map((c) => (
               <li class="flex gap-3 text-slate-700">
                 <CircleCheck class="mt-0.5 h-5 w-5 shrink-0 text-leaf-500" />
                 {c}
@@ -134,7 +140,7 @@ const pageLd = {
         </ul>
       </div>
       <div class="md:pl-12">
-        <h2 class="heading-md">When to see a doctor</h2>
+        <h2 class="heading-md">{h.whenToSeeDoctor ?? 'When to see a doctor'}</h2>
         <ul class="mt-5 space-y-3.5">
           {
             t.whenToSeeDoctor.slice(0, 4).map((w) => (
@@ -156,9 +162,9 @@ const pageLd = {
   <section class="py-10 sm:py-14">
     <div class="container-x">
       <SectionHeading
-        eyebrow="Treatment options"
-        title={`How we treat *${t.name.split(' / ')[0].toLowerCase()}*`}
-        subtitle="We always start with the gentlest option that will work for you."
+        eyebrow={h.optionsEyebrow ?? 'Treatment options'}
+        title={h.options ?? `How we treat *${t.name.split(' / ')[0].toLowerCase()}*`}
+        subtitle={h.optionsSubtitle ?? 'We always start with the gentlest option that will work for you.'}
       />
 
       <!-- Gentle → advanced scale -->
@@ -191,7 +197,7 @@ const pageLd = {
 
       <div class="mt-8 flex flex-col items-center gap-3 rounded-2xl bg-brand-50/70 p-5 text-center sm:flex-row sm:justify-between sm:text-left">
         <p class="text-sm text-slate-700">
-          <span class="font-semibold text-slate-900">Not sure which option suits you?</span> Our surgeon will examine you and explain every choice.
+          <span class="font-semibold text-slate-900">{h.optionsPrompt ?? 'Not sure which option suits you?'}</span> Our surgeon will examine you and explain every choice.
         </p>
         <button type="button" class="btn btn-primary shrink-0" data-open-form={`treatment-${t.slug}-options`}>
           <CalendarCheck class="h-4 w-4" /> Book a consultation
@@ -203,7 +209,7 @@ const pageLd = {
   <!-- What to expect -->
   <section class="bg-brand-950 py-10 text-brand-100 sm:py-14">
     <div class="container-x">
-      <SectionHeading dark eyebrow="What to expect" title="Your treatment, *step by step*" />
+      <SectionHeading dark eyebrow="What to expect" title={h.steps ?? 'Your treatment, *step by step*'} />
 
       <ol class="relative mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
         <div class="absolute inset-x-[12%] top-5 hidden h-px bg-gradient-to-r from-brand-400/50 via-leaf-400/50 to-leaf-400/50 lg:block" aria-hidden="true" />
@@ -221,8 +227,8 @@ const pageLd = {
       </ol>
 
       <div class="mt-10 rounded-2xl bg-white/5 p-5 ring-1 ring-white/10 sm:p-6">
-        <p class="text-xs font-bold uppercase tracking-widest text-leaf-300">Recovery</p>
-        <ol class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <p class="text-xs font-bold uppercase tracking-widest text-leaf-300">{h.recovery ?? 'Recovery'}</p>
+        <ol class:list={['mt-4 grid gap-4 sm:grid-cols-2', recoveryCols]}>
           {
             t.recovery.map((r) => (
               <li class="border-l-2 border-leaf-400/60 pl-3">
@@ -279,7 +285,7 @@ const pageLd = {
     </div>
   </section> -->
 
-  <Faq faqs={t.faqs} title={`${t.name}: *your questions answered*`} />
+  <Faq faqs={t.faqs} title={h.faq ?? `${t.name}: *your questions answered*`} />
   <!-- <CtaBanner /> -->
 
   <script type="application/ld+json" set:html={JSON.stringify(pageLd)} />

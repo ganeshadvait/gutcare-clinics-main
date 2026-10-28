@@ -3,12 +3,12 @@ import type { TreatmentContent } from './types';
 export const content: TreatmentContent = {
   slug: 'anal-fissures-surgery-treatment',
   name: 'Anal Fissures',
-  metaTitle: 'Anal Fissure Treatment in Bangalore | GutCare Clinics',
+  metaTitle: 'Anal Fissure Treatment in Bangalore',
   metaDescription:
     'Anal fissure treatment in Indiranagar, Bangalore: diet, sitz baths and medication first, then laser or sphincterotomy for chronic fissures that fail to heal.',
-  heroTitle: 'Relief from *painful anal fissures*',
+  heroTitle: 'Relief from *painful anal fissures* in Bangalore',
   heroSubtitle:
-    'Most fissures heal with simple care. For those that keep coming back, we offer minimally invasive treatment to ease the pain and help the tear heal.',
+    'Most fissures heal with simple care. For those that keep coming back, our Indiranagar surgeons offer laser and minimally invasive anal fissure treatment to ease the pain and help the tear heal.',
   quickFacts: [
     { label: 'Procedure time', value: 'About 20–30 min*' },
     { label: 'Anaesthesia', value: 'Spinal or general' },
@@ -17,6 +17,18 @@ export const content: TreatmentContent = {
   ],
   footnote:
     '*Applies to most patients who need a procedure for a chronic fissure. Many acute fissures heal without any procedure, and recovery varies from person to person.',
+  imageAlt: 'Illustration of an anal fissure, a small tear in the lining of the anal canal',
+  headings: {
+    heroEyebrow: 'Anal fissure treatment · Bangalore',
+    understanding: 'What is an *anal fissure*?',
+    symptoms: 'Anal fissure symptoms',
+    causes: 'What causes anal fissures?',
+    whenToSeeDoctor: 'When to see a fissure doctor',
+    optionsEyebrow: 'Anal fissure treatment options',
+    options: 'How we treat *fissures*',
+    recovery: 'Recovery after fissure treatment',
+    faq: 'Anal fissure treatment in Bangalore: *your questions answered*',
+  },
   overview: [
     'An anal fissure is a small tear in the thin lining of the anal canal. It typically causes a sharp, cutting pain while passing stools, often followed by a burning ache that can last for hours.',
     'Fissures are common and often start after passing a hard stool. Pain makes the anal muscle go into spasm, which reduces blood flow to the tear and can stop it from healing.',
@@ -36,7 +48,7 @@ export const content: TreatmentContent = {
     'Long-standing diarrhoea',
     'Childbirth',
     'High tension in the anal sphincter muscle',
-    "Less commonly, Crohn's disease, tuberculosis or other infections",
+    'Less commonly, Crohn\'s disease, tuberculosis or other infections',
   ],
   types: [
     {
@@ -51,61 +63,52 @@ export const content: TreatmentContent = {
   treatments: [
     {
       title: 'Diet and lifestyle changes',
-      text: 'A high-fibre diet, plenty of water and not straining keep stools soft, which takes pressure off the tear. This is the foundation of treatment for every fissure.',
+      text: 'High fibre and water keep stools soft and take pressure off the tear.',
       tag: 'Non-surgical',
     },
     {
       title: 'Sitz baths',
-      text: 'Sitting in warm water for 10–15 minutes a few times a day, especially after a bowel movement, relaxes the anal muscle and eases pain.',
+      text: 'Warm water for 10–15 minutes, a few times a day, relaxes the muscle and eases pain.',
       tag: 'Home care',
     },
     {
       title: 'Medication',
-      text: 'Stool softeners, local anaesthetic gels and prescription ointments that relax the sphincter muscle can relieve pain and help many fissures heal over several weeks.',
+      text: 'Stool softeners, numbing gels and sphincter-relaxing ointments help many fissures heal.',
       tag: 'Non-surgical',
     },
     {
       title: 'Laser treatment',
-      text: 'For chronic fissures, laser can be used to treat the fissure and any associated skin tag with minimal cutting. Most patients go home the same day.',
+      text: 'For chronic fissures, laser treats the tear and skin tag with minimal cutting.',
       tag: 'Minimally invasive',
     },
     {
       title: 'Lateral internal sphincterotomy',
-      text: 'A small, controlled cut is made in the internal sphincter muscle to relieve spasm and improve blood flow so the fissure can heal. It is a well-established option for chronic fissures that do not respond to other treatment.',
+      text: 'A small controlled cut relaxes the muscle so a chronic fissure can heal.',
       tag: 'Surgical',
     },
   ],
   procedureSteps: [
     {
       title: 'Consultation and examination',
-      text: 'Your surgeon takes a history and gently examines the area to confirm the fissure and check for other causes of pain or bleeding.',
+      text: 'Your surgeon examines you to confirm the fissure and rule out other causes.',
     },
     {
       title: 'Trying conservative care',
-      text: 'Most patients first follow a plan of diet changes, sitz baths and medication. A procedure is considered if the fissure does not heal.',
+      text: 'Most patients start with diet, sitz baths and medicines before any procedure.',
     },
-    {
-      title: 'The procedure',
-      text: 'If needed, the fissure is treated under anaesthesia with laser or sphincterotomy. This is usually a short procedure lasting under half an hour.',
-    },
+    { title: 'The procedure', text: 'If needed, laser or sphincterotomy under anaesthesia, usually under 30 minutes.' },
     {
       title: 'Discharge and follow-up',
-      text: 'Most patients go home the same day with pain relief, stool softeners and diet advice. A follow-up visit checks that the fissure is healing.',
+      text: 'Most go home the same day. A review visit checks that the fissure is healing.',
     },
   ],
   recovery: [
     {
       when: 'First few days',
-      text: 'Many patients notice that the sharp pain with bowel movements eases soon after the procedure. Mild soreness is managed with tablets and sitz baths.',
+      text: 'The sharp pain with bowel movements often eases soon after. Mild soreness settles.',
     },
-    {
-      when: '1 week',
-      text: 'Most people are back to work and normal daily activities. Keeping stools soft remains important.',
-    },
-    {
-      when: '4–6 weeks',
-      text: 'The fissure usually heals over this period. Your surgeon will check healing at follow-up.',
-    },
+    { when: '1 week', text: 'Most return to work and daily activities. Keep stools soft.' },
+    { when: '4–6 weeks', text: 'The fissure usually heals. Your surgeon checks healing at follow-up.' },
   ],
   whenToSeeDoctor: [
     'Pain or bleeding that has not improved after two weeks of home care',
@@ -133,6 +136,10 @@ export const content: TreatmentContent = {
     {
       q: 'Can a fissure come back?',
       a: 'Yes, fissures can recur, particularly if constipation returns. A high-fibre diet, enough water and not straining are the best ways to prevent this.',
+    },
+    {
+      q: 'How much does anal fissure treatment cost in Bangalore?',
+      a: 'The cost depends on your diagnosis, the procedure advised and your insurance cover. We give a written estimate after consultation and help with insurance. Call +91 84315 50550 for a personalised estimate.',
     },
   ],
   related: ['best-piles-treatment-bangalore', 'fistula-treatment-in-bangalore', 'treatment-for-constipation'],

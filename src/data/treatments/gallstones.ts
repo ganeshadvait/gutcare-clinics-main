@@ -3,12 +3,12 @@ import type { TreatmentContent } from './types';
 export const content: TreatmentContent = {
   slug: 'gallstones',
   name: 'Gallstones',
-  metaTitle: 'Gallstone Treatment in Bangalore | GutCare Clinics',
+  metaTitle: 'Gallstone Treatment in Bangalore',
   metaDescription:
     'Gallstone treatment in Indiranagar, Bangalore. Laparoscopic gallbladder removal (cholecystectomy) for painful gallstones by an experienced GI surgeon.',
-  heroTitle: 'Gentle, *keyhole gallstone* treatment',
+  heroTitle: 'Gentle, *keyhole gallstone treatment* in Bangalore',
   heroSubtitle:
-    'If gallstones are causing pain or other problems, removing the gallbladder through small keyhole incisions is the standard, well-proven treatment. We help you understand your options and recover with confidence.',
+    'If gallstones cause pain or other problems, removing the gallbladder through small keyhole cuts is the standard, proven treatment. Our Indiranagar surgeons explain every option and support your recovery.',
   quickFacts: [
     { label: 'Procedure', value: 'Laparoscopic cholecystectomy' },
     { label: 'Anaesthesia', value: 'General' },
@@ -17,6 +17,18 @@ export const content: TreatmentContent = {
   ],
   footnote:
     '*Typical for a planned laparoscopic operation. Stay and recovery may be longer if the gallbladder is severely inflamed, if there are complications, or if an open operation is needed. Your surgeon will discuss what to expect in your case.',
+  imageAlt: 'Illustration of gallstones inside the gallbladder',
+  headings: {
+    heroEyebrow: 'Gallstone treatment · Bangalore',
+    understanding: 'What are *gallstones*?',
+    symptoms: 'Gallstone symptoms',
+    causes: 'What causes gallstones?',
+    whenToSeeDoctor: 'When to see a gallstone doctor',
+    optionsEyebrow: 'Gallstone treatment options',
+    options: 'How we treat *gallstones*',
+    recovery: 'Recovery after gallbladder surgery',
+    faq: 'Gallstone treatment in Bangalore: *your questions answered*',
+  },
   overview: [
     'The gallbladder is a small pouch beneath the liver that stores bile, a fluid that helps digest fats. Gallstones are hard deposits that form inside it, usually from cholesterol or bile pigment, and can range from tiny grains to stones a few centimetres across.',
     'Gallstones are common, and many people with them never have symptoms. When a stone blocks the flow of bile, however, it can cause sudden pain and, in some cases, infection of the gallbladder, jaundice or pancreatitis.',
@@ -42,59 +54,44 @@ export const content: TreatmentContent = {
   treatments: [
     {
       title: 'Watchful waiting',
-      text: 'Gallstones found by chance that cause no symptoms often need no treatment. Your doctor may simply advise you to watch for warning signs and seek review if pain develops.',
+      text: 'Silent gallstones that cause no symptoms often need no treatment.',
       tag: 'No symptoms',
     },
     {
       title: 'Pain relief and diet advice',
-      text: 'Medicines can ease a gallstone attack, and avoiding heavy, fatty meals may reduce episodes. These measures control symptoms but do not remove the stones, so attacks often return.',
+      text: 'Medicines and low-fat meals ease attacks but do not remove the stones.',
       tag: 'Short term',
     },
     {
       title: 'Laparoscopic cholecystectomy',
-      text: 'The gallbladder and the stones inside it are removed through a few small cuts using a camera and fine instruments. This is the most common treatment, with less pain, small scars and a quicker recovery for most patients.',
+      text: 'Keyhole removal of the gallbladder and stones: small scars, quicker recovery.',
       tag: 'Most common',
     },
     {
       title: 'Open cholecystectomy',
-      text: 'The gallbladder is removed through a larger cut under the ribs. It may be needed when keyhole surgery is not safe or possible, for example with severe inflammation or scarring.',
+      text: 'A larger cut under the ribs when keyhole surgery is not safe or possible.',
     },
   ],
   procedureSteps: [
-    {
-      title: 'Assessment and tests',
-      text: 'Your surgeon reviews your symptoms and examines you. An ultrasound usually confirms gallstones, and blood tests check your liver function. Further scans may be advised if a stone in the bile duct is suspected.',
-    },
+    { title: 'Assessment and tests', text: 'Symptom review, examination, an ultrasound and liver blood tests.' },
     {
       title: 'Preparation and anaesthesia',
-      text: 'You will be asked to fast for several hours before surgery. On the day, the operation is done under general anaesthesia, so you are asleep and comfortable throughout.',
+      text: 'You fast before surgery. General anaesthesia keeps you asleep and comfortable.',
     },
     {
       title: 'Removing the gallbladder',
-      text: 'The surgeon makes a few small cuts in the abdomen, inserts a camera and fine instruments, carefully separates the gallbladder and removes it through one of the cuts. The operation usually takes around one to two hours.',
+      text: 'A few small cuts and a camera. The operation takes about one to two hours.',
     },
-    {
-      title: 'Waking up and going home',
-      text: 'You are monitored as you wake up and can usually drink and walk later the same day. Most patients go home within a day with advice on wound care, diet and activity.',
-    },
+    { title: 'Waking up and going home', text: 'Most patients walk the same day and go home within a day.' },
   ],
   recovery: [
     {
       when: 'First few days',
-      text: 'Mild pain around the cuts and sometimes in the shoulder (from the gas used during surgery) is common and settles with pain relief. Start with light, low-fat meals.',
+      text: 'Mild pain near the cuts and shoulder is common. Start with light, low-fat meals.',
     },
-    {
-      when: '1–2 weeks',
-      text: 'Most people return to everyday activities and desk work. Avoid heavy lifting and strenuous exercise for now.',
-    },
-    {
-      when: '4–6 weeks',
-      text: 'Most patients are back to all usual activities, including exercise, as advised at follow-up.',
-    },
-    {
-      when: 'Long term',
-      text: 'Most people digest food normally without a gallbladder. A few notice looser stools after fatty meals for a while, which usually improves with time.',
-    },
+    { when: '1–2 weeks', text: 'Most return to desk work. Avoid heavy lifting and strenuous exercise.' },
+    { when: '4–6 weeks', text: 'Most patients are back to all activities, including exercise.' },
+    { when: 'Long term', text: 'Most people digest food normally without a gallbladder.' },
   ],
   whenToSeeDoctor: [
     'Severe upper abdominal pain that lasts more than a few hours',
@@ -127,6 +124,14 @@ export const content: TreatmentContent = {
     {
       q: 'Is gallbladder surgery covered by insurance?',
       a: 'Gallbladder removal is commonly covered by health insurance, subject to your policy terms. We offer transparent pricing and our team helps you with the insurance process.',
+    },
+    {
+      q: 'How much does gallbladder stone surgery cost in Bangalore?',
+      a: 'The cost depends on your diagnosis, the type of surgery, your hospital stay and your insurance cover. We give a written estimate after consultation and help with insurance. Call +91 84315 50550 for a personalised estimate.',
+    },
+    {
+      q: 'Is laparoscopic gallbladder surgery safe?',
+      a: 'Laparoscopic cholecystectomy is one of the most commonly performed operations and is considered safe. As with any surgery there are small risks, which your surgeon will explain, and a few patients need open surgery.',
     },
   ],
   related: ['acid-reflux-gerd-treatment', 'hernia-treatment-hospital-in-bangalore', 'appendix'],

@@ -3,10 +3,10 @@ import type { TreatmentContent } from './types';
 export const content: TreatmentContent = {
   slug: 'appendix',
   name: 'Appendix',
-  metaTitle: 'Appendicitis Treatment in Bangalore | GutCare Clinics',
+  metaTitle: 'Appendicitis Treatment in Bangalore',
   metaDescription:
     'Appendicitis care in Indiranagar, Bangalore. Laparoscopic appendix removal (appendectomy) and a 24x7 emergency facility for sudden abdominal pain.',
-  heroTitle: 'Prompt, *expert appendicitis* care',
+  heroTitle: 'Prompt, *expert appendicitis treatment* in Bangalore',
   heroSubtitle:
     'Appendicitis is a medical emergency. Our 24x7 emergency facility and experienced surgical team can assess you quickly and, when needed, remove the appendix through keyhole surgery.',
   quickFacts: [
@@ -17,6 +17,18 @@ export const content: TreatmentContent = {
   ],
   footnote:
     '*Typical for uncomplicated appendicitis treated with keyhole surgery. If the appendix has burst or formed an abscess, the hospital stay and recovery are usually longer. Your surgeon will discuss what to expect in your case.',
+  imageAlt: 'Illustration of an inflamed appendix on the lower right side of the abdomen',
+  headings: {
+    heroEyebrow: 'Appendicitis treatment · Bangalore',
+    understanding: 'What is *appendicitis*?',
+    symptoms: 'Appendicitis symptoms',
+    causes: 'What causes appendicitis?',
+    whenToSeeDoctor: 'When to seek care for appendicitis',
+    optionsEyebrow: 'Appendicitis treatment options',
+    options: 'How we treat *appendicitis*',
+    recovery: 'Recovery after appendix surgery',
+    faq: 'Appendicitis treatment in Bangalore: *your questions answered*',
+  },
   overview: [
     'The appendix is a small, finger-shaped pouch attached to the large intestine on the lower right side of the abdomen. Appendicitis is when it becomes inflamed and infected, usually because its opening gets blocked.',
     'Appendicitis is a medical emergency. If it is not treated in time, the appendix can burst and spread infection through the abdomen, which can be life-threatening. It can happen at any age but is most common between the ages of 10 and 30.',
@@ -40,55 +52,34 @@ export const content: TreatmentContent = {
   treatments: [
     {
       title: 'Laparoscopic appendectomy',
-      text: 'The appendix is removed through a few small cuts using a camera and fine instruments. This is the most common approach and usually means less pain, small scars and a quicker recovery.',
+      text: 'Keyhole removal of the appendix: small scars and quicker recovery.',
       tag: 'Most common',
     },
-    {
-      title: 'Open appendectomy',
-      text: 'The appendix is removed through a single cut in the lower right abdomen. It may be preferred in some situations, such as a burst appendix with widespread infection.',
-    },
+    { title: 'Open appendectomy', text: 'Removal through one cut, sometimes preferred if the appendix has burst.' },
     {
       title: 'Antibiotics and drainage for complicated cases',
-      text: 'If an abscess (a collection of pus) has formed around the appendix, it may first be treated with antibiotics and drainage, with the appendix removed once the infection settles.',
+      text: 'An abscess is treated first, then the appendix is removed.',
       tag: 'Selected cases',
     },
     {
       title: 'Antibiotics alone',
-      text: 'For some carefully selected patients with mild, uncomplicated appendicitis, antibiotics alone may be considered. However, appendicitis can return, so surgery remains the standard treatment for most people.',
+      text: 'For carefully selected mild cases only. Appendicitis can return.',
       tag: 'Selected cases',
     },
   ],
   procedureSteps: [
-    {
-      title: 'Urgent assessment',
-      text: 'Your doctor examines your abdomen and arranges blood tests and usually an ultrasound or CT scan to confirm appendicitis and check for complications.',
-    },
+    { title: 'Urgent assessment', text: 'Abdominal examination, blood tests and an ultrasound or CT scan.' },
     {
       title: 'Preparation and anaesthesia',
-      text: 'You are given fluids, pain relief and antibiotics through a drip. The operation is done under general anaesthesia, so you are asleep and comfortable throughout.',
+      text: 'A drip with fluids, pain relief and antibiotics. General anaesthesia.',
     },
-    {
-      title: 'Removing the appendix',
-      text: 'Through a few small cuts, the surgeon uses a camera and fine instruments to find the appendix, seal its base and remove it. If there is infection or pus, the area is carefully cleaned.',
-    },
-    {
-      title: 'Recovery and discharge',
-      text: 'You are encouraged to walk and start eating soon after surgery. Many patients with uncomplicated appendicitis go home within a day or two, with advice on wound care and activity.',
-    },
+    { title: 'Removing the appendix', text: 'Through a few small cuts, the appendix is sealed and removed.' },
+    { title: 'Recovery and discharge', text: 'Many go home in a day or two with wound-care advice.' },
   ],
   recovery: [
-    {
-      when: 'First few days',
-      text: 'Some soreness around the cuts is normal and is managed with pain relief. Gentle walking and light meals help your bowels return to normal.',
-    },
-    {
-      when: '1–3 weeks',
-      text: 'Most people return to school, desk work and light daily activities. Avoid heavy lifting and strenuous exercise during this time.',
-    },
-    {
-      when: '4–6 weeks',
-      text: 'Most patients can return to sports and heavier activity, as advised at follow-up. Recovery may take longer if the appendix had burst.',
-    },
+    { when: 'First few days', text: 'Soreness near the cuts is normal. Gentle walking and light meals help.' },
+    { when: '1–3 weeks', text: 'Most return to school or desk work. Avoid heavy lifting.' },
+    { when: '4–6 weeks', text: 'Most return to sports. A burst appendix may take longer.' },
   ],
   whenToSeeDoctor: [
     'Pain in the lower right abdomen that keeps getting worse over a few hours',
@@ -121,6 +112,10 @@ export const content: TreatmentContent = {
     {
       q: 'Is appendix surgery covered by insurance?',
       a: 'Appendectomy is commonly covered by health insurance, including as an emergency admission, subject to your policy terms. We offer transparent pricing and our team helps with the insurance process.',
+    },
+    {
+      q: 'How much does appendix surgery cost in Bangalore?',
+      a: 'The cost depends on whether the appendix has burst, the type of surgery, your hospital stay and your insurance cover. We give a written estimate and help with insurance, including for emergency admissions. Call +91 84315 50550.',
     },
   ],
   related: ['hernia-treatment-hospital-in-bangalore', 'gallstones', 'colorectal-cancer-treatment'],
