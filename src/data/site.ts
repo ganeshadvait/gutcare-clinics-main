@@ -4,6 +4,7 @@ export const site = {
   phoneHref: 'tel:+918431550550',
   email: 'info@gutcareclinics.com',
   whatsapp: '918062277762',
+  whatsappDisplay: '+91 80622 77762',
   address: {
     line1: '1st Floor, #4024, 13th ‘H’ Main, 1st Cross Rd',
     line2: 'HAL 2nd Stage, Indiranagar',

@@ -1,8 +1,9 @@
 ---
 import { Image } from 'astro:assets';
-import { Phone, ArrowRight, Clock, Zap, ShieldCheck } from '@lucide/astro';
-import doctor from '../assets/doctors/dr-yuvraj-singh-gehlot.jpeg';
+import { ArrowRight, Clock, Zap, ShieldCheck } from '@lucide/astro';
+import doctor from '../assets/doctors/dr-yuvraj-singh-gehlot.png';
 import { site } from '../data/site';
+import CallOrWhatsApp from './CallOrWhatsApp.astro';
 
 const chips = [
   { icon: Zap, label: '~30 min laser procedures' },
@@ -40,9 +41,7 @@ const chips = [
             <button type="button" class="btn bg-white text-brand-700 shadow-xl hover:bg-brand-50" data-open-form="cta-banner">
               Book an Appointment <ArrowRight class="h-4 w-4" />
             </button>
-            <a href={site.phoneHref} class="btn border border-white/30 text-white hover:bg-white/10">
-              <Phone class="h-4 w-4" /> {site.phone}
-            </a>
+            <CallOrWhatsApp class="btn border border-white/30 text-white hover:bg-white/10" waIconClass="h-4 w-4" />
           </div>
         </div>
 
@@ -54,7 +53,7 @@ const chips = [
               alt="Dr. Yuvraj Singh Gehlot"
               widths={[320, 640]}
               sizes="(min-width: 1024px) 400px, 320px"
-              class="aspect-[8/7] w-full object-cover object-top"
+              class="aspect-[8/7] w-full object-cover object-top lg:aspect-auto lg:h-[31rem]"
               loading="lazy"
             />
           </div>

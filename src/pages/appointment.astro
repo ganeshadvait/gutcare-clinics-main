@@ -6,8 +6,8 @@ import LeadForm from '../components/LeadForm.astro';
 import { site, whatsappLink } from '../data/site';
 
 const contacts = [
-  { icon: Phone, label: 'Call us', value: site.phone, href: site.phoneHref },
-  { icon: WhatsAppIcon, label: 'WhatsApp', value: 'Chat with our care team', href: whatsappLink(), external: true },
+  { icon: Phone, label: 'Call us', value: site.phone, href: site.phoneHref, mobileOnly: true },
+  { icon: WhatsAppIcon, label: 'WhatsApp', value: site.whatsappDisplay, href: whatsappLink(), external: true },
   { icon: Mail, label: 'Email', value: site.email, href: `mailto:${site.email}` },
 ];
 ---
@@ -33,8 +33,8 @@ const contacts = [
 
         <ul class="mt-8 divide-y divide-slate-200/80 border-y border-slate-200/80">
           {
-            contacts.map(({ icon: Icon, label, value, href, external }) => (
-              <li>
+            contacts.map(({ icon: Icon, label, value, href, external, mobileOnly }) => (
+              <li class:list={[mobileOnly && 'lg:hidden']}>
                 <a href={href} {...(external ? { target: '_blank', rel: 'noopener' } : {})} class="group flex items-center gap-4 py-4">
                   <Icon class="h-6 w-6 shrink-0 text-brand-500" stroke-width={1.75} />
                   <span>

@@ -1,9 +1,9 @@
 ---
-import { Image } from 'astro:assets';
-import { Phone, CalendarCheck, Award, Users, Clock, ShieldCheck, BadgeCheck, Zap } from '@lucide/astro';
+import { CalendarCheck, Award, Users, Clock, ShieldCheck } from '@lucide/astro';
 import WhatsAppIcon from './WhatsAppIcon.astro';
+import CallOrWhatsApp from './CallOrWhatsApp.astro';
 import { site, whatsappLink } from '../data/site';
-import doctor from '../assets/doctors/dr-yuvraj-singh-gehlot-cutout.png';
+import DoctorPortrait from './DoctorPortrait.astro';
 
 const trust = [
   { icon: Award, value: '30 Years', label: 'in healthcare' },
@@ -17,9 +17,9 @@ const trust = [
   <!-- Soft brand shape behind the portrait -->
   <div class="pointer-events-none absolute -right-48 top-10 hidden h-[44rem] w-[44rem] rounded-full bg-brand-100/70 lg:block" aria-hidden="true"></div>
 
-  <div class="container-x relative grid items-center gap-12 pb-10 pt-10 sm:pt-14 lg:grid-cols-[1.2fr_1fr] lg:gap-16 lg:pb-14 lg:pt-16">
+  <div class="container-x relative grid items-center gap-12 pt-10 sm:pt-14 lg:grid-cols-[1.2fr_1fr] lg:gap-16 lg:pt-16">
     <!-- Copy + form -->
-    <div>
+    <div class="lg:pb-14">
       <span class="eyebrow bg-white">
         <span class="h-1.5 w-1.5 rounded-full bg-leaf-400"></span>
         GutCare Clinics · Indiranagar, Bangalore
@@ -37,60 +37,24 @@ const trust = [
         <button type="button" class="btn btn-leaf !px-8 !py-4 text-base" data-open-form="hero">
           <CalendarCheck class="h-5 w-5" /> Book an Appointment
         </button>
-        <a href={site.phoneHref} class="btn btn-ghost !px-6 !py-4 text-base">
-          <Phone class="h-5 w-5 text-brand-500" /> Call {site.phone}
-        </a>
+        <CallOrWhatsApp
+          class="btn btn-ghost !px-6 !py-4 text-base"
+          callLabel={`Call ${site.phone}`}
+          callIconClass="h-5 w-5 text-brand-500"
+          waIconClass="h-5 w-5 text-[#25D366]"
+        />
       </div>
 
       <p class="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-slate-500">
         <span class="inline-flex items-center gap-1.5"><ShieldCheck class="h-4 w-4 text-leaf-500" /> Quick callback from our care team</span>
-        <a href={whatsappLink()} target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 font-semibold text-leaf-600 hover:underline">
+        <a href={whatsappLink()} target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 font-semibold text-leaf-600 hover:underline lg:hidden">
           <WhatsAppIcon class="h-4 w-4" /> Or WhatsApp us
         </a>
       </p>
     </div>
 
-    <!-- Doctor portrait (background removed), standing on the trust-strip line -->
-    <div class="relative mx-auto w-full max-w-md self-end -mb-10 lg:-mb-14">
-      <div class="absolute bottom-0 left-1/2 aspect-square w-[94%] -translate-x-1/2 rounded-full border border-brand-200/70" aria-hidden="true"></div>
-      <div class="absolute bottom-0 left-1/2 aspect-square w-[82%] -translate-x-1/2 rounded-full bg-gradient-to-br from-brand-400 via-brand-500 to-brand-700" aria-hidden="true"></div>
-
-      <Image
-        src={doctor}
-        alt="Dr. Yuvraj Singh Gehlot, senior GI, laparoscopic and colorectal surgeon at GutCare Clinics"
-        widths={[320, 480, 720]}
-        sizes="(min-width: 1024px) 20rem, 60vw"
-        class="relative mx-auto h-auto max-h-[26rem] w-auto drop-shadow-2xl sm:max-h-[32rem] lg:max-h-[35rem]"
-        loading="eager"
-        fetchpriority="high"
-      />
-
-      <!-- Floating credentials -->
-      <div class="hero-float absolute left-0 top-[24%] flex items-center gap-2.5 rounded-2xl bg-white/95 px-3.5 py-2.5 shadow-xl backdrop-blur sm:-left-6">
-        <Award class="h-7 w-7 text-leaf-500" stroke-width={1.75} />
-        <span class="text-left">
-          <span class="block text-sm font-extrabold text-slate-900">30 Years</span>
-          <span class="block text-[11px] text-slate-500">in healthcare</span>
-        </span>
-      </div>
-      <div class="hero-float absolute right-0 top-[38%] flex items-center gap-2.5 rounded-2xl bg-white/95 px-3.5 py-2.5 shadow-xl backdrop-blur [animation-delay:-2s] sm:-right-6">
-        <BadgeCheck class="h-7 w-7 text-brand-500" stroke-width={1.75} />
-        <span class="text-left">
-          <span class="block text-sm font-extrabold text-slate-900">25,000+</span>
-          <span class="block text-[11px] text-slate-500">procedures</span>
-        </span>
-      </div>
-      <div class="hero-float absolute left-0 top-[56%] flex items-center gap-2 rounded-full bg-brand-950 px-3.5 py-2 text-white shadow-xl [animation-delay:-4s] sm:-left-8">
-        <Zap class="h-4 w-4 text-leaf-300" />
-        <span class="text-xs font-semibold">USFDA-approved laser</span>
-      </div>
-
-      <!-- Name card -->
-      <div class="absolute inset-x-6 bottom-6 rounded-2xl bg-white/95 px-5 py-3 text-center shadow-xl backdrop-blur sm:inset-x-12">
-        <p class="font-extrabold text-slate-900">Dr. Yuvraj Singh Gehlot</p>
-        <p class="text-xs text-brand-600">Senior GI, Laparoscopic &amp; Colorectal Surgeon</p>
-      </div>
-    </div>
+    <!-- Doctor portrait, standing on the trust-strip line -->
+    <DoctorPortrait />
   </div>
 
   <!-- Trust strip -->
@@ -112,14 +76,3 @@ const trust = [
   </div>
 </section>
 
-<style>
-  .hero-float {
-    animation: hero-float 6s ease-in-out infinite;
-  }
-  @keyframes hero-float {
-    50% { transform: translateY(-8px); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .hero-float { animation: none; }
-  }
-</style>

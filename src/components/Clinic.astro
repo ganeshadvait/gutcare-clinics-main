@@ -3,7 +3,8 @@ import SectionHeading from './SectionHeading.astro';
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import { Armchair, Stethoscope, Zap, Ambulance, Building2, MapPin, Phone, Navigation, Clock, Plane, ArrowRight } from '@lucide/astro';
-import { site } from '../data/site';
+import { site, whatsappLink } from '../data/site';
+import WhatsAppIcon from './WhatsAppIcon.astro';
 
 // Drop clinic photos into src/assets/clinic/ named after a tile slug (e.g. reception.jpg) and they appear automatically.
 const photos = import.meta.glob<{ default: ImageMetadata }>('../assets/clinic/*.{jpg,jpeg,png,webp,avif}', { eager: true });
@@ -52,11 +53,18 @@ const tiles = [
               <dd class="mt-1 text-slate-600">By appointment · 24x7 emergency</dd>
             </div>
           </div>
-          <div class="flex gap-3">
+          <div class="flex gap-3 lg:hidden">
             <Phone class="mt-0.5 h-5 w-5 shrink-0 text-leaf-500" />
             <div>
               <dt class="font-semibold text-slate-900">Call us</dt>
               <dd class="mt-1"><a href={site.phoneHref} class="font-semibold text-brand-600">{site.phone}</a></dd>
+            </div>
+          </div>
+          <div class="hidden gap-3 lg:flex">
+            <WhatsAppIcon class="mt-0.5 h-5 w-5 shrink-0 text-[#25D366]" />
+            <div>
+              <dt class="font-semibold text-slate-900">WhatsApp us</dt>
+              <dd class="mt-1"><a href={whatsappLink()} target="_blank" rel="noopener" class="font-semibold text-brand-600">{site.whatsappDisplay}</a></dd>
             </div>
           </div>
         </dl>

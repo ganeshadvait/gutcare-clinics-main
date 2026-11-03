@@ -10,7 +10,7 @@ import CtaBanner from '../components/CtaBanner.astro';
 import { treatmentPages } from '../data/treatments';
 import { treatments } from '../data/site';
 import type { TreatmentContent } from '../data/treatments/types';
-import doctor from '../assets/doctors/dr-yuvraj-singh-gehlot-cutout.png';
+import doctor from '../assets/doctors/dr-yuvraj-singh-gehlot.png';
 
 export function getStaticPaths() {
   return treatmentPages.map((t) => ({ params: { slug: t.slug }, props: { t } }));

@@ -1,0 +1,65 @@
+---
+// Dr. Gehlot's portrait on the brand circle with floating credentials and name card.
+// Shared by the home hero and the page heroes (doctor profile, treatment pages).
+import { Image } from 'astro:assets';
+import { Award, BadgeCheck } from '@lucide/astro';
+import doctor from '../assets/doctors/dr-yuvraj-singh-gehlot.png';
+
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+---
+
+<div class:list={['relative mx-auto w-full max-w-md self-end', className]}>
+  <div class="absolute bottom-0 left-1/2 aspect-square w-[94%] -translate-x-1/2 rounded-full border border-brand-200/70" aria-hidden="true"></div>
+  <div class="absolute bottom-0 left-1/2 aspect-square w-[82%] -translate-x-1/2 rounded-full bg-gradient-to-br from-brand-400 via-brand-500 to-brand-700" aria-hidden="true"></div>
+
+  <Image
+    src={doctor}
+    alt="Dr. Yuvraj Singh Gehlot, senior GI, laparoscopic and colorectal surgeon at GutCare Clinics"
+    widths={[320, 480, 720]}
+    sizes="(min-width: 1024px) 20rem, 60vw"
+    class="relative mx-auto h-auto max-h-[26rem] w-auto drop-shadow-2xl sm:max-h-[32rem] lg:max-h-[35rem]"
+    loading="eager"
+    fetchpriority="high"
+  />
+
+  <!-- Floating credentials -->
+  <div class="portrait-float absolute left-0 top-[24%] hidden min-[350px]:flex items-center gap-2.5 rounded-2xl bg-white/95 px-3.5 py-2.5 shadow-xl backdrop-blur sm:-left-6">
+    <Award class="h-7 w-7 text-leaf-500" stroke-width={1.75} />
+    <span class="text-left">
+      <span class="block text-sm font-extrabold text-slate-900">30 Years</span>
+      <span class="block text-[11px] text-slate-500">in healthcare</span>
+    </span>
+  </div>
+  <div class="portrait-float absolute right-0 top-[38%] hidden min-[350px]:flex items-center gap-2.5 rounded-2xl bg-white/95 px-3.5 py-2.5 shadow-xl backdrop-blur [animation-delay:-2s] sm:-right-6">
+    <BadgeCheck class="h-7 w-7 text-brand-500" stroke-width={1.75} />
+    <span class="text-left">
+      <span class="block text-sm font-extrabold text-slate-900">25,000+</span>
+      <span class="block text-[11px] text-slate-500">procedures</span>
+    </span>
+  </div>
+  <div class="portrait-float absolute left-0 top-[56%] hidden min-[350px]:flex items-center gap-2 rounded-full bg-white/95 px-4 py-2.5 shadow-xl backdrop-blur [animation-delay:-4s] sm:-left-8">
+    <BadgeCheck class="h-4 w-4 text-leaf-500" />
+    <span class="text-sm font-semibold text-slate-900">98% Success Rate</span>
+  </div>
+
+  <!-- Name card -->
+  <div class="absolute inset-x-6 bottom-6 rounded-2xl bg-white/95 px-5 py-3 text-center shadow-xl backdrop-blur sm:inset-x-12">
+    <p class="font-extrabold text-slate-900">Dr. Yuvraj Singh Gehlot</p>
+    <p class="text-xs text-brand-600">Senior GI, Laparoscopic &amp; Colorectal Surgeon</p>
+  </div>
+</div>
+
+<style>
+  .portrait-float {
+    animation: portrait-float 6s ease-in-out infinite;
+  }
+  @keyframes portrait-float {
+    50% { transform: translateY(-8px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .portrait-float { animation: none; }
+  }
+</style>

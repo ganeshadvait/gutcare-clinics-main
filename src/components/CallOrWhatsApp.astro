@@ -1,0 +1,42 @@
+---
+// Contact action that is a phone call on mobile / tablet and a WhatsApp chat on desktop (lg and up).
+import { Phone } from '@lucide/astro';
+import WhatsAppIcon from './WhatsAppIcon.astro';
+import { site, whatsappLink } from '../data/site';
+
+interface Props {
+  class?: string;
+  /** CSS display of the link. Keep display utilities out of `class`; they are applied per breakpoint here. */
+  display?: 'inline-flex' | 'flex' | 'block' | 'inline';
+  callLabel?: string;
+  waLabel?: string;
+  waMessage?: string;
+  callIconClass?: string;
+  waIconClass?: string;
+  icons?: boolean;
+}
+
+const {
+  class: className = '',
+  display = 'inline-flex',
+  callLabel = site.phone,
+  waLabel = 'WhatsApp Us',
+  waMessage,
+  callIconClass = 'h-4 w-4',
+  waIconClass = 'h-4 w-4 text-[#25D366]',
+  icons = true,
+} = Astro.props;
+
+// Literal class names so Tailwind generates them.
+const shown = { 'inline-flex': 'inline-flex', flex: 'flex', block: 'block', inline: 'inline' }[display];
+const desktopShown = { 'inline-flex': 'lg:inline-flex', flex: 'lg:flex', block: 'lg:block', inline: 'lg:inline' }[display];
+---
+
+<a href={site.phoneHref} class:list={[className, shown, 'lg:hidden']}>
+  {icons && <Phone class={callIconClass} />}
+  {callLabel}
+</a>
+<a href={whatsappLink(waMessage)} target="_blank" rel="noopener" class:list={[className, 'hidden', desktopShown]}>
+  {icons && <WhatsAppIcon class={waIconClass} />}
+  {waLabel}
+</a>
