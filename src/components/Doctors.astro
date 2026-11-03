@@ -1,7 +1,7 @@
 ---
 import SectionHeading from './SectionHeading.astro';
 import { Image } from 'astro:assets';
-import { BadgeCheck, CalendarCheck, ArrowRight } from '@lucide/astro';
+import { CalendarCheck, ArrowRight } from '@lucide/astro';
 import WhatsAppIcon from './WhatsAppIcon.astro';
 import { site, whatsappLink } from '../data/site';
 import gehlot from '../assets/doctors/dr-yuvraj-singh-gehlot.jpeg';
@@ -40,7 +40,7 @@ const team = [
     />
 
     <div class="mt-10 grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-      <!-- Portrait with floating credentials -->
+      <!-- Portrait -->
       <div class="relative isolate mx-auto w-full max-w-md">
         <div class="absolute -inset-4 -z-10 rounded-[2.5rem] bg-gradient-to-br from-leaf-100 to-brand-100" aria-hidden="true"></div>
         <Image
@@ -51,17 +51,6 @@ const team = [
           class="aspect-[4/5] w-full rounded-[2rem] object-cover object-top shadow-2xl shadow-brand-900/15"
           loading="lazy"
         />
-        <div class="doctor-float absolute -left-3 top-[42%] flex items-center gap-3 rounded-2xl bg-white/95 p-3 pr-4 shadow-xl backdrop-blur sm:-left-8">
-          <BadgeCheck class="h-8 w-8 text-leaf-500" stroke-width={1.75} />
-          <span>
-            <span class="block text-sm font-extrabold text-slate-900">25,000+</span>
-            <span class="block text-[11px] text-slate-500">procedures performed</span>
-          </span>
-        </div>
-        <div class="doctor-float absolute -left-3 top-6 rounded-2xl bg-brand-600 px-4 py-2.5 text-white shadow-xl [animation-delay:-3s] sm:-left-8">
-          <span class="block text-[11px] text-brand-100">Specialist in</span>
-          <span class="block text-sm font-bold">Laser & Laparoscopy</span>
-        </div>
       </div>
 
       <!-- Profile -->
@@ -157,18 +146,6 @@ const team = [
     </div>
   </div>
 </section>
-
-<style>
-  .doctor-float {
-    animation: float 6s ease-in-out infinite;
-  }
-  @keyframes float {
-    50% { transform: translateY(-8px); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .doctor-float { animation: none; }
-  }
-</style>
 
 <script>
   import { countUp } from '../lib/countUp';
