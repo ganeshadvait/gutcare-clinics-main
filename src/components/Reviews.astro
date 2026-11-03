@@ -8,8 +8,8 @@ import { getGoogleReviews } from '../lib/googleReviews';
 
 const google = await getGoogleReviews();
 const realReviews: Review[] = [...manualReviews, ...(google?.reviews ?? [])].filter((r) => r.rating >= 4);
-// Samples only ever render in `astro dev`, so the layout can be previewed before real reviews are added.
-const reviews = realReviews.length > 0 ? realReviews : import.meta.env.DEV ? sampleReviews : [];
+// Sample reviews fill the wall until real ones exist; any real review replaces them all.
+const reviews = realReviews.length > 0 ? realReviews : sampleReviews;
 const useMarquee = reviews.length >= 4;
 // Each marquee row is repeated until it is wide enough to fill large screens without a gap.
 const fill = (row: Review[]) => {
@@ -37,7 +37,7 @@ const initials = (name: string) =>
     <SectionHeading
       eyebrow="Patient Stories"
       title="Years of discomfort. *Days to recover.*"
-      subtitle="Real stories from patients who finally found relief at GutCare."
+      subtitle="Real stories from patients who found relief after treatments at GutCare Clinics, Bangalore."
     />
   </div>
   {

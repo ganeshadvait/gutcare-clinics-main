@@ -29,4 +29,22 @@ export type TreatmentContent = {
   related: string[];
   /** Footnote for any value marked with * in quickFacts. */
   footnote?: string;
+  /** Alt text for the condition illustration. */
+  imageAlt?: string;
+  /** Page-specific section wording; each falls back to a generic default. *Asterisks* mark highlighted words. */
+  headings?: {
+    heroEyebrow?: string;
+    understanding?: string;
+    symptoms?: string;
+    causes?: string;
+    whenToSeeDoctor?: string;
+    optionsEyebrow?: string;
+    options?: string;
+    optionsSubtitle?: string;
+    /** Bold lead-in of the bar under the option cards. */
+    optionsPrompt?: string;
+    steps?: string;
+    recovery?: string;
+    faq?: string;
+  };
 };
