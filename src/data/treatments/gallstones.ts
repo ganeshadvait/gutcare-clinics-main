@@ -3,9 +3,9 @@ import type { TreatmentContent } from './types';
 export const content: TreatmentContent = {
   slug: 'gallstones',
   name: 'Gallstones',
-  metaTitle: 'Gallstone Treatment in Bangalore',
+  metaTitle: 'Gallstone Treatment in Bangalore | GutCare Clinics',
   metaDescription:
-    'Gallstone treatment in Indiranagar, Bangalore. Laparoscopic gallbladder removal (cholecystectomy) for painful gallstones by an experienced GI surgeon.',
+    'Painful gallstones? Keyhole gallbladder surgery in Bangalore with small cuts, usually a one-day stay and about 1–2 weeks to recover.',
   heroTitle: 'Gentle, *keyhole gallstone treatment* in Bangalore',
   heroSubtitle:
     'If gallstones cause pain or other problems, removing the gallbladder through small keyhole cuts is the standard, proven treatment. Our Indiranagar surgeons explain every option and support your recovery.',

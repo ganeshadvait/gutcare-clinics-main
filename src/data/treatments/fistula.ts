@@ -3,9 +3,9 @@ import type { TreatmentContent } from './types';
 export const content: TreatmentContent = {
   slug: 'fistula-treatment-in-bangalore',
   name: 'Anal Fistula',
-  metaTitle: 'Anal Fistula Treatment in Bangalore',
+  metaTitle: 'Anal Fistula Treatment in Bangalore | GutCare Clinics',
   metaDescription:
-    'Anal fistula treatment in Indiranagar, Bangalore: laser (FiLaC), LIFT, seton and fistulotomy, chosen to protect bowel control. Most laser cases are day care.',
+    'Fistula not healing? Laser (FiLaC) and LIFT treatment in Bangalore that protects bowel control. Most laser cases are day care. Book a consultation.',
   heroTitle: 'Sphincter-saving *laser fistula treatment* in Bangalore',
   heroSubtitle:
     'An anal fistula rarely heals on its own. We map your fistula carefully and choose the gentlest procedure that suits it, with a focus on protecting bowel control.',

@@ -3,9 +3,9 @@ import type { TreatmentContent } from './types';
 export const content: TreatmentContent = {
   slug: 'acid-reflux-gerd-treatment',
   name: 'Acid Reflux / GERD',
-  metaTitle: 'Acid Reflux & GERD Treatment in Bangalore',
+  metaTitle: 'Acid Reflux & GERD Treatment in Bangalore | GutCare',
   metaDescription:
-    'Persistent heartburn or acid reflux? GutCare Clinics, Indiranagar, offers GERD tests, lifestyle and medical care, and laparoscopic surgery for selected cases.',
+    'Persistent heartburn or acid reflux? GutCare Clinics offers GERD tests, medical care and laparoscopic surgery for selected cases.',
   heroTitle: 'Lasting relief from *acid reflux and heartburn* in Bangalore',
   heroSubtitle:
     'Most people with GERD improve with lifestyle changes and the right medicines. When they do not, we investigate carefully and discuss every option, including keyhole surgery for selected patients.',

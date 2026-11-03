@@ -3,9 +3,9 @@ import type { TreatmentContent } from './types';
 export const content: TreatmentContent = {
   slug: 'appendix',
   name: 'Appendix',
-  metaTitle: 'Appendicitis Treatment in Bangalore',
+  metaTitle: 'Appendicitis Treatment in Bangalore | GutCare Clinics',
   metaDescription:
-    'Appendicitis care in Indiranagar, Bangalore. Laparoscopic appendix removal (appendectomy) and a 24x7 emergency facility for sudden abdominal pain.',
+    'Appendicitis care in Bangalore. Laparoscopic appendectomy and a 24x7 emergency facility for sudden abdominal pain. Call +91 84315 50550.',
   heroTitle: 'Prompt, *expert appendicitis treatment* in Bangalore',
   heroSubtitle:
     'Appendicitis is a medical emergency. Our 24x7 emergency facility and experienced surgical team can assess you quickly and, when needed, remove the appendix through keyhole surgery.',

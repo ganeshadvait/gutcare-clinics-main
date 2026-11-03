@@ -5,7 +5,7 @@ export const content: TreatmentContent = {
   name: 'Piles / Hemorrhoids',
   metaTitle: 'Piles Treatment in Bangalore | Laser Surgery | GutCare',
   metaDescription:
-    'Piles (hemorrhoids) treatment in Indiranagar, Bangalore: diet advice, banding and USFDA-approved laser care, with same-day discharge for most laser procedures.',
+    'Piles bleeding or pain? USFDA-approved laser treatment in Bangalore, usually under an hour, with same-day discharge for most patients. Book a visit.',
   heroTitle: 'Gentle, advanced *piles treatment* in Bangalore',
   heroSubtitle:
     'From diet changes to minimally invasive laser care, our Indiranagar surgeons match piles treatment to your grade, so you get back to normal life with minimal discomfort.',

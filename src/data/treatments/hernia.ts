@@ -3,9 +3,9 @@ import type { TreatmentContent } from './types';
 export const content: TreatmentContent = {
   slug: 'hernia-treatment-hospital-in-bangalore',
   name: 'Hernia',
-  metaTitle: 'Laparoscopic Hernia Surgery in Bangalore',
+  metaTitle: 'Laparoscopic Hernia Surgery in Bangalore | GutCare Clinics',
   metaDescription:
-    'Hernia treatment in Indiranagar, Bangalore. Keyhole (laparoscopic) and open repair for inguinal, umbilical, incisional and other hernias at GutCare Clinics.',
+    'Hernia bulge or groin pain? Keyhole hernia surgery in Bangalore with small cuts and about 1–2 weeks to get back to routine. Book a consultation.',
   heroTitle: 'Expert *laparoscopic hernia surgery* in Bangalore',
   heroSubtitle:
     'A hernia rarely goes away by itself. Our surgical team assesses your hernia carefully and recommends the safest repair for you, most often through small keyhole incisions.',

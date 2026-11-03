@@ -3,9 +3,9 @@ import type { TreatmentContent } from './types';
 export const content: TreatmentContent = {
   slug: 'treatment-for-constipation',
   name: 'Constipation',
-  metaTitle: 'Constipation Treatment in Bangalore',
+  metaTitle: 'Constipation Treatment in Bangalore | GutCare Clinics',
   metaDescription:
-    'Long-term constipation or straining? GutCare Clinics, Indiranagar, finds the cause and offers diet, medical and pelvic floor care, with surgery if needed.',
+    'Long-term constipation or straining? GutCare Clinics, Indiranagar, finds the cause and offers diet, medical and pelvic floor care. Book a consultation.',
   heroTitle: 'Gentle, *effective constipation treatment* in Bangalore',
   heroSubtitle:
     'Constipation is common and very treatable. We look for the cause behind your symptoms and start with simple, practical steps, keeping procedures for the few patients who truly need them.',

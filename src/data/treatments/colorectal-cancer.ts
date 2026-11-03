@@ -3,9 +3,9 @@ import type { TreatmentContent } from './types';
 export const content: TreatmentContent = {
   slug: 'colorectal-cancer-treatment',
   name: 'Colorectal Cancer',
-  metaTitle: 'Colorectal Cancer Surgery in Bangalore',
+  metaTitle: 'Colorectal Cancer Surgery in Bangalore | GutCare Clinics',
   metaDescription:
-    'Calm, expert colorectal cancer care in Indiranagar, Bangalore: early diagnosis, laparoscopic surgery and a team approach with oncology specialists for you.',
+    'Expert colorectal cancer care in Indiranagar, Bangalore. Early diagnosis, laparoscopic surgery and a team approach with oncology specialists for you.',
   heroTitle: 'Clear guidance and *careful surgical care* for colorectal cancer in Bangalore',
   heroSubtitle:
     'Hearing the word cancer is frightening. We take time to explain your diagnosis, plan treatment with a team of specialists, and support you and your family at every step.',

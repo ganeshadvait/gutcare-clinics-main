@@ -3,9 +3,9 @@ import type { TreatmentContent } from './types';
 export const content: TreatmentContent = {
   slug: 'anal-fissures-surgery-treatment',
   name: 'Anal Fissures',
-  metaTitle: 'Anal Fissure Treatment in Bangalore',
+  metaTitle: 'Anal Fissure Treatment in Bangalore | GutCare Clinics',
   metaDescription:
-    'Anal fissure treatment in Indiranagar, Bangalore: diet, sitz baths and medication first, then laser or sphincterotomy for chronic fissures that fail to heal.',
+    'Pain while passing stools? Most anal fissures heal with diet and medication. For chronic ones, GutCare offers laser treatment in Bangalore.',
   heroTitle: 'Relief from *painful anal fissures* in Bangalore',
   heroSubtitle:
     'Most fissures heal with simple care. For those that keep coming back, our Indiranagar surgeons offer laser and minimally invasive anal fissure treatment to ease the pain and help the tear heal.',
