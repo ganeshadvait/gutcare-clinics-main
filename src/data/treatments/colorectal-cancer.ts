@@ -19,12 +19,10 @@ export const content: TreatmentContent = {
     '*The type of surgery depends on the location and stage of the cancer and your overall health. Laparoscopic surgery is used where suitable; some patients need open surgery.',
   imageAlt: 'Illustration of colorectal cancer in the large bowel',
   headings: {
-    heroEyebrow: 'Colorectal cancer surgery · Bangalore',
     understanding: 'What is *colorectal (colon) cancer*?',
     symptoms: 'Colon cancer symptoms',
     causes: 'What causes colorectal cancer?',
     whenToSeeDoctor: 'When to see a doctor for bowel symptoms',
-    optionsEyebrow: 'Colorectal cancer treatment options',
     options: 'How we treat *colorectal cancer*',
     recovery: 'Recovery and follow-up',
     faq: 'Colorectal cancer treatment in Bangalore: *your questions answered*',

@@ -19,12 +19,10 @@ export const content: TreatmentContent = {
     '*Recovery time applies to patients who need laparoscopic surgery and varies from person to person. Most patients with GERD are treated without surgery.',
   imageAlt: 'Illustration of acid reflux (GERD), with stomach acid flowing back into the food pipe',
   headings: {
-    heroEyebrow: 'Acid reflux & GERD treatment · Bangalore',
     understanding: 'What is *acid reflux (GERD)*?',
     symptoms: 'GERD symptoms',
     causes: 'What causes acid reflux?',
     whenToSeeDoctor: 'When to see a doctor for GERD',
-    optionsEyebrow: 'GERD treatment options',
     options: 'How we treat *acid reflux and GERD*',
     recovery: 'Recovery and outlook',
     faq: 'GERD and acid reflux treatment in Bangalore: *your questions answered*',

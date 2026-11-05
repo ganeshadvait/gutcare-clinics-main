@@ -1,10 +1,8 @@
 ---
 import { Image } from 'astro:assets';
-import { X, CircleCheck, Phone } from '@lucide/astro';
+import { X, CircleCheck } from '@lucide/astro';
 import LeadForm from './LeadForm.astro';
 import doctor from '../assets/doctors/dr-yuvraj-singh-gehlot.png';
-import { site, whatsappLink } from '../data/site';
-import WhatsAppIcon from './WhatsAppIcon.astro';
 
 const perks = ['Quick callback from our care team', 'Laser & laparoscopic experts', 'Transparent pricing & insurance help'];
 ---
@@ -54,10 +52,6 @@ const perks = ['Quick callback from our care team', 'Laser & laparoscopic expert
         subtitle="Leave your details. Our care coordinator will call you back shortly."
         withTreatment
       />
-      <p class="-mt-2 px-6 pb-6 text-center text-xs text-slate-500 sm:px-8">
-        <span class="lg:hidden">Prefer to talk now? <a href={site.phoneHref} class="inline-flex items-center gap-1 font-semibold text-brand-600"><Phone class="h-3 w-3" />{site.phone}</a></span>
-        <span class="hidden lg:inline">Prefer to chat now? <a href={whatsappLink()} target="_blank" rel="noopener" class="inline-flex items-center gap-1 font-semibold text-brand-600"><WhatsAppIcon class="h-3 w-3 text-[#25D366]" />{site.whatsappDisplay}</a></span>
-      </p>
     </div>
   </div>
 </dialog>

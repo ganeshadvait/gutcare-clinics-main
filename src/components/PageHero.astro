@@ -7,7 +7,6 @@ import CallOrWhatsApp from './CallOrWhatsApp.astro';
 import DoctorPortrait from './DoctorPortrait.astro';
 
 interface Props {
-  eyebrow: string;
   /** Wrap the words to emphasise in *asterisks*. */
   title: string;
   subtitle: string;
@@ -23,7 +22,7 @@ interface Props {
   footnote?: string;
 }
 
-const { eyebrow, title, subtitle, breadcrumbs, source, image, imageAlt = '', imageStyle = 'photo', facts, footnote } = Astro.props;
+const { title, subtitle, breadcrumbs, source, image, imageAlt = '', imageStyle = 'photo', facts, footnote } = Astro.props;
 const parts = title.split('*').map((text, i) => ({ text, highlight: i % 2 === 1 }));
 const trail = [{ label: 'Home', href: '/' }, ...breadcrumbs];
 
@@ -67,11 +66,7 @@ const breadcrumbLd = {
         </ol>
       </nav>
 
-      <span class="eyebrow mt-6 bg-white">
-        <span class="h-1.5 w-1.5 rounded-full bg-leaf-400" aria-hidden="true"></span>
-        {eyebrow}
-      </span>
-      <h1 class="mt-5 text-3xl font-extrabold leading-[1.12] tracking-tight text-balance sm:text-5xl">
+      <h1 class="mt-6 text-3xl font-extrabold leading-[1.12] tracking-tight text-balance sm:text-5xl">
         {parts.map((p) => (p.highlight ? <span class="highlight">{p.text}</span> : p.text))}
       </h1>
       <p class="lead mt-5 max-w-2xl">{subtitle}</p>

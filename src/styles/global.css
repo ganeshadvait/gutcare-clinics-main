@@ -49,15 +49,7 @@
   @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
 }
 
-/* ---- Heading system: every section uses eyebrow → heading (with highlight) → lead ---- */
-@utility eyebrow {
-  @apply inline-flex items-center gap-2 rounded-full bg-brand-50 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-brand-700 ring-1 ring-brand-100;
-}
-
-@utility eyebrow-dark {
-  @apply bg-white/10 text-leaf-300 ring-white/15;
-}
-
+/* ---- Heading system: every section uses heading (with highlight) → lead ---- */
 @utility heading-xl {
   @apply text-3xl font-extrabold leading-[1.15] tracking-tight text-balance sm:text-4xl lg:text-5xl;
 }

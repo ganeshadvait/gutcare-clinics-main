@@ -19,12 +19,10 @@ export const content: TreatmentContent = {
     '*Applies to most patients who need a procedure for a chronic fissure. Many acute fissures heal without any procedure, and recovery varies from person to person.',
   imageAlt: 'Illustration of an anal fissure, a small tear in the lining of the anal canal',
   headings: {
-    heroEyebrow: 'Anal fissure treatment · Bangalore',
     understanding: 'What is an *anal fissure*?',
     symptoms: 'Anal fissure symptoms',
     causes: 'What causes anal fissures?',
     whenToSeeDoctor: 'When to see a fissure doctor',
-    optionsEyebrow: 'Anal fissure treatment options',
     options: 'How we treat *fissures*',
     recovery: 'Recovery after fissure treatment',
     faq: 'Anal fissure treatment in Bangalore: *your questions answered*',

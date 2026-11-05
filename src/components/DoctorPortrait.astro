@@ -2,7 +2,7 @@
 // Dr. Gehlot's portrait on the brand circle with floating credentials and name card.
 // Shared by the home hero and the page heroes (doctor profile, treatment pages).
 import { Image } from 'astro:assets';
-import { Award, BadgeCheck } from '@lucide/astro';
+import { Award, BadgeCheck, Users } from '@lucide/astro';
 import doctor from '../assets/doctors/dr-yuvraj-singh-gehlot.png';
 
 interface Props {
@@ -38,6 +38,13 @@ const { class: className = '' } = Astro.props;
     <span class="text-left">
       <span class="block text-sm font-extrabold text-slate-900">25,000+</span>
       <span class="block text-[11px] text-slate-500">procedures</span>
+    </span>
+  </div>
+  <div class="portrait-float absolute right-0 top-[60%] hidden min-[350px]:flex items-center gap-2.5 rounded-2xl bg-white/95 px-3.5 py-2.5 shadow-xl backdrop-blur [animation-delay:-3s] sm:-right-6">
+    <Users class="h-7 w-7 text-leaf-500" stroke-width={1.75} />
+    <span class="text-left">
+      <span class="block text-sm font-extrabold text-slate-900">1,00,000+</span>
+      <span class="block text-[11px] text-slate-500">patients treated</span>
     </span>
   </div>
   <div class="portrait-float absolute left-0 top-[56%] hidden min-[350px]:flex items-center gap-2 rounded-full bg-white/95 px-4 py-2.5 shadow-xl backdrop-blur [animation-delay:-4s] sm:-left-8">

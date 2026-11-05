@@ -19,12 +19,10 @@ export const content: TreatmentContent = {
     '*Typical for an uncomplicated, planned repair. The type of anaesthesia, length of stay and recovery depend on the kind and size of hernia, the approach used and your overall health. Your surgeon will discuss what to expect in your case.',
   imageAlt: 'Illustration of a hernia pushing through a weak spot in the abdominal wall',
   headings: {
-    heroEyebrow: 'Hernia surgery · Bangalore',
     understanding: 'What is a *hernia*?',
     symptoms: 'Hernia symptoms',
     causes: 'What causes a hernia?',
     whenToSeeDoctor: 'When to see a hernia doctor',
-    optionsEyebrow: 'Hernia treatment options',
     options: 'How we treat *hernia*',
     recovery: 'Recovery after hernia surgery',
     faq: 'Hernia surgery in Bangalore: *your questions answered*',

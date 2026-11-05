@@ -1,12 +1,11 @@
 ---
 import SectionHeading from './SectionHeading.astro';
 import { Plus } from '@lucide/astro';
-import { site, whatsappLink } from '../data/site';
+import { site } from '../data/site';
 
 interface Props {
   faqs?: { q: string; a: string }[];
   title?: string;
-  eyebrow?: string;
 }
 
 const defaultFaqs = [
@@ -36,7 +35,7 @@ const defaultFaqs = [
   },
 ];
 
-const { faqs = defaultFaqs, title = 'Questions patients *often ask*', eyebrow = 'FAQs' } = Astro.props;
+const { faqs = defaultFaqs, title = 'Questions patients *often ask*' } = Astro.props;
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -51,13 +50,7 @@ const jsonLd = {
 
 <section id="faq" class="bg-slate-50 py-10 sm:py-14">
   <div class="container-x">
-    <SectionHeading eyebrow={eyebrow} title={title}>
-      <p class="lead mx-auto mt-5 max-w-2xl">
-        Can't find your answer?
-        <span class="lg:hidden">Call us at <a href={site.phoneHref} class="font-semibold text-brand-600">{site.phone}</a>.</span>
-        <span class="hidden lg:inline">WhatsApp us at <a href={whatsappLink()} target="_blank" rel="noopener" class="font-semibold text-brand-600">{site.whatsappDisplay}</a>.</span>
-      </p>
-    </SectionHeading>
+    <SectionHeading title={title} />
 
     <div class="mx-auto mt-8 max-w-3xl divide-y divide-slate-200 border-y border-slate-200">
       {

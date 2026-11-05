@@ -65,7 +65,6 @@ const pageLd = {
 
 <Layout title={t.metaTitle} description={t.metaDescription}>
   <PageHero
-    eyebrow={h.heroEyebrow ?? t.name}
     title={t.heroTitle}
     subtitle={t.heroSubtitle}
     breadcrumbs={[{ label: 'Treatments', href: '/#treatments' }, { label: t.name }]}
@@ -162,7 +161,6 @@ const pageLd = {
   <section class="py-10 sm:py-14">
     <div class="container-x">
       <SectionHeading
-        eyebrow={h.optionsEyebrow ?? 'Treatment options'}
         title={h.options ?? `How we treat *${t.name.split(' / ')[0].toLowerCase()}*`}
         subtitle={h.optionsSubtitle ?? 'We always start with the gentlest option that will work for you.'}
       />
@@ -209,7 +207,7 @@ const pageLd = {
   <!-- What to expect -->
   <section class="bg-brand-950 py-10 text-brand-100 sm:py-14">
     <div class="container-x">
-      <SectionHeading dark eyebrow="What to expect" title={h.steps ?? 'Your treatment, *step by step*'} />
+      <SectionHeading dark title={h.steps ?? 'Your treatment, *step by step*'} />
 
       <ol class="relative mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
         <div class="absolute inset-x-[12%] top-5 hidden h-px bg-gradient-to-r from-brand-400/50 via-leaf-400/50 to-leaf-400/50 lg:block" aria-hidden="true" />

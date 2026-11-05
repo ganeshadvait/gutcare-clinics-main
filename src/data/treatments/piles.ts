@@ -19,12 +19,10 @@ export const content: TreatmentContent = {
     '*For most laser procedures. Timing, discharge and recovery depend on the grade of piles, the procedure chosen and your overall health, and your surgeon will confirm these after examining you.',
   imageAlt: 'Illustration of internal and external piles (hemorrhoids) in the anal canal',
   headings: {
-    heroEyebrow: 'Piles treatment · Bangalore',
     understanding: 'What are *piles (hemorrhoids)*?',
     symptoms: 'Piles symptoms',
     causes: 'What causes piles?',
     whenToSeeDoctor: 'When to see a piles doctor',
-    optionsEyebrow: 'Piles treatment options',
     options: 'How we treat *piles*',
     optionsSubtitle: 'We always start with the gentlest piles treatment that will work for you.',
     optionsPrompt: 'Not sure which piles treatment suits you?',

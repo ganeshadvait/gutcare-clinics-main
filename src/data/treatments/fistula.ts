@@ -19,12 +19,10 @@ export const content: TreatmentContent = {
     '*For most laser procedures on simple fistulas. Complex fistulas may need staged treatment, a longer stay or a longer recovery, and your surgeon will discuss this with you.',
   imageAlt: 'Illustration of an anal fistula, a tunnel between the anal canal and the skin near the anus',
   headings: {
-    heroEyebrow: 'Anal fistula treatment · Bangalore',
     understanding: 'What is an *anal fistula*?',
     symptoms: 'Anal fistula symptoms',
     causes: 'What causes an anal fistula?',
     whenToSeeDoctor: 'When to see a fistula doctor',
-    optionsEyebrow: 'Anal fistula treatment options',
     options: 'How we treat *anal fistula*',
     recovery: 'Recovery after fistula treatment',
     faq: 'Anal fistula treatment in Bangalore: *your questions answered*',

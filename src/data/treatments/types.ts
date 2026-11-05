@@ -33,12 +33,10 @@ export type TreatmentContent = {
   imageAlt?: string;
   /** Page-specific section wording; each falls back to a generic default. *Asterisks* mark highlighted words. */
   headings?: {
-    heroEyebrow?: string;
     understanding?: string;
     symptoms?: string;
     causes?: string;
     whenToSeeDoctor?: string;
-    optionsEyebrow?: string;
     options?: string;
     optionsSubtitle?: string;
     /** Bold lead-in of the bar under the option cards. */

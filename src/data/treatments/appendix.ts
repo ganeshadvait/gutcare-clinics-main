@@ -19,12 +19,10 @@ export const content: TreatmentContent = {
     '*Typical for uncomplicated appendicitis treated with keyhole surgery. If the appendix has burst or formed an abscess, the hospital stay and recovery are usually longer. Your surgeon will discuss what to expect in your case.',
   imageAlt: 'Illustration of an inflamed appendix on the lower right side of the abdomen',
   headings: {
-    heroEyebrow: 'Appendicitis treatment · Bangalore',
     understanding: 'What is *appendicitis*?',
     symptoms: 'Appendicitis symptoms',
     causes: 'What causes appendicitis?',
     whenToSeeDoctor: 'When to seek care for appendicitis',
-    optionsEyebrow: 'Appendicitis treatment options',
     options: 'How we treat *appendicitis*',
     recovery: 'Recovery after appendix surgery',
     faq: 'Appendicitis treatment in Bangalore: *your questions answered*',

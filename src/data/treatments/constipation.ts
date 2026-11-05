@@ -19,12 +19,10 @@ export const content: TreatmentContent = {
     '*Surgery is considered only for specific conditions, such as rectocele, rectal prolapse or severe slow-transit constipation, after other treatments and tests. Most patients improve without it.',
   imageAlt: 'Illustration of constipation in the large bowel and rectum',
   headings: {
-    heroEyebrow: 'Constipation treatment · Bangalore',
     understanding: 'What is *constipation*?',
     symptoms: 'Constipation symptoms',
     causes: 'What causes constipation?',
     whenToSeeDoctor: 'When to see a doctor for constipation',
-    optionsEyebrow: 'Constipation treatment options',
     options: 'How we treat *constipation*',
     recovery: 'Recovery and outlook',
     faq: 'Constipation treatment in Bangalore: *your questions answered*',

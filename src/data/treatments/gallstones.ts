@@ -19,12 +19,10 @@ export const content: TreatmentContent = {
     '*Typical for a planned laparoscopic operation. Stay and recovery may be longer if the gallbladder is severely inflamed, if there are complications, or if an open operation is needed. Your surgeon will discuss what to expect in your case.',
   imageAlt: 'Illustration of gallstones inside the gallbladder',
   headings: {
-    heroEyebrow: 'Gallstone treatment · Bangalore',
     understanding: 'What are *gallstones*?',
     symptoms: 'Gallstone symptoms',
     causes: 'What causes gallstones?',
     whenToSeeDoctor: 'When to see a gallstone doctor',
-    optionsEyebrow: 'Gallstone treatment options',
     options: 'How we treat *gallstones*',
     recovery: 'Recovery after gallbladder surgery',
     faq: 'Gallstone treatment in Bangalore: *your questions answered*',
