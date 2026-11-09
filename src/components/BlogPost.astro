@@ -1,0 +1,134 @@
+---
+/** A WordPress blog post page; rendered by src/pages/[post].astro. */
+import { ChevronRight, Clock, CalendarDays, UserRound } from '@lucide/astro';
+import Layout from '../layouts/Layout.astro';
+import BlogCard from './BlogCard.astro';
+import LeadForm from './LeadForm.astro';
+import CtaBanner from './CtaBanner.astro';
+import { site } from '../data/site';
+import { formatDate, type Post } from '../lib/wordpress';
+
+interface Props {
+  post: Post;
+  related: Post[];
+}
+
+const { post, related } = Astro.props;
+const url = new URL(post.url, Astro.site).toString();
+const updated = post.modified > post.date ? post.modified : post.date;
+
+const trail = [
+  { label: 'Home', href: '/' },
+  { label: 'Blog', href: '/blog/' },
+  { label: post.category.name, href: `/blog/category/${post.category.slug}/` },
+];
+
+const articleLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.title,
+  description: post.excerpt,
+  url,
+  mainEntityOfPage: url,
+  datePublished: post.date,
+  dateModified: post.modified,
+  ...(post.image ? { image: post.image.src } : {}),
+  ...(post.author ? { author: { '@type': 'Person', name: post.author } } : {}),
+  publisher: { '@type': 'MedicalClinic', name: site.name, url: Astro.site?.toString() },
+};
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [...trail, { label: post.title }].map((c, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: c.label,
+    ...('href' in c && c.href ? { item: new URL(c.href, Astro.site).toString() } : {}),
+  })),
+};
+---
+
+<Layout title={`${post.title} | ${site.name}`} description={post.excerpt} image={post.image?.src} ogType="article">
+  <Fragment slot="head">
+    <meta property="article:published_time" content={post.date} />
+    <meta property="article:modified_time" content={post.modified} />
+    <script type="application/ld+json" set:html={JSON.stringify(articleLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />
+  </Fragment>
+
+  <article>
+    <header class="bg-gradient-to-b from-brand-50 via-white to-white pt-8 sm:pt-10">
+      <div class="container-x max-w-4xl">
+        <nav aria-label="Breadcrumb">
+          <ol class="flex flex-wrap items-center gap-1 text-xs text-slate-500 sm:text-sm">
+            {
+              trail.map((c, i) => (
+                <li class="flex items-center gap-1">
+                  {i > 0 && <ChevronRight class="h-3.5 w-3.5 text-slate-300" />}
+                  <a href={c.href} class="hover:text-brand-600">{c.label}</a>
+                </li>
+              ))
+            }
+          </ol>
+        </nav>
+
+        <h1 class="mt-6 text-3xl font-extrabold leading-[1.15] tracking-tight text-balance sm:text-4xl lg:text-5xl">{post.title}</h1>
+
+        <div class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-slate-500">
+          {post.author && <span class="inline-flex items-center gap-1.5"><UserRound class="h-4 w-4 text-brand-500" /> {post.author}</span>}
+          <span class="inline-flex items-center gap-1.5">
+            <CalendarDays class="h-4 w-4 text-brand-500" />
+            {updated === post.date ? 'Published' : 'Updated'} <time datetime={updated}>{formatDate(updated)}</time>
+          </span>
+          <span class="inline-flex items-center gap-1.5"><Clock class="h-4 w-4 text-brand-500" /> {post.readingMinutes} min read</span>
+        </div>
+
+        {
+          post.image && (
+            <img
+              src={post.image.src}
+              alt={post.image.alt}
+              width={post.image.width}
+              height={post.image.height}
+              loading="eager"
+              fetchpriority="high"
+              class="mt-8 aspect-[16/9] w-full rounded-3xl object-cover shadow-xl shadow-brand-900/10"
+            />
+          )
+        }
+      </div>
+    </header>
+
+    <div class="container-x grid gap-12 py-10 sm:py-14 lg:grid-cols-[minmax(0,1fr)_340px] lg:gap-14">
+      <div class="wp-content mx-auto w-full max-w-3xl" set:html={post.html} />
+
+      <aside class="lg:sticky lg:top-28 lg:self-start">
+        <LeadForm
+          source="blog-post"
+          title="Talk to a specialist"
+          subtitle="Questions about your symptoms? Our care team will call you back."
+        />
+      </aside>
+    </div>
+  </article>
+
+  {
+    related.length > 0 && (
+      <section class="border-t border-slate-100 py-12 sm:py-16">
+        <div class="container-x">
+          <div class="flex flex-wrap items-end justify-between gap-4">
+            <h2 class="heading-md">More on {post.category.name}</h2>
+            <a href={`/blog/category/${post.category.slug}/`} class="text-sm font-semibold text-brand-600 hover:underline">
+              View all articles
+            </a>
+          </div>
+          <ul class="mt-8 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+            {related.map((p) => <li><BlogCard post={p} /></li>)}
+          </ul>
+        </div>
+      </section>
+    )
+  }
+
+  <CtaBanner />
+</Layout>

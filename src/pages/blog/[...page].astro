@@ -1,0 +1,43 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BlogListing from '../../components/BlogListing.astro';
+import NotFound from '../../components/NotFound.astro';
+import { cacheHeaders, getPosts, getTopicCategories } from '../../lib/wordpress';
+
+// Rendered on request so new WordPress posts appear without a rebuild (cached on Vercel's CDN).
+export const prerender = false;
+
+// /blog/ is page 1; /blog/2/, /blog/3/ … are the following pages.
+const param = Astro.params.page;
+const currentPage = param === undefined ? 1 : /^[2-9]\d*$|^[1-9]\d+$/.test(param) ? Number(param) : NaN;
+
+const [list, categories] = Number.isNaN(currentPage)
+  ? [null, []]
+  : await Promise.all([getPosts({ page: currentPage }), getTopicCategories()]);
+
+if (list && list.posts.length) cacheHeaders(Astro.response.headers);
+else Astro.response.status = 404;
+
+const suffix = currentPage > 1 ? ` (Page ${currentPage})` : '';
+---
+
+{
+  list && list.posts.length ? (
+    <Layout
+      title={`Gut Health Blog${suffix} | GutCare Clinics Bangalore`}
+      description="Doctor-written articles on piles, fistula, fissures, hernia, constipation and colorectal cancer from the specialists at GutCare Clinics, Bangalore."
+    >
+      <BlogListing
+        posts={list.posts}
+        currentPage={currentPage}
+        lastPage={list.totalPages}
+        baseUrl="/blog/"
+        categories={categories}
+        title="Expert answers to the questions *you hesitate to ask*"
+        subtitle="Symptoms, causes and modern treatment options, explained by our colorectal and laparoscopic specialists."
+      />
+    </Layout>
+  ) : (
+    <NotFound />
+  )
+}

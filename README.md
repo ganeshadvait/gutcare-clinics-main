@@ -24,10 +24,24 @@ npm run build    # static output in dist/
 
 ## Lead form
 
-Set `PUBLIC_LEAD_ENDPOINT` (see `.env.example`) to a URL that accepts a JSON POST of
-`{ name, phone, treatment, source, page }` (CRM webhook, Google Apps Script, Formspree, etc.).
-Until it is set, submitting the form opens WhatsApp with the patient's details pre-filled.
+Submissions go to the same places as the old site (URLs at the top of the script in `LeadForm.astro`):
+Zoho CRM (via the AWS `create-lead` endpoint), then the Zapier webhook, plus a row in the SheetDB Google Sheet.
+UTM parameters and `gclid`/`fbclid` from the page URL are sent with the lead.
 Successful submissions push a `lead_submit` event to `dataLayer` for GTM/Google Ads tracking.
+
+## Blog (WordPress)
+
+Posts are written in WordPress and shown on this site through the WordPress REST API, at the same URLs
+they always had (e.g. `/acid-reflux-in-babies/`). Code: `src/lib/wordpress.ts`.
+
+- Blog pages (`/[post]`, `/blog/…`, `/blog/category/…`) and the home-page "latest posts" block render on request
+  on Vercel and are cached on its CDN for 60 seconds (`CACHE_SECONDS`), so a new or edited post is live
+  within about a minute, with no rebuild. Everything else is static.
+- `WORDPRESS_URL` (Vercel env var) points at the WordPress install. Defaults to https://www.gutcareclinics.com;
+  set it to the CMS subdomain (e.g. https://cms.gutcareclinics.com) once this site takes over www.
+- Category filters are the WordPress categories with 5+ posts ("Blog", "popular", "General", "Uncategorized" are hidden).
+  Rename or merge categories in WordPress to change them.
+- `npm run export:html` only covers the static pages; blog pages need the server.
 
 ## Reviews
 

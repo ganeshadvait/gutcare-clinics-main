@@ -1,0 +1,20 @@
+---
+/**
+ * Blog posts from WordPress, served at the same root URLs they had on the old site (e.g. /acid-reflux-in-babies/).
+ * Rendered on request and cached on Vercel's CDN, so a new post is live within about a minute of publishing.
+ * Treatment pages also live at the root ([slug].astro, prerendered); their static files are served first.
+ */
+import BlogPost from '../components/BlogPost.astro';
+import NotFound from '../components/NotFound.astro';
+import { cacheHeaders, getPost, getRelated } from '../lib/wordpress';
+
+export const prerender = false;
+
+const post = await getPost(Astro.params.post ?? '');
+const related = post ? await getRelated(post) : [];
+
+if (post) cacheHeaders(Astro.response.headers);
+else Astro.response.status = 404;
+---
+
+{post ? <BlogPost post={post} related={related} /> : <NotFound />}
