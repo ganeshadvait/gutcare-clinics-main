@@ -1,40 +1,43 @@
 ---
-import { Image } from 'astro:assets';
-import { ArrowUpRight, Droplet, Zap, Target, HeartPulse, Ribbon } from '@lucide/astro';
-import type { Article, BlogCategory } from '../data/blog';
+import { ArrowUpRight, Droplet, Zap, Target, HeartPulse, Ribbon, Flame, Leaf, Activity, Stethoscope } from '@lucide/astro';
+import type { Post } from '../lib/wordpress';
 
 interface Props {
-  article: Article;
+  post: Post;
   featured?: boolean;
+  /** Load the cover image straight away (first cards on a page). */
+  eager?: boolean;
 }
 
-const { article: a, featured = false } = Astro.props;
+const { post: p, featured = false, eager = false } = Astro.props;
 
-// Generated cover art for posts that don't have a featured image yet.
-const covers: Record<BlogCategory, { icon: typeof Droplet; bg: string }> = {
-  Piles: { icon: Droplet, bg: 'from-brand-500 to-brand-700' },
-  'Anal Fistula': { icon: Zap, bg: 'from-leaf-500 to-leaf-700' },
-  Hernia: { icon: Target, bg: 'from-brand-700 to-brand-950' },
-  Constipation: { icon: HeartPulse, bg: 'from-cyan-500 to-brand-600' },
-  'Colorectal Cancer': { icon: Ribbon, bg: 'from-indigo-500 to-brand-800' },
+// Generated cover art for posts that don't have a featured image, picked from the category name.
+const coverFor = (category: string) => {
+  const c = category.toLowerCase();
+  if (/pile|hemorrhoid/.test(c)) return { icon: Droplet, bg: 'from-brand-500 to-brand-700' };
+  if (/fistula|fissure/.test(c)) return { icon: Zap, bg: 'from-leaf-500 to-leaf-700' };
+  if (/hernia/.test(c)) return { icon: Target, bg: 'from-brand-700 to-brand-950' };
+  if (/constipation/.test(c)) return { icon: HeartPulse, bg: 'from-cyan-500 to-brand-600' };
+  if (/cancer|colorectal/.test(c)) return { icon: Ribbon, bg: 'from-indigo-500 to-brand-800' };
+  if (/gerd|reflux|reflex/.test(c)) return { icon: Flame, bg: 'from-orange-400 to-brand-700' };
+  if (/gut|remed/.test(c)) return { icon: Leaf, bg: 'from-leaf-400 to-brand-600' };
+  if (/gall|appendix|gastro/.test(c)) return { icon: Activity, bg: 'from-brand-400 to-indigo-700' };
+  return { icon: Stethoscope, bg: 'from-brand-500 to-brand-800' };
 };
-const { icon: Icon, bg } = covers[a.category];
+const { icon: Icon, bg } = coverFor(p.category.name);
 ---
 
-<a
-  href={a.url}
-  class:list={[
-    'group flex h-full flex-col',
-  ]}
->
+<a href={p.url} class="group flex h-full flex-col">
   <div class:list={['relative isolate aspect-[3/2] overflow-hidden rounded-3xl bg-gradient-to-br shadow-lg shadow-brand-900/5', bg]}>
     {
-      a.image ? (
-        <Image
-          src={a.image}
+      p.image ? (
+        <img
+          src={p.image.src}
           alt=""
-          widths={[400, 750]}
-          sizes={featured ? '(min-width: 1024px) 40vw, 100vw' : '(min-width: 1024px) 30vw, (min-width: 640px) 50vw, 100vw'}
+          width={p.image.width}
+          height={p.image.height}
+          loading={eager ? 'eager' : 'lazy'}
+          decoding="async"
           class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
         />
       ) : (
@@ -46,15 +49,15 @@ const { icon: Icon, bg } = covers[a.category];
       )
     }
     <span class="absolute bottom-4 left-4 rounded-full bg-white/95 px-3 py-1 text-xs font-bold text-brand-700 shadow-sm">
-      {a.category}
+      {p.category.name}
     </span>
   </div>
 
   <div class="flex flex-1 flex-col pt-5">
     <h3 class:list={['font-bold leading-snug transition group-hover:text-brand-600', featured ? 'text-xl sm:text-2xl' : 'text-lg']}>
-      {a.title}
+      {p.title}
     </h3>
-    <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-600">{a.excerpt}</p>
+    <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-600">{p.excerpt}</p>
     <span class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-600">
       Read article
       <span class="flex h-7 w-7 items-center justify-center rounded-full bg-brand-50 transition group-hover:bg-brand-500 group-hover:text-white">

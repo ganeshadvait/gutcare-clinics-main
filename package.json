@@ -8,9 +8,10 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "export:html": "astro build && python scripts/make-portable.py dist html-pages"
+    "export:html": "astro build && python scripts/make-portable.py dist/client html-pages"
   },
   "dependencies": {
+    "@astrojs/vercel": "^8.2.11",
     "@lucide/astro": "^1.56.0",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^5.18.2",

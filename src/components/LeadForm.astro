@@ -113,14 +113,86 @@ const field =
 </form>
 
 <script>
-  import { site, whatsappLink } from '../data/site';
+  // Lead integrations carried over from the previous site.
+  const ZOHO_URL = 'https://xiu1oo4uqc.execute-api.ap-south-1.amazonaws.com/Prod/create-lead';
+  const ZAPIER_URL = 'https://hooks.zapier.com/hooks/catch/20814971/281t3lc/';
+  const SHEET_URL = 'https://sheetdb.io/api/v1/goink9rv5f9tp';
 
-  const endpoint = import.meta.env.PUBLIC_LEAD_ENDPOINT as string | undefined;
+  type LeadData = Record<string, string>;
+
+  function buildLeadData(name: string, phone: string): LeadData {
+    const params = new URLSearchParams(location.search);
+    const get = (k: string) => params.get(k) || '';
+    return {
+      Last_Name: name,
+      Phone: phone,
+      Form_Type: 'Book an Appointment',
+      Lead_Source: 'Website Form',
+      Page_URL: location.href,
+      clid: [get('gclid'), get('fbclid')].filter(Boolean).join('|'),
+      UTM_Term: get('utm_term'),
+      UTM_Content: get('utm_content'),
+      UTM_Medium: get('utm_medium'),
+      UTM_Campaign: get('utm_campaign'),
+      UTM_Source: get('utm_source'),
+      UTM_Platform: get('utm_platform'),
+      UTM_Device: get('utm_device'),
+    };
+  }
+
+  async function sendToZoho(lead: LeadData): Promise<boolean> {
+    try {
+      const res = await fetch(ZOHO_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(lead),
+      });
+      if (!res.ok) throw new Error(`Zoho responded ${res.status}`);
+      console.log('Successfully sent to Zoho:', await res.json().catch(() => null));
+      return true;
+    } catch (err) {
+      console.error('Error with Zoho request:', err);
+      return false;
+    }
+  }
+
+  async function sendToZapier(lead: LeadData): Promise<boolean> {
+    try {
+      const res = await fetch(ZAPIER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(lead).toString(),
+      });
+      if (!res.ok) throw new Error(`Zapier responded ${res.status}`);
+      return true;
+    } catch (err) {
+      console.error('Error sending data to Zapier:', err);
+      return false;
+    }
+  }
+
+  function sendToSheet(name: string, phone: string) {
+    const now = new Date();
+    fetch(SHEET_URL, {
+      method: 'POST',
+      headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        data: [
+          {
+            name,
+            phone,
+            time: now.toLocaleTimeString(),
+            date: now.toLocaleDateString(),
+            url: location.href,
+          },
+        ],
+      }),
+    }).catch((err) => console.error('Error sending data to sheet:', err));
+  }
 
   document.querySelectorAll<HTMLFormElement>('form.lead-form').forEach((form) => {
     const name = form.elements.namedItem('name') as HTMLInputElement;
     const phone = form.elements.namedItem('phone') as HTMLInputElement;
-    const treatment = form.elements.namedItem('treatment') as HTMLSelectElement | null;
     const button = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
     const label = button.querySelector('[data-label]')!;
     const error = (key: string) => form.querySelector(`[data-error="${key}"]`)!;
@@ -153,41 +225,25 @@ const field =
       if (!nameOk) return name.focus();
       if (!phoneOk) return phone.focus();
 
-      const lead = {
-        name: name.value.trim(),
-        phone: `+91${phone.value}`,
-        treatment: treatment?.value ?? '',
-        source: form.dataset.source,
-        page: location.href,
-      };
+      const leadName = name.value.trim();
+      const leadPhone = phone.value;
+      const lead = buildLeadData(leadName, leadPhone);
+      console.log('Lead data', lead);
 
       button.disabled = true;
       label.textContent = 'Submitting…';
       error('submit').classList.add('hidden');
 
-      try {
-        if (endpoint) {
-          const res = await fetch(endpoint, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(lead),
-          });
-          if (!res.ok) throw new Error(`Lead endpoint responded ${res.status}`);
-        } else {
-          // No lead endpoint configured: hand the enquiry over on WhatsApp instead.
-          const lines = [
-            `Hi ${site.name}, I'd like to book a consultation.`,
-            `Name: ${lead.name}`,
-            `Phone: ${lead.phone}`,
-            lead.treatment && `Concern: ${lead.treatment}`,
-          ];
-          window.open(whatsappLink(lines.filter(Boolean).join('\n')), '_blank', 'noopener');
-        }
-        (window as any).dataLayer?.push({ event: 'lead_submit', lead_source: lead.source });
+      // Same flow as the old site: Zoho first, then Zapier either way; the sheet in parallel.
+      sendToSheet(leadName, leadPhone);
+      const zohoOk = await sendToZoho(lead);
+      const zapierOk = await sendToZapier(lead);
+
+      if (zohoOk || zapierOk) {
+        (window as any).dataLayer?.push({ event: 'lead_submit', lead_source: form.dataset.source });
         form.querySelector('[data-fields]')!.classList.add('hidden');
         form.querySelector('[data-success]')!.classList.remove('hidden');
-      } catch (err) {
-        console.error(err);
+      } else {
         button.disabled = false;
         label.textContent = 'Submit';
         error('submit').classList.remove('hidden');
