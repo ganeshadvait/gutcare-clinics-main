@@ -29,6 +29,13 @@ Set `PUBLIC_LEAD_ENDPOINT` (see `.env.example`) to a URL that accepts a JSON POS
 Until it is set, submitting the form opens WhatsApp with the patient's details pre-filled.
 Successful submissions push a `lead_submit` event to `dataLayer` for GTM/Google Ads tracking.
 
+## Redirects
+
+All redirects carried over from the old WordPress site live in `vercel.json` (301s, applied by Vercel):
+the old theme's `functions.php` redirect map, Rank Math → Redirections, and gutcareclinics.com → www.
+Page URLs have one rule with and one without the trailing slash, because Vercel matches paths exactly.
+Add new redirects there.
+
 ## Reviews
 
 - Before/after recovery stories: `stories` in `src/data/reviews.ts` (real, consented stories only).

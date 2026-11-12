@@ -40,7 +40,7 @@ const jsonLd = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <link rel="icon" type="image/webp" href="/gutcare-favicon.webp" />
+    <link rel="icon" type="image/png" href="/gutcare-favicon.png" />
     <meta name="theme-color" content="#2590d3" />
 
     <meta property="og:type" content="website" />
@@ -56,8 +56,27 @@ const jsonLd = {
     />
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    <!-- Google Tag Manager: loaded after the page finishes loading (as on the old site) to keep pages fast. -->
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      window.addEventListener('load', function () {
+        (function (w, d, s, l, i) {
+          w[l] = w[l] || [];
+          w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+          var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+          j.async = true;
+          j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+          f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-K5ZKQ8T');
+      });
+    </script>
   </head>
   <body class="pb-24 lg:pb-0">
+    <!-- Google Tag Manager (noscript): only used by browsers with JavaScript turned off. -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K5ZKQ8T" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <Header />
     <main>
       <slot />

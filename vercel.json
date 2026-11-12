@@ -1,0 +1,616 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/:path(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "gutcareclinics.com"
+        }
+      ],
+      "destination": "https://www.gutcareclinics.com/:path",
+      "statusCode": 301
+    },
+    {
+      "source": "/dr-yuvrajsingh-gehlot",
+      "destination": "/dr-yuvraj-singh-gehlot/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dr-yuvrajsingh-gehlot/",
+      "destination": "/dr-yuvraj-singh-gehlot/",
+      "statusCode": 301
+    },
+    {
+      "source": "/7-best-foods-to-fight-with-piles",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/7-best-foods-to-fight-with-piles/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/colon-cancer",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/colon-cancer/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/doctor/dr-yuvraj-singh-gehlot",
+      "destination": "/dr-yuvraj-singh-gehlot/",
+      "statusCode": 301
+    },
+    {
+      "source": "/doctor/dr-yuvraj-singh-gehlot/",
+      "destination": "/dr-yuvraj-singh-gehlot/",
+      "statusCode": 301
+    },
+    {
+      "source": "/feed",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/feed/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/comments/feed",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/comments/feed/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/elementor-landing-page-3134",
+      "destination": "/best-doctor-for-piles-treatment/",
+      "statusCode": 301
+    },
+    {
+      "source": "/elementor-landing-page-3134/",
+      "destination": "/best-doctor-for-piles-treatment/",
+      "statusCode": 301
+    },
+    {
+      "source": "/elementor-landing-page-3664",
+      "destination": "/best-treatment-for-anal-fistula/",
+      "statusCode": 301
+    },
+    {
+      "source": "/elementor-landing-page-3664/",
+      "destination": "/best-treatment-for-anal-fistula/",
+      "statusCode": 301
+    },
+    {
+      "source": "/elementor-landing-page-4465",
+      "destination": "/hernia-treatment-hospital-bangalore/",
+      "statusCode": 301
+    },
+    {
+      "source": "/elementor-landing-page-4465/",
+      "destination": "/hernia-treatment-hospital-bangalore/",
+      "statusCode": 301
+    },
+    {
+      "source": "/elementor-landing-page-9184",
+      "destination": "/best-female-doctor-for-piles-treatment/",
+      "statusCode": 301
+    },
+    {
+      "source": "/elementor-landing-page-9184/",
+      "destination": "/best-female-doctor-for-piles-treatment/",
+      "statusCode": 301
+    },
+    {
+      "source": "/new-design",
+      "destination": "/best-piles-hospital-in-bangalore/",
+      "statusCode": 301
+    },
+    {
+      "source": "/new-design/",
+      "destination": "/best-piles-hospital-in-bangalore/",
+      "statusCode": 301
+    },
+    {
+      "source": "/gallbladder-stone-surgery-bangalore",
+      "destination": "/gallbladder-stone-surgery-in-bangalore/",
+      "statusCode": 301
+    },
+    {
+      "source": "/gallbladder-stone-surgery-bangalore/",
+      "destination": "/gallbladder-stone-surgery-in-bangalore/",
+      "statusCode": 301
+    },
+    {
+      "source": "/hello-world",
+      "destination": "/7-potential-complications-and-associated-conditions-with-untreated-anal-fissure/",
+      "statusCode": 301
+    },
+    {
+      "source": "/hello-world/",
+      "destination": "/7-potential-complications-and-associated-conditions-with-untreated-anal-fissure/",
+      "statusCode": 301
+    },
+    {
+      "source": "/laparoscopic-hernia-surgery-in-bangalore-recovery-time-what-to-expect",
+      "destination": "/laparoscopic-hernia-surgery-bangalore/",
+      "statusCode": 301
+    },
+    {
+      "source": "/laparoscopic-hernia-surgery-in-bangalore-recovery-time-what-to-expect/",
+      "destination": "/laparoscopic-hernia-surgery-bangalore/",
+      "statusCode": 301
+    },
+    {
+      "source": "/umbilical-hernia-during-pregnancy-causes-symptoms-and-treatment//1000",
+      "destination": "/umbilical-hernia-during-pregnancy-causes-symptoms-and-treatment/",
+      "statusCode": 301
+    },
+    {
+      "source": "/umbilical-hernia-during-pregnancy-causes-symptoms-and-treatment/1000",
+      "destination": "/umbilical-hernia-during-pregnancy-causes-symptoms-and-treatment/",
+      "statusCode": 301
+    },
+    {
+      "source": "/umbilical-hernia-during-pregnancy-causes-symptoms-and-treatment/feed",
+      "destination": "/umbilical-hernia-during-pregnancy-causes-symptoms-and-treatment/",
+      "statusCode": 301
+    },
+    {
+      "source": "/umbilical-hernia-during-pregnancy-causes-symptoms-and-treatment/feed/",
+      "destination": "/umbilical-hernia-during-pregnancy-causes-symptoms-and-treatment/",
+      "statusCode": 301
+    },
+    {
+      "source": "/hemorrhoids-treatment-bangalore",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/hemorrhoids-treatment-bangalore/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/sitemap_index.xml",
+      "statusCode": 301
+    },
+    {
+      "source": "/fix-appointment",
+      "destination": "/appointment/",
+      "statusCode": 301
+    },
+    {
+      "source": "/fix-appointment/",
+      "destination": "/appointment/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2024/11/medical-advisor-gutcare.png",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2024/09/GERD-Prevention-1024x1024.png",
+      "destination": "/4-gerd-prevention-tips-healthier-life/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2023/05/7-Potential-complications-and-associated-conditions-with-untreated-Anal-Fissure-1000x660.jpg",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2024/09/Foods-to-Avoid-for-Hemorrhoids-1-300x300.png",
+      "destination": "/8-foods-to-avoid-for-hemorrhoids/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2024/09/2-1.png",
+      "destination": "/anal-fissure-in-children-effective-healing/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2024/08/anal-fistula-1-1024x1024.jpg",
+      "destination": "/anal-fistula-treatment-options/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2024/09/Untitled-design-2-edited-1.png",
+      "destination": "/appendicitis-adults-vs-children/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2022/12/Citrus-fruits-300x200.jpg",
+      "destination": "/best-foods-to-cure-anal-fissures/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2022/12/Probiotic-foods-300x200.jpg",
+      "destination": "/best-foods-to-cure-anal-fissures/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2022/12/Flax-seeds-300x200.jpg",
+      "destination": "/best-foods-to-cure-anal-fissures/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2022/12/Broccoli-300x200.jpg",
+      "destination": "/best-foods-to-cure-anal-fissures/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2022/12/Papaya-300x200.jpg",
+      "destination": "/best-foods-to-cure-anal-fissures/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2022/12/Peas-and-beans-300x191.jpg",
+      "destination": "/best-foods-to-cure-anal-fissures/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2022/12/Wheat-Bran-300x200.jpg",
+      "destination": "/best-foods-to-cure-anal-fissures/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2022/12/Watermelon-300x200.jpg",
+      "destination": "/best-foods-to-cure-anal-fissures/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2022/12/Root-vegetables-300x200.jpg",
+      "destination": "/best-foods-to-cure-anal-fissures/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2022/12/Fiber-rich-foods-300x200.jpg",
+      "destination": "/best-foods-to-cure-anal-fissures/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2024/09/IBD-treatment-1-1024x1024.png",
+      "destination": "/best-ibd-treatment-lasting-results/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2024/09/Colorectal.png",
+      "destination": "/conquer-colorectal-problems-solutions/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2024/09/Untitled-design-5-1024x1024.png",
+      "destination": "/constipation-complications-issues/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2022/12/Avocado-300x200.jpg",
+      "destination": "/foods-to-avoid-when-you-have-gallbladder-issues/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2022/12/Fatty-meats-300x200.jpg",
+      "destination": "/foods-to-avoid-when-you-have-gallbladder-issues/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2022/12/Fried-foods-300x200.jpg",
+      "destination": "/foods-to-avoid-when-you-have-gallbladder-issues/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2022/12/Processed-meats-300x200.jpg",
+      "destination": "/foods-to-avoid-when-you-have-gallbladder-issues/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2022/12/Oil-packed-fish-300x200.jpg",
+      "destination": "/foods-to-avoid-when-you-have-gallbladder-issues/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2022/12/White-flour-products-300x200.jpg",
+      "destination": "/foods-to-avoid-when-you-have-gallbladder-issues/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2022/12/High-fat-dairy-products--300x200.jpg",
+      "destination": "/foods-to-avoid-when-you-have-gallbladder-issues/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2024/08/fissure--1024x576.jpg",
+      "destination": "/gallstones-foods-to-avoid-essential-guide/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2024/09/GERD-1024x664.png",
+      "destination": "/gerd-causes-5-major-triggers-and-solutions/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2024/09/Anal-Fistula-laser-treatment-1024x853.png",
+      "destination": "/laser-treatment-for-anal-fistula-relief/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2024/09/2.png",
+      "destination": "/piles-diet-tips-relief-wellness/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2024/09/man-stands-with-stomachache-puts-his-hand-his-stomach_1150-26048.avif",
+      "destination": "/right-treatment-for-chronic-constipation/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2024/09/Anal-Fistula-causes-1-1024x1024.png",
+      "destination": "/top-5-anal-fistula-causes-insights-relief/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2024/09/Anal-Fissure-Causes-1-1024x1024.png",
+      "destination": "/top-5-painful-anal-fissure-causes-to-avoid/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2024/09/Gall-Stones-1-1024x1024.png",
+      "destination": "/treatment-options-for-gallstones/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2024/09/a-photo-of-a-colon-with-cancer-the-colon-is-transp-Mxb2d41EQPuboliOm4ggBg-7A0q-FzjS2Ci_pvQ2GENTg.jpeg",
+      "destination": "/what-are-the-early-signs-of-colon-cancer/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tag/anal-fissures-doctors",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tag/anal-fissures-doctors/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/piles-doctor-in-bangalore",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/piles-doctor-in-bangalore/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tag/medical-attention-for-anal-fissures",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tag/medical-attention-for-anal-fissures/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/elementor-landing-page-7110",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/elementor-landing-page-7110/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/health-tips-remedies-treatments/page/4",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/health-tips-remedies-treatments/page/4/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/portfolio/from-print-to-platform",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/portfolio/from-print-to-platform/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/piles-in-pregnancy-treatment-symptoms-diet",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/piles-in-pregnancy-treatment-symptoms-diet/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/health-tips-remedies-treatments/page/3",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/health-tips-remedies-treatments/page/3/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/author/dr-yuvraj",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/author/dr-yuvraj/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/health-tips-remedies-treatments/page/2",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/health-tips-remedies-treatments/page/2/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tag/weakness",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tag/weakness/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2024/07/Best-Tips-To-Prepare-for-Anal-Fistula-Surgery-1000x660-1-1.webp",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tag/medical-attention",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tag/medical-attention/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tag/best-piles-treatment",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tag/best-piles-treatment/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/fistula/page/2",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/fistula/page/2/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tag/potassium",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tag/potassium/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tag/whole-grains",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tag/whole-grains/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tag/nutritional-value",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tag/nutritional-value/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/author/dr-yuvraj/page/4",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/author/dr-yuvraj/page/4/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/health-tips-remedies-treatments",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/health-tips-remedies-treatments/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tag/best-piles-treatment-in-bangalore",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tag/best-piles-treatment-in-bangalore/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/author/dr-yuvraj/page/3",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/author/dr-yuvraj/page/3/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/portfolio/from-print-to-platform-7",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/portfolio/from-print-to-platform-7/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2024/08/hernia--1024x1024.jpg",
+      "destination": "/signs-of-hernia-in-women-symptoms-to-watch/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/:slug/:rest*",
+      "destination": "/blog/category/:slug/",
+      "statusCode": 301
+    }
+  ]
+}
