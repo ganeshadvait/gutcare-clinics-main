@@ -14,7 +14,8 @@ import { treatments } from '../data/site';
         <a href="/" class="btn btn-primary"><Home class="h-4 w-4" /> Back to home</a>
         <button type="button" class="btn btn-ghost" data-open-form="404"><CalendarCheck class="h-4 w-4" /> Book an Appointment</button>
       </div>
-      <ul class="mx-auto mt-12 flex max-w-3xl flex-wrap justify-center gap-2">
+      <h2 class="mt-12 text-sm font-semibold uppercase tracking-wide text-slate-500">Popular treatments</h2>
+      <ul class="mx-auto mt-4 flex max-w-3xl flex-wrap justify-center gap-2">
         {
           treatments.map((t) => (
             <li>

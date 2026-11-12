@@ -43,6 +43,7 @@ const categories = [...new Set(articles.map((a) => a.category))];
         }
       </div>
 
+      <h2 class="sr-only">Latest articles</h2>
       <ul class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" data-blog-grid>
         {
           articles.map((a) => (
