@@ -9,6 +9,8 @@ import DoctorPortrait from './DoctorPortrait.astro';
 interface Props {
   /** Wrap the words to emphasise in *asterisks*. */
   title: string;
+  /** Optional short line shown right under the heading, e.g. a doctor's role. */
+  tagline?: string;
   subtitle: string;
   /** Trail after "Home", e.g. [{ label: 'Treatments', href: '/#treatments' }, { label: 'Hernia' }]. */
   breadcrumbs: { label: string; href?: string }[];
@@ -22,7 +24,7 @@ interface Props {
   footnote?: string;
 }
 
-const { title, subtitle, breadcrumbs, source, image, imageAlt = '', imageStyle = 'photo', facts, footnote } = Astro.props;
+const { title, tagline, subtitle, breadcrumbs, source, image, imageAlt = '', imageStyle = 'photo', facts, footnote } = Astro.props;
 const parts = title.split('*').map((text, i) => ({ text, highlight: i % 2 === 1 }));
 const trail = [{ label: 'Home', href: '/' }, ...breadcrumbs];
 
@@ -69,11 +71,12 @@ const breadcrumbLd = {
       <h1 class="mt-6 text-3xl font-extrabold leading-[1.12] tracking-tight text-balance sm:text-5xl">
         {parts.map((p) => (p.highlight ? <span class="highlight">{p.text}</span> : p.text))}
       </h1>
+      {tagline && <p class="mt-3 text-lg font-semibold text-slate-700 sm:text-xl">{tagline}</p>}
       <p class="lead mt-5 max-w-2xl">{subtitle}</p>
 
       <div class="mt-8 flex flex-wrap gap-3">
         <button type="button" class="btn btn-leaf !px-7 !py-3.5 text-base" data-open-form={source}>
-          <CalendarCheck class="h-5 w-5" /> Book an Appointment
+          <CalendarCheck class="h-5 w-5" /> Book Appointment
         </button>
         <CallOrWhatsApp
           class="btn btn-ghost !px-6 !py-3.5 text-base"
