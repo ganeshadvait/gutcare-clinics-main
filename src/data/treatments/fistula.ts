@@ -17,7 +17,7 @@ export const content: TreatmentContent = {
   ],
   footnote:
     '*For most laser procedures on simple fistulas. Complex fistulas may need staged treatment, a longer stay or a longer recovery, and your surgeon will discuss this with you.',
-  imageAlt: 'Illustration of an anal fistula, a tunnel between the anal canal and the skin near the anus',
+  imageAlt: 'Fistula images showing an abnormal tunnel near the anus',
   headings: {
     understanding: 'What is an *anal fistula*?',
     symptoms: 'Anal fistula symptoms',

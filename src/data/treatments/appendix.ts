@@ -17,7 +17,7 @@ export const content: TreatmentContent = {
   ],
   footnote:
     '*Typical for uncomplicated appendicitis treated with keyhole surgery. If the appendix has burst or formed an abscess, the hospital stay and recovery are usually longer. Your surgeon will discuss what to expect in your case.',
-  imageAlt: 'Illustration of an inflamed appendix on the lower right side of the abdomen',
+  imageAlt: 'Appendix images showing inflammation of the appendix',
   headings: {
     understanding: 'What is *appendicitis*?',
     symptoms: 'Appendicitis symptoms',

@@ -17,7 +17,7 @@ export const content: TreatmentContent = {
   ],
   footnote:
     '*Typical for a planned laparoscopic operation. Stay and recovery may be longer if the gallbladder is severely inflamed, if there are complications, or if an open operation is needed. Your surgeon will discuss what to expect in your case.',
-  imageAlt: 'Illustration of gallstones inside the gallbladder',
+  imageAlt: 'Gallstones images showing stones inside the gallbladder',
   headings: {
     understanding: 'What are *gallstones*?',
     symptoms: 'Gallstone symptoms',

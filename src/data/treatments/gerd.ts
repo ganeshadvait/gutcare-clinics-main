@@ -17,7 +17,7 @@ export const content: TreatmentContent = {
   ],
   footnote:
     '*Recovery time applies to patients who need laparoscopic surgery and varies from person to person. Most patients with GERD are treated without surgery.',
-  imageAlt: 'Illustration of acid reflux (GERD), with stomach acid flowing back into the food pipe',
+  imageAlt: 'Acid reflux images showing stomach acid flowing into the oesophagus',
   headings: {
     understanding: 'What is *acid reflux (GERD)*?',
     symptoms: 'GERD symptoms',

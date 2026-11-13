@@ -11,11 +11,11 @@ const photos = import.meta.glob<{ default: ImageMetadata }>('../assets/clinic/*.
 const photoFor = (slug: string) => Object.entries(photos).find(([path]) => path.split('/').pop()!.startsWith(`${slug}.`))?.[1].default;
 
 const tiles = [
-  { slug: 'consultation', title: 'Consultation rooms', text: 'Private, unhurried consultations', icon: Stethoscope },
-  { slug: 'procedure', title: 'Procedure & examination room', text: 'Clean, private and well equipped', icon: Zap },
-  { slug: 'reception', title: 'Reception & waiting area', text: 'Bright and welcoming', icon: Armchair },
-  { slug: 'exterior', title: 'GutCare Clinics, Indiranagar', text: 'HAL 2nd Stage, Bengaluru', icon: Building2 },
-  { slug: 'helpdesk', title: 'Patient help desk', text: 'Assistance from arrival to discharge', icon: Ambulance },
+  { slug: 'consultation', title: 'Consultation rooms', alt: 'Consultation room at GutCare Clinics, Indiranagar', text: 'Private, unhurried consultations', icon: Stethoscope },
+  { slug: 'procedure', title: 'Procedure & examination room', alt: 'Procedure and examination room at GutCare Clinics', text: 'Clean, private and well equipped', icon: Zap },
+  { slug: 'reception', title: 'Reception & waiting area', alt: 'GutCare Clinics reception and waiting area', text: 'Bright and welcoming', icon: Armchair },
+  { slug: 'exterior', title: 'GutCare Clinics, Indiranagar', alt: 'Exterior view of GutCare Clinics in Indiranagar, Bengaluru', text: 'HAL 2nd Stage, Bengaluru', icon: Building2 },
+  { slug: 'helpdesk', title: 'Patient help desk', alt: 'Patient assistance helpdesk at GutCare Clinics', text: 'Assistance from arrival to discharge', icon: Ambulance },
 ].map((t) => ({ ...t, image: photoFor(t.slug) }));
 
 ---
@@ -127,7 +127,7 @@ const tiles = [
               {t.image ? (
                 <Image
                   src={t.image}
-                  alt={t.title}
+                  alt={t.alt}
                   widths={[480, 960]}
                   sizes={i === 0 ? '(min-width: 1024px) 40vw, 100vw' : '(min-width: 1024px) 20vw, 50vw'}
                   class="absolute inset-0 -z-10 h-full w-full object-cover transition duration-700 group-hover:scale-105"

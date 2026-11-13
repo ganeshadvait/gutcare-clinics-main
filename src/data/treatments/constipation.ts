@@ -17,7 +17,7 @@ export const content: TreatmentContent = {
   ],
   footnote:
     '*Surgery is considered only for specific conditions, such as rectocele, rectal prolapse or severe slow-transit constipation, after other treatments and tests. Most patients improve without it.',
-  imageAlt: 'Illustration of constipation in the large bowel and rectum',
+  imageAlt: 'Constipation images showing stool buildup in the large intestine',
   headings: {
     understanding: 'What is *constipation*?',
     symptoms: 'Constipation symptoms',

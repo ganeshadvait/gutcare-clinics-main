@@ -17,7 +17,7 @@ export const content: TreatmentContent = {
   ],
   footnote:
     '*The type of surgery depends on the location and stage of the cancer and your overall health. Laparoscopic surgery is used where suitable; some patients need open surgery.',
-  imageAlt: 'Illustration of colorectal cancer in the large bowel',
+  imageAlt: 'Colorectal cancer images showing abnormal growth in the colon or rectum',
   headings: {
     understanding: 'What is *colorectal (colon) cancer*?',
     symptoms: 'Colon cancer symptoms',

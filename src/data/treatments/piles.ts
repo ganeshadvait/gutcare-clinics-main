@@ -17,7 +17,7 @@ export const content: TreatmentContent = {
   ],
   footnote:
     '*For most laser procedures. Timing, discharge and recovery depend on the grade of piles, the procedure chosen and your overall health, and your surgeon will confirm these after examining you.',
-  imageAlt: 'Illustration of internal and external piles (hemorrhoids) in the anal canal',
+  imageAlt: 'Piles images showing internal and external haemorrhoids',
   headings: {
     understanding: 'What are *piles (hemorrhoids)*?',
     symptoms: 'Piles symptoms',

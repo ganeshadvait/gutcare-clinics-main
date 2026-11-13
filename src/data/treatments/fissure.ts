@@ -17,7 +17,7 @@ export const content: TreatmentContent = {
   ],
   footnote:
     '*Applies to most patients who need a procedure for a chronic fissure. Many acute fissures heal without any procedure, and recovery varies from person to person.',
-  imageAlt: 'Illustration of an anal fissure, a small tear in the lining of the anal canal',
+  imageAlt: 'Anal fissure images showing a tear in the anal lining',
   headings: {
     understanding: 'What is an *anal fissure*?',
     symptoms: 'Anal fissure symptoms',
