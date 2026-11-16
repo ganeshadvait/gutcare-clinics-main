@@ -5,7 +5,8 @@
 import { treatments } from '../data/site';
 
 export const SITE = 'https://www.gutcareclinics.com';
-const WP_URL = (import.meta.env.WORDPRESS_URL || SITE).replace(/\/$/, '');
+/** WordPress install that holds the posts (its own subdomain). Can be overridden with the WORDPRESS_URL env var. */
+const WP_URL = (import.meta.env.WORDPRESS_URL || 'https://blogs.gutcareclinics.com').replace(/\/$/, '');
 
 /** Posts per post-sitemapN.xml (Rank Math uses 200). */
 export const POSTS_PER_SITEMAP = 200;
