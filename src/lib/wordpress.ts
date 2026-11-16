@@ -4,8 +4,8 @@
  * so a post published or edited in WordPress shows here within about a minute, with no rebuild.
  */
 
-/** WordPress install that holds the posts. Override with WORDPRESS_URL once WordPress moves to its own subdomain. */
-export const WP_URL = (import.meta.env.WORDPRESS_URL || 'https://www.gutcareclinics.com').replace(/\/+$/, '');
+/** WordPress install that holds the posts (its own subdomain). Can be overridden with the WORDPRESS_URL env var. */
+export const WP_URL = (import.meta.env.WORDPRESS_URL || 'https://blogs.gutcareclinics.com').replace(/\/+$/, '');
 
 const escapeRe = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 

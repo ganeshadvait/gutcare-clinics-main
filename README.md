@@ -37,8 +37,8 @@ they always had (e.g. `/acid-reflux-in-babies/`). Code: `src/lib/wordpress.ts`.
 - Blog pages (`/[post]`, `/blog/…`, `/blog/category/…`) and the home-page "latest posts" block render on request
   on Vercel and are cached on its CDN for 60 seconds (`CACHE_SECONDS`), so a new or edited post is live
   within about a minute, with no rebuild. Everything else is static.
-- `WORDPRESS_URL` (Vercel env var) points at the WordPress install. Defaults to https://www.gutcareclinics.com;
-  set it to the CMS subdomain (e.g. https://cms.gutcareclinics.com) once this site takes over www.
+- Posts come from the WordPress install at https://blogs.gutcareclinics.com. To use a different install, set the
+  `WORDPRESS_URL` env var on Vercel.
 - Category filters are the WordPress categories with 5+ posts ("Blog", "popular", "General", "Uncategorized" are hidden).
   Rename or merge categories in WordPress to change them.
 - `npm run export:html` only covers the static pages; blog pages need the server.
