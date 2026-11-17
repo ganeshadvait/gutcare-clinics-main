@@ -2,9 +2,11 @@
 import SectionHeading from './SectionHeading.astro';
 import { ArrowRight } from '@lucide/astro';
 import BlogCard from './BlogCard.astro';
-import { articles } from '../data/blog';
+import { cacheHeaders, getPosts } from '../lib/wordpress';
 
-const latest = articles.slice(0, 3);
+// Used as a server island on the home page (server:defer), so the latest posts show without a rebuild.
+const latest = (await getPosts({ perPage: 3 }).catch(() => null))?.posts ?? [];
+cacheHeaders(Astro.response.headers);
 ---
 
 <section id="blog" class="py-10 sm:py-14">
@@ -15,7 +17,7 @@ const latest = articles.slice(0, 3);
     />
 
     <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {latest.map((a, i) => <div class:list={[i === 2 && 'md:hidden lg:block']}><BlogCard article={a} /></div>)}
+      {latest.map((a, i) => <div class:list={[i === 2 && 'md:hidden lg:block']}><BlogCard post={a} /></div>)}
     </div>
 
     <div class="mt-10 text-center">

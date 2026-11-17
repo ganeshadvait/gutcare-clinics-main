@@ -13,3 +13,6 @@ design-export/*
 # Standalone HTML export (npm run export:html)
 html-pages/
 gutcare-html-pages.zip
+
+# Vercel build output
+.vercel/

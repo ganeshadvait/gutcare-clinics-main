@@ -24,6 +24,8 @@ import Faq from '../components/Faq.astro';
   <Reviews />
   <CtaBanner />
   <Clinic />
-  <BlogSection />
+  <BlogSection server:defer>
+    <div slot="fallback" class="min-h-[40rem]" aria-hidden="true"></div>
+  </BlogSection>
   <Faq />
 </Layout>

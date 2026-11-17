@@ -1,0 +1,106 @@
+---
+import { ChevronLeft, ChevronRight } from '@lucide/astro';
+import SectionHeading from './SectionHeading.astro';
+import BlogCard from './BlogCard.astro';
+import type { Category, Post } from '../lib/wordpress';
+
+interface Props {
+  posts: Post[];
+  currentPage: number;
+  lastPage: number;
+  /** URL of page 1 of this listing, e.g. /blog/ or /blog/category/hernia/. */
+  baseUrl: string;
+  categories: Category[];
+  /** Slug of the category being shown; undefined on the main blog listing. */
+  active?: string;
+  title: string;
+  subtitle: string;
+}
+
+const { posts, currentPage, lastPage, baseUrl, categories, active, title, subtitle } = Astro.props;
+
+// Page numbers to show: first, last, and two either side of the current page, with gaps as "…".
+const numbers: (number | '…')[] = [];
+for (let n = 1; n <= lastPage; n++) {
+  if (n === 1 || n === lastPage || Math.abs(n - currentPage) <= 2) numbers.push(n);
+  else if (numbers.at(-1) !== '…') numbers.push('…');
+}
+const pageHref = (n: number) => (n === 1 ? baseUrl : `${baseUrl}${n}/`);
+const prev = currentPage > 1 ? pageHref(currentPage - 1) : undefined;
+const next = currentPage < lastPage ? pageHref(currentPage + 1) : undefined;
+---
+
+<section class="bg-gradient-to-b from-brand-50 to-white py-10 sm:py-14">
+  <div class="container-x">
+    <SectionHeading as="h1" title={title} subtitle={subtitle} />
+  </div>
+</section>
+
+<section class="pb-12 sm:pb-16">
+  <div class="container-x">
+    <nav
+      class="-mx-4 flex gap-2 overflow-x-auto px-4 pb-2 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:justify-center sm:px-0"
+      aria-label="Browse articles by topic"
+    >
+      {
+        [{ name: 'All', slug: '' }, ...categories].map((c) => {
+          const current = (active ?? '') === c.slug;
+          return (
+            <a
+              href={c.slug ? `/blog/category/${c.slug}/` : '/blog/'}
+              aria-current={current ? 'page' : undefined}
+              class:list={[
+                'shrink-0 rounded-full border px-4 py-2 text-sm font-semibold transition',
+                current
+                  ? 'border-brand-500 bg-brand-500 text-white'
+                  : 'border-slate-200 bg-white text-slate-600 hover:border-brand-300 hover:text-brand-700',
+              ]}
+            >
+              {c.name}
+            </a>
+          );
+        })
+      }
+    </nav>
+
+    <ul class="mt-10 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        posts.map((post, i) => (
+          <li>
+            <BlogCard post={post} eager={i < 3} />
+          </li>
+        ))
+      }
+    </ul>
+
+    {
+      lastPage > 1 && (
+        <nav class="mt-12 flex items-center justify-center gap-1.5" aria-label="Pagination">
+          {prev ? (
+            <a href={prev} class="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300 hover:text-brand-700" aria-label="Previous page">
+              <ChevronLeft class="h-4 w-4" />
+            </a>
+          ) : null}
+          {numbers.map((n) =>
+            n === '…' ? (
+              <span class="px-1 text-slate-400">…</span>
+            ) : n === currentPage ? (
+              <span aria-current="page" class="flex h-10 min-w-10 items-center justify-center rounded-full bg-brand-500 px-3 text-sm font-bold text-white">
+                {n}
+              </span>
+            ) : (
+              <a href={pageHref(n)} class="hidden h-10 min-w-10 items-center justify-center rounded-full border border-slate-200 bg-white px-3 text-sm font-semibold text-slate-600 hover:border-brand-300 hover:text-brand-700 sm:flex">
+                {n}
+              </a>
+            ),
+          )}
+          {next ? (
+            <a href={next} class="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300 hover:text-brand-700" aria-label="Next page">
+              <ChevronRight class="h-4 w-4" />
+            </a>
+          ) : null}
+        </nav>
+      )
+    }
+  </div>
+</section>

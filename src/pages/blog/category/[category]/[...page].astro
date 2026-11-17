@@ -1,0 +1,43 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import BlogListing from '../../../../components/BlogListing.astro';
+import NotFound from '../../../../components/NotFound.astro';
+import { cacheHeaders, getPosts, getTopicCategories } from '../../../../lib/wordpress';
+
+// Rendered on request so new WordPress posts appear without a rebuild (cached on Vercel's CDN).
+export const prerender = false;
+
+const { category: slug, page: param } = Astro.params;
+const currentPage = param === undefined ? 1 : /^[2-9]\d*$|^[1-9]\d+$/.test(param) ? Number(param) : NaN;
+
+const categories = await getTopicCategories();
+const category = categories.find((c) => c.slug === slug);
+const list = category && !Number.isNaN(currentPage) ? await getPosts({ page: currentPage, categoryId: category.id }) : null;
+
+if (category && list && list.posts.length) cacheHeaders(Astro.response.headers);
+else Astro.response.status = 404;
+
+const suffix = currentPage > 1 ? ` (Page ${currentPage})` : '';
+---
+
+{
+  category && list && list.posts.length ? (
+    <Layout
+      title={`${category.name} Articles${suffix} | GutCare Clinics Blog`}
+      description={`Doctor-written articles on ${category.name.toLowerCase()}: symptoms, causes and treatment options, from the specialists at GutCare Clinics, Bangalore.`}
+    >
+      <BlogListing
+        posts={list.posts}
+        currentPage={currentPage}
+        lastPage={list.totalPages}
+        baseUrl={`/blog/category/${category.slug}/`}
+        categories={categories}
+        active={category.slug}
+        title={`${category.name} *articles*`}
+        subtitle="Symptoms, causes and modern treatment options, explained by our colorectal and laparoscopic specialists."
+      />
+    </Layout>
+  ) : (
+    <NotFound />
+  )
+}
