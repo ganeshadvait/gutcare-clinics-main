@@ -1,6 +1,7 @@
 ---
 // Dr. Gehlot's portrait on the brand circle with floating credentials and name card.
 // Shared by the home hero and the page heroes (doctor profile, treatment pages).
+// On phones the badges are compact and hug the edges of the portrait so they don't cover the doctor.
 import { Image } from 'astro:assets';
 import { Award, BadgeCheck, Users } from '@lucide/astro';
 import doctor from '../assets/doctors/dr-yuvraj-singh-gehlot.png';
@@ -9,53 +10,64 @@ interface Props {
   class?: string;
 }
 const { class: className = '' } = Astro.props;
+
+const card =
+  'portrait-float absolute z-10 flex items-center gap-1.5 rounded-lg bg-white px-2 py-1 shadow-lg shadow-slate-900/10 sm:gap-3 sm:rounded-2xl sm:px-5 sm:py-3.5 sm:shadow-xl';
+const icon = 'h-4 w-4 shrink-0 sm:h-7 sm:w-7';
+const value = 'text-xs font-bold text-slate-900 sm:text-base';
+const label = 'text-[9px] text-slate-500 sm:text-xs';
 ---
 
-<div class:list={['relative mx-auto w-full max-w-md self-end', className]}>
-  <div class="absolute bottom-0 left-1/2 aspect-square w-[94%] -translate-x-1/2 rounded-full border border-brand-200/70" aria-hidden="true"></div>
-  <div class="absolute bottom-0 left-1/2 aspect-square w-[82%] -translate-x-1/2 rounded-full bg-gradient-to-br from-brand-400 via-brand-500 to-brand-700" aria-hidden="true"></div>
-
-  <Image
-    src={doctor}
-    alt="Dr. Yuvraj Singh Gehlot, senior GI, laparoscopic and colorectal surgeon at GutCare Clinics"
-    widths={[320, 480, 720]}
-    sizes="(min-width: 1024px) 20rem, 60vw"
-    class="relative mx-auto h-auto max-h-[26rem] w-auto drop-shadow-2xl sm:max-h-[32rem] lg:max-h-[35rem]"
-    loading="eager"
-    fetchpriority="high"
-  />
+<div class:list={['relative mx-auto w-full max-w-[560px] self-end', className]}>
+  <div class="relative mx-auto w-[74%]">
+    <div class="absolute inset-x-0 bottom-0 aspect-square" aria-hidden="true">
+      <div class="absolute -inset-[7%] rounded-full border border-brand-200"></div>
+      <div class="absolute inset-0 rounded-full bg-gradient-to-br from-brand-500 to-brand-600"></div>
+    </div>
+    <div class="relative">
+      <Image
+        src={doctor}
+        alt="Dr. Yuvraj Singh Gehlot, gastrointestinal and colorectal surgeon at GutCare Clinics"
+        widths={[240, 360, 480, 720]}
+        sizes="(min-width: 640px) 360px, 64vw"
+        class="mx-auto block h-auto w-[86%]"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
+  </div>
 
   <!-- Floating credentials -->
-  <div class="portrait-float absolute left-0 top-[24%] hidden min-[350px]:flex items-center gap-2.5 rounded-2xl bg-white/95 px-3.5 py-2.5 shadow-xl backdrop-blur sm:-left-6">
-    <Award class="h-7 w-7 text-leaf-500" stroke-width={1.75} />
-    <span class="text-left">
-      <span class="block text-sm font-extrabold text-slate-900">30 Years</span>
-      <span class="block text-[11px] text-slate-500">in healthcare</span>
-    </span>
+  <div class:list={[card, 'right-[calc(87%-77px)] top-[22%] sm:left-[2%] sm:right-auto sm:top-[24%]']}>
+    <Award class:list={[icon, 'text-leaf-500']} />
+    <div class="leading-tight">
+      <p class={value}>30+ Years</p>
+      <p class={label}>in healthcare</p>
+    </div>
   </div>
-  <div class="portrait-float absolute right-0 top-[38%] hidden min-[350px]:flex items-center gap-2.5 rounded-2xl bg-white/95 px-3.5 py-2.5 shadow-xl backdrop-blur [animation-delay:-2s] sm:-right-6">
-    <BadgeCheck class="h-7 w-7 text-brand-500" stroke-width={1.75} />
-    <span class="text-left">
-      <span class="block text-sm font-extrabold text-slate-900">25,000+</span>
-      <span class="block text-[11px] text-slate-500">procedures</span>
-    </span>
+  <div class:list={[card, 'left-[calc(87%-84px)] top-[36%] [animation-delay:-2s] sm:left-auto sm:right-0 sm:top-[38%]']}>
+    <BadgeCheck class:list={[icon, 'text-brand-500']} />
+    <div class="leading-tight">
+      <p class={value}>25,000+</p>
+      <p class={label}>surgeries performed</p>
+    </div>
   </div>
-  <div class="portrait-float absolute right-0 top-[60%] hidden min-[350px]:flex items-center gap-2.5 rounded-2xl bg-white/95 px-3.5 py-2.5 shadow-xl backdrop-blur [animation-delay:-3s] sm:-right-6">
-    <Users class="h-7 w-7 text-leaf-500" stroke-width={1.75} />
-    <span class="text-left">
-      <span class="block text-sm font-extrabold text-slate-900">1,00,000+</span>
-      <span class="block text-[11px] text-slate-500">patients treated</span>
-    </span>
+  <div class:list={[card, 'left-[calc(87%-65px)] top-[60%] [animation-delay:-3s] sm:left-auto sm:right-[2%] sm:top-[62%]']}>
+    <Users class:list={[icon, 'text-leaf-500']} />
+    <div class="leading-tight">
+      <p class={value}>1,00,000+</p>
+      <p class={label}>patients treated</p>
+    </div>
   </div>
-  <div class="portrait-float absolute left-0 top-[56%] hidden min-[350px]:flex items-center gap-2 rounded-full bg-white/95 px-4 py-2.5 shadow-xl backdrop-blur [animation-delay:-4s] sm:-left-8">
-    <BadgeCheck class="h-4 w-4 text-leaf-500" />
-    <span class="text-sm font-semibold text-slate-900">98% Success Rate</span>
+  <div class="portrait-float absolute right-[calc(87%-80px)] top-[48%] z-10 flex items-center gap-1 rounded-full bg-white px-2 py-1 text-[10px] font-semibold text-slate-900 shadow-xl shadow-slate-900/10 [animation-delay:-4s] sm:left-0 sm:right-auto sm:top-[56%] sm:gap-2 sm:px-5 sm:py-2.5 sm:text-sm">
+    <BadgeCheck class="h-3 w-3 shrink-0 text-leaf-500 sm:h-4 sm:w-4" />
+    98% Success Rate
   </div>
 
   <!-- Name card -->
-  <div class="absolute inset-x-6 bottom-6 rounded-2xl bg-white/95 px-5 py-3 text-center shadow-xl backdrop-blur sm:inset-x-12">
-    <p class="font-extrabold text-slate-900">Dr. Yuvraj Singh Gehlot</p>
-    <p class="text-xs text-brand-600">Senior GI, Laparoscopic &amp; Colorectal Surgeon</p>
+  <div class="absolute bottom-4 left-1/2 z-10 w-[94%] -translate-x-1/2 rounded-xl bg-white px-3 py-2 text-center shadow-xl shadow-slate-900/10 sm:bottom-6 sm:w-[72%] sm:min-w-max sm:max-w-[95%] sm:rounded-2xl sm:px-6 sm:py-3.5">
+    <p class="text-sm font-bold text-slate-900 sm:text-lg">Dr. Yuvraj Singh Gehlot</p>
+    <p class="text-[10px] text-brand-700 sm:text-sm">Senior GI, Laparoscopic &amp; Colorectal Surgeon</p>
   </div>
 </div>
 

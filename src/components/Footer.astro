@@ -1,5 +1,7 @@
 ---
-import { CalendarCheck, MapPin } from '@lucide/astro';
+import { Image } from 'astro:assets';
+import { CalendarCheck } from '@lucide/astro';
+import googleMapsIcon from '../assets/icons/google-maps.png';
 import WhatsAppIcon from './WhatsAppIcon.astro';
 import Logo from './Logo.astro';
 import CallOrWhatsApp from './CallOrWhatsApp.astro';
@@ -10,7 +12,7 @@ const quickLinks = [
   { label: 'Our Doctor', href: '/dr-yuvraj-singh-gehlot/' },
   { label: 'International Patients', href: '/medical-tourism/' },
   { label: 'Blogs', href: '/blog/' },
-  { label: 'Book an Appointment', href: '#book', form: true },
+  { label: 'Book Appointment', href: '#book', form: true },
 ];
 
 const socials = [
@@ -89,11 +91,11 @@ const socials = [
     <WhatsAppIcon class="h-5 w-5" /> WhatsApp
   </a>
   <a href={site.mapsUrl} target="_blank" rel="noopener" style="--shine-delay: 0.7s; --shine-spread: 4px; --shine-color: rgb(37 144 211 / 0.35)" class="shine flex flex-col items-center justify-center gap-1 rounded-xl px-1 text-center leading-tight bg-brand-50/70 py-2 text-[11px] font-semibold text-brand-600 ring-1 ring-brand-100/80 active:bg-brand-100">
-    <MapPin class="h-5 w-5" /> Directions
+    <Image src={googleMapsIcon} alt="" width={40} height={40} class="h-5 w-5" /> Directions
   </a>
   <a href="#book" data-open-form="mobile-bar" style="--shine-delay: 1.4s; --shine-spread: 4px; --shine-color: rgb(37 144 211 / 0.5)" class="shine flex flex-col items-center justify-center gap-1 rounded-xl px-1 text-center leading-tight bg-brand-500 py-2 text-[11px] font-semibold text-white shadow-md shadow-brand-500/30 active:bg-brand-600">
     <CalendarCheck class="h-5 w-5 shrink-0" />
-    <span>Book an<br />Appointment</span>
+    <span>Book<br />Appointment</span>
   </a>
 </nav>
 
@@ -106,7 +108,7 @@ const socials = [
     aria-label="Get directions on Google Maps"
     style="--shine-delay: 0s; --shine-color: rgb(37 144 211 / 0.3)" class="shine group flex h-14 min-w-14 items-center justify-center rounded-full bg-white/80 backdrop-blur px-4 font-semibold text-brand-600 shadow-xl shadow-black/15 ring-1 ring-slate-200 transition hover:scale-105"
   >
-    <MapPin class="h-6 w-6" />
+    <Image src={googleMapsIcon} alt="" width={48} height={48} class="h-6 w-6" />
     <span class="max-w-0 overflow-hidden whitespace-nowrap text-sm transition-all duration-300 group-hover:ml-2 group-hover:max-w-32">Directions</span>
   </a>
   <a
