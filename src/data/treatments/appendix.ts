@@ -6,7 +6,7 @@ export const content: TreatmentContent = {
   metaTitle: 'Appendicitis Treatment in Bangalore | GutCare Clinics',
   metaDescription:
     'Appendicitis care in Bangalore. Laparoscopic appendectomy and a 24x7 emergency facility for sudden abdominal pain. Call +91 84315 50550.',
-  heroTitle: '*expert appendicitis treatment* in Bangalore',
+  heroTitle: '*Expert appendicitis treatment* in Bangalore',
   heroSubtitle:
     'Appendicitis is a medical emergency. Our 24x7 emergency facility and experienced surgical team can assess you quickly and, when needed, remove the appendix through keyhole surgery.',
   quickFacts: [
