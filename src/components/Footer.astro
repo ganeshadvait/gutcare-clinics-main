@@ -76,7 +76,11 @@ const socials = [
 
   <div class="border-t border-white/10">
     <div class="container-x flex flex-col gap-2 py-6 text-xs sm:flex-row sm:items-center sm:justify-between">
-      <p>© {new Date().getFullYear()} GutCare Clinics. All rights reserved.</p>
+      <p class="flex flex-wrap items-center gap-x-3 gap-y-1">
+        <span>© {new Date().getFullYear()} GutCare Clinics. All rights reserved.</span>
+        <span aria-hidden="true" class="opacity-40">|</span>
+        <a href="/privacy-policy/" class="underline-offset-4 hover:text-white hover:underline">Privacy Policy</a>
+      </p>
       <p>Information on this site is for general awareness and is not a substitute for medical advice.</p>
     </div>
   </div>
